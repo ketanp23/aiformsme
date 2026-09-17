@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Session 1 · Introduction to AI — Business Accelerator Programme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,500;10..48,600;10..48,700;10..48,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#F5F2EA;
+  --surface:#FCFBF6;
+  --surface-2:#EFEBDF;
+  --ink:#1E2230;
+  --ink-soft:#565E6E;
+  --ink-faint:#8A8F9C;
+  --line:#E1DBC9;
+  --line-strong:#CFC7B0;
+  --accent:#0E7A66;
+  --accent-deep:#0A5A4B;
+  --accent-tint:#DCEDE7;
+  --accent-2:#D98A1E;
+  --accent-2-tint:#F6E7CC;
+  --danger:#B24A3B;
+  --danger-tint:#F1DDD7;
+  --focus:#0E7A66;
+  --radius:14px;
+  --radius-lg:22px;
+  --shadow:0 1px 0 rgba(30,34,48,.04), 0 10px 30px -18px rgba(30,34,48,.35);
+  --maxw:1120px;
+  --font-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--paper);color-scheme:light}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--font-body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.08;letter-spacing:-.02em;margin:0}
+p{margin:0}
+a{color:var(--accent-deep)}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+
+/* ---------- Top ribbon ---------- */
+.ribbon{background:var(--ink);color:#EFECE2;font-size:14px}
+.ribbon .wrap{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between;padding-top:11px;padding-bottom:11px}
+.ribbon strong{color:#fff;font-weight:600}
+.ribbon .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;margin-right:9px;vertical-align:middle}
+.ses-nav{display:flex;gap:6px}
+.ses-nav a{display:inline-block;padding:5px 11px;border-radius:999px;font-size:13px;text-decoration:none;color:#CFCBBF;border:1px solid transparent}
+.ses-nav a.on{background:var(--accent);color:#fff}
+.ses-nav a:not(.on):hover{border-color:#3a3f4e}
+
+/* ---------- Hero ---------- */
+.hero{padding:64px 0 30px;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:2}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--accent-deep);background:var(--accent-tint);padding:7px 14px;border-radius:999px;margin-bottom:22px}
+.kicker .n{font-family:var(--font-display);font-weight:700}
+.hero h1{font-size:clamp(2.5rem,6vw,4.4rem);font-weight:800;max-width:16ch}
+.hero .lede{font-size:clamp(1.12rem,2.3vw,1.4rem);color:var(--ink-soft);max-width:56ch;margin-top:22px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.chip{font-size:14px;padding:8px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);color:var(--ink-soft)}
+.chip b{color:var(--ink);font-weight:600}
+.scrolldown{margin-top:34px;display:inline-flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);text-decoration:none;font-size:15px}
+.scrolldown .arr{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:18px}
+.blob{position:absolute;border-radius:50%;filter:blur(8px);opacity:.5;z-index:1}
+
+/* ---------- Section shell ---------- */
+section{padding:52px 0}
+.sec-head{max-width:64ch;margin-bottom:34px}
+.sec-num{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--accent);letter-spacing:.02em}
+.sec-head h2{font-size:clamp(1.8rem,3.6vw,2.7rem);margin-top:8px}
+.sec-head p{color:var(--ink-soft);margin-top:14px;font-size:1.08rem}
+.divide{height:1px;background:var(--line);max-width:var(--maxw);margin:0 auto}
+
+/* ---------- Family tree ---------- */
+.tree{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:start}
+@media(max-width:820px){.tree{grid-template-columns:1fr}}
+.nest{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px}
+.ring{border:2px solid var(--line-strong);border-radius:16px;padding:14px 14px 16px;cursor:pointer;transition:border-color .15s,background .15s}
+.ring+.ring{margin-top:0}
+.ring .rlabel{display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--font-display);font-weight:700}
+.ring .rlabel small{font-family:var(--font-body);font-weight:500;color:var(--ink-faint);font-size:12.5px}
+.ring .inner{margin-top:12px}
+.ring.sel{border-color:var(--accent);background:var(--accent-tint)}
+.ring[data-lvl="ai"]{padding-bottom:14px}
+.ring .tag{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-soft)}
+.ring.sel .tag{background:#fff;color:var(--accent-deep)}
+.treeinfo{background:var(--ink);color:#EDEAE0;border-radius:var(--radius-lg);padding:26px;min-height:100%;position:sticky;top:16px}
+.treeinfo h3{color:#fff;font-size:1.5rem}
+.treeinfo .pill{display:inline-block;font-size:12.5px;font-weight:600;color:#0A5A4B;background:#8fded0;padding:4px 11px;border-radius:999px;margin-bottom:14px}
+.treeinfo .plain{color:#CFCBBF;margin-top:6px;font-size:.98rem}
+.treeinfo .exbox{margin-top:20px;background:#2a2f3d;border-radius:12px;padding:16px 18px;border-left:3px solid var(--accent)}
+.treeinfo .exbox .et{font-size:12.5px;font-weight:600;color:#8fded0;margin-bottom:6px}
+.treeinfo .exbox p{color:#E9E6DC;font-size:.97rem}
+
+/* ---------- Four kinds cards ---------- */
+.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:720px){.grid4{grid-template-columns:1fr}}
+.kcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative}
+.kcard .badge{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:1.2rem;color:#fff;margin-bottom:16px}
+.kcard h3{font-size:1.35rem}
+.kcard .sub{color:var(--accent-deep);font-weight:600;font-size:.95rem;margin-top:4px}
+.kcard .desc{color:var(--ink-soft);margin-top:12px;font-size:1rem}
+.kcard .case{margin-top:16px;padding:14px 16px;background:var(--accent-tint);border-radius:11px;font-size:.95rem}
+.kcard .case b{display:block;color:var(--accent-deep);font-weight:600;margin-bottom:3px;font-size:.85rem}
+.kcard.k2 .case{background:var(--accent-2-tint)}
+.kcard.k2 .case b{color:#8a5510}
+.kcard.k2 .sub{color:#8a5510}
+
+/* ---------- Compare toggle ---------- */
+.compare{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px}
+.seg{display:inline-flex;background:var(--surface-2);border-radius:999px;padding:5px;gap:4px;margin-bottom:24px}
+.seg button{border:none;background:transparent;padding:9px 20px;border-radius:999px;font-weight:600;font-size:15px;color:var(--ink-soft);cursor:pointer}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:720px){.cmp-grid{grid-template-columns:1fr}}
+.cmp-col{border:1px solid var(--line);border-radius:14px;padding:20px}
+.cmp-col h4{font-size:1.15rem;display:flex;align-items:center;gap:10px}
+.cmp-col .t{font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px}
+.cmp-col.rules .t{background:var(--surface-2);color:var(--ink-soft)}
+.cmp-col.learns .t{background:var(--accent-tint);color:var(--accent-deep)}
+.cmp-col ul{margin:14px 0 0;padding-left:18px;color:var(--ink-soft)}
+.cmp-col li{margin:8px 0}
+.cmp-eg{margin-top:22px;padding:16px 18px;border-radius:12px;background:var(--surface-2);font-size:.97rem}
+.cmp-eg b{color:var(--ink)}
+
+/* ---------- Next-word demo ---------- */
+.lm{background:var(--ink);color:#EDEAE0;border-radius:var(--radius-lg);padding:30px}
+.lm h3{color:#fff}
+.lm .stub{font-size:1.4rem;font-family:var(--font-display);margin:18px 0;line-height:1.5}
+.lm .stub .cur{color:#8fded0}
+.lm .opts{display:flex;flex-wrap:wrap;gap:10px}
+.lm .opts button{border:1px solid #3a3f4e;background:#2a2f3d;color:#EDEAE0;padding:10px 16px;border-radius:10px;cursor:pointer;font-size:15px;display:flex;align-items:center;gap:10px}
+.lm .opts button:hover{border-color:var(--accent)}
+.lm .opts button .pct{font-size:12px;color:#8fded0;font-weight:600}
+.lm .note{color:#AFB3BE;margin-top:20px;font-size:.95rem}
+.lm .reset{margin-top:14px;background:transparent;border:1px solid #3a3f4e;color:#CFCBBF;padding:8px 14px;border-radius:9px;cursor:pointer;font-size:14px}
+.mlbars{display:flex;align-items:flex-end;gap:12px;height:190px;margin-top:18px;padding-top:8px}
+.mlbar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:7px;height:100%}
+.mlbar .col{width:100%;max-width:60px;background:linear-gradient(180deg,#12a58c,#0E7A66);border-radius:6px 6px 0 0;transition:height .5s ease}
+.mlbar.predict .col{background:transparent;border:2px dashed #6d7688;border-bottom:none}
+.mlbar.predict.filled .col{background:linear-gradient(180deg,#e0a94a,#D98A1E);border:none}
+.mlbar .yr{font-size:12px;color:#AFB3BE}
+.mlbar .vv{font-size:12.5px;color:#8fded0;font-weight:600}
+.mlbar.predict .vv{color:#e0b667}
+.agentgoal{background:#2a2f3d;border-radius:12px;padding:14px 16px;margin-top:16px;color:#EDEAE0;font-size:.98rem}
+.asteps{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+.astep{display:flex;gap:12px;align-items:flex-start;background:#2a2f3d;border-left:3px solid var(--accent);border-radius:10px;padding:12px 15px;color:#E4E1D6;font-size:.95rem;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.astep.show{opacity:1;transform:none}
+.astep .sn{font-weight:800;color:#8fded0;flex:0 0 auto}
+.astep.pause{border-left-color:var(--accent-2)}
+.astep.pause .sn{color:#e0b667}
+.astep b{color:#fff}
+
+/* ---------- Ladder ---------- */
+.ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+@media(max-width:860px){.ladder{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.ladder{grid-template-columns:1fr}}
+.rung{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;transition:transform .12s,border-color .12s}
+.rung:hover{border-color:var(--line-strong)}
+.rung.sel{border-color:var(--accent);background:var(--accent-tint);transform:translateY(-3px)}
+.rung .step{font-family:var(--font-display);font-weight:800;color:var(--accent);font-size:1.1rem}
+.rung h4{margin-top:8px;font-size:1.08rem}
+.rung p{color:var(--ink-soft);font-size:.9rem;margin-top:8px}
+.ladder-out{margin-top:20px;padding:20px 22px;border-radius:14px;background:var(--accent-tint);border:1px solid var(--accent);display:none}
+.ladder-out.show{display:block}
+.ladder-out b{color:var(--accent-deep)}
+
+/* ---------- Quiz ---------- */
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px}
+.qwrap{max-width:64ch}
+.qprog{font-size:14px;color:var(--ink-faint);font-weight:600;margin-bottom:10px}
+.qbar{height:6px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin-bottom:24px}
+.qbar span{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.qq{font-family:var(--font-display);font-weight:700;font-size:1.45rem;line-height:1.25}
+.qopts{margin-top:20px;display:grid;gap:12px}
+.qopt{text-align:left;border:1.5px solid var(--line);background:#fff;padding:16px 18px;border-radius:12px;cursor:pointer;font-size:1.02rem;display:flex;gap:12px;align-items:flex-start;transition:border-color .12s,background .12s}
+.qopt:hover{border-color:var(--line-strong)}
+.qopt .mk{width:26px;height:26px;border-radius:50%;border:2px solid var(--line-strong);flex:0 0 auto;display:grid;place-items:center;font-weight:700;font-size:13px;color:var(--ink-faint)}
+.qopt.right{border-color:var(--accent);background:var(--accent-tint)}
+.qopt.right .mk{background:var(--accent);border-color:var(--accent);color:#fff}
+.qopt.wrong{border-color:var(--danger);background:var(--danger-tint)}
+.qopt.wrong .mk{background:var(--danger);border-color:var(--danger);color:#fff}
+.qopt:disabled{cursor:default}
+.qexp{margin-top:18px;padding:16px 18px;border-radius:12px;background:var(--surface-2);font-size:.98rem;display:none}
+.qexp.show{display:block}
+.qexp b{color:var(--ink)}
+.qnext{margin-top:22px;display:flex;justify-content:flex-end}
+.btn{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:11px;font-weight:600;font-size:15px;cursor:pointer}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.ghost{background:transparent;color:var(--accent-deep);border:1.5px solid var(--accent)}
+.qresult{text-align:center;padding:20px}
+.qresult .score{font-family:var(--font-display);font-weight:800;font-size:3.4rem;color:var(--accent)}
+.qresult p{color:var(--ink-soft);margin-top:8px}
+
+/* ---------- Takeaways ---------- */
+.takeaways{background:var(--ink);color:#EDEAE0;border-radius:var(--radius-lg);padding:34px}
+.takeaways h2{color:#fff;font-size:2rem}
+.tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+@media(max-width:760px){.tk-grid{grid-template-columns:1fr}}
+.tk{background:#2a2f3d;border-radius:14px;padding:20px;border-top:3px solid var(--accent)}
+.tk .num{font-family:var(--font-display);font-weight:800;color:#8fded0;font-size:1.1rem}
+.tk p{color:#E4E1D6;margin-top:8px;font-size:.98rem}
+
+/* pocket reveal */
+.pocket{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:860px){.pocket{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.pocket{grid-template-columns:1fr}}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;text-align:left;transition:border-color .12s;min-height:118px}
+.pcard:hover{border-color:var(--line-strong)}
+.pcard .pi{font-size:1.7rem}
+.pcard h4{margin-top:8px;font-size:1.02rem}
+.pcard .reveal{margin-top:8px;font-size:.88rem;color:var(--ink-soft);display:none}
+.pcard.open{border-color:var(--accent);background:var(--accent-tint)}
+.pcard.open .reveal{display:block}
+.pcard .tap{margin-top:8px;font-size:.8rem;color:var(--accent);font-weight:600}
+.pcard.open .tap{display:none}
+
+/* brilliant vs struggles */
+.bw{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:720px){.bw{grid-template-columns:1fr}}
+.bwcol{border-radius:var(--radius-lg);padding:26px}
+.bwcol.good{background:var(--accent-tint);border:1px solid #b6d9d0}
+.bwcol.bad{background:var(--danger-tint);border:1px solid #e2b6ac}
+.bwcol h3{font-size:1.35rem;display:flex;align-items:center;gap:10px}
+.bwcol.good h3{color:var(--accent-deep)}
+.bwcol.bad h3{color:var(--danger)}
+.bwcol ul{margin:14px 0 0;padding:0;list-style:none}
+.bwcol li{padding:11px 0 11px 28px;position:relative;color:var(--ink-soft);border-top:1px solid rgba(0,0,0,.06)}
+.bwcol li:first-child{border-top:none}
+.bwcol li b{color:var(--ink)}
+.bwcol li:before{position:absolute;left:0;top:10px;font-weight:700}
+.bwcol.good li:before{content:"✓";color:var(--accent)}
+.bwcol.bad li:before{content:"!";color:var(--danger)}
+
+/* team split */
+.team{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
+@media(max-width:720px){.team{grid-template-columns:1fr}}
+.teamside{padding:26px}
+.teamside.ai{background:var(--ink);color:#EDEAE0}
+.teamside h3{font-size:1.3rem}
+.teamside.ai h3{color:#fff}
+.teamside .tl{font-size:.8rem;font-weight:700;letter-spacing:.03em;margin-bottom:12px}
+.teamside.human .tl{color:var(--accent-deep)}
+.teamside.ai .tl{color:#8fded0}
+.teamside ul{margin:0;padding-left:18px}
+.teamside.human li{margin:8px 0;color:var(--ink-soft)}
+.teamside.ai li{margin:8px 0;color:#CFCBBF}
+.teamplus{display:grid;place-items:center;background:var(--accent);color:#fff;font-family:var(--font-display);font-weight:800;font-size:1.6rem;padding:0 20px}
+@media(max-width:720px){.teamplus{padding:14px}}
+.teamnote{margin-top:18px;text-align:center;font-family:var(--font-display);font-weight:700;font-size:1.25rem;color:var(--ink)}
+
+/* jargon */
+.jchips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.jchips button{border:1.5px solid var(--line);background:var(--surface);padding:9px 16px;border-radius:999px;font-weight:600;font-size:14.5px;color:var(--ink-soft);cursor:pointer}
+.jchips button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.jchips button:not(.on):hover{border-color:var(--line-strong)}
+.jbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px;min-height:150px}
+.jbox .jt{font-family:var(--font-display);font-weight:800;font-size:1.6rem;color:var(--accent-deep)}
+.jbox .jd{margin-top:10px;font-size:1.05rem}
+.jbox .ja{margin-top:16px;padding:14px 18px;border-radius:12px;background:var(--accent-tint);font-size:.98rem}
+.jbox .ja b{color:var(--accent-deep)}
+
+/* data to deployment */
+.e2ehead{background:var(--accent-tint);border:1px solid #b6d9d0;border-radius:16px;padding:20px 22px;margin-bottom:22px}
+.e2ehead .tag{display:inline-block;font-size:11.5px;font-weight:700;color:var(--accent-deep);background:#fff;border-radius:999px;padding:4px 11px;margin-bottom:10px}
+.e2ehead h3{font-size:1.45rem}
+.e2ehead .out{margin-top:8px;color:var(--ink)}
+.e2ehead .out b{color:var(--accent-deep)}
+.journey{position:relative}
+.jstep{display:grid;grid-template-columns:44px 1fr;gap:16px;position:relative;padding-bottom:16px}
+.jstep:last-child{padding-bottom:0}
+.jstep::before{content:"";position:absolute;left:21px;top:46px;bottom:0;width:2px;background:var(--line-strong)}
+.jstep:last-child::before{display:none}
+.jnode{width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:1.15rem;z-index:1;flex:0 0 auto}
+.jstep.last .jnode{background:var(--accent-2)}
+.jbody{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 17px}
+.jphase{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--accent-deep);background:var(--accent-tint);border-radius:999px;padding:2px 10px;display:inline-block;margin-bottom:7px}
+.jstep.last .jphase{color:#8a5510;background:var(--accent-2-tint)}
+.jbody h4{font-size:1.06rem}
+.jbody p{color:var(--ink-soft);font-size:.95rem;margin-top:5px}
+.e2enote{margin-top:18px;padding:14px 18px;border-radius:12px;background:var(--surface-2);font-size:.93rem;color:var(--ink-soft)}
+.e2enote b{color:var(--ink)}
+
+/* type badges */
+.tb{font-size:11px;font-weight:700;letter-spacing:.03em;padding:3px 10px;border-radius:999px;display:inline-block}
+.tb-llm{background:var(--accent-tint);color:var(--accent-deep)}
+.tb-ml{background:#DEE6F6;color:#264a9e}
+.tb-agent{background:var(--accent-2-tint);color:#8a5510}
+/* type-matcher */
+.rulecards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+@media(max-width:720px){.rulecards{grid-template-columns:1fr}}
+.rulecard{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--surface);border-top:4px solid var(--line-strong)}
+.rulecard.llm{border-top-color:var(--accent)}
+.rulecard.ml{border-top-color:#2A5CB8}
+.rulecard.agent{border-top-color:var(--accent-2)}
+.rulecard h4{font-size:1.1rem;margin-top:10px}
+.rulecard .ask{color:var(--ink);font-weight:500;margin-top:7px;font-size:.95rem}
+.rulecard .verbs{color:var(--ink-faint);font-size:.83rem;margin-top:9px}
+.matchbox{background:var(--ink);color:#EDEAE0;border-radius:var(--radius-lg);padding:26px}
+.matchbox .mlabel{font-size:.8rem;color:#8fded0;font-weight:700;letter-spacing:.04em}
+.matchbox .fn{display:inline-block;font-size:11.5px;font-weight:600;color:#CFCBBF;background:#2a2f3d;border-radius:999px;padding:3px 11px;margin:12px 0 0}
+.matchbox .task{font-family:var(--font-display);font-weight:700;font-size:1.3rem;line-height:1.3;margin-top:10px}
+.mbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.mbtns button{border:1px solid #3a3f4e;background:#2a2f3d;color:#EDEAE0;padding:11px 20px;border-radius:10px;cursor:pointer;font-size:15px;font-weight:600}
+.mbtns button:hover:not(:disabled){border-color:#8fded0}
+.mbtns button.correct{background:#0E7A66;border-color:#0E7A66;color:#fff}
+.mbtns button.wrong{background:#8a3f33;border-color:#8a3f33;color:#fff}
+.mbtns button:disabled{cursor:default}
+.mexp{margin-top:16px;color:#D8D0BE;font-size:.97rem;display:none}
+.mexp.show{display:block}
+.mexp b{color:#fff}
+.matchbox .adv{margin-top:16px;background:#8fded0;color:#0A3f35;border:none;padding:9px 18px;border-radius:9px;font-weight:700;cursor:pointer;display:none;font-family:inherit;font-size:14px}
+.matchbox .adv.show{display:inline-block}
+/* discovery lenses */
+.lenses{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.lenses{grid-template-columns:1fr}}
+.lens{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--surface);cursor:pointer;transition:border-color .12s}
+.lens:hover{border-color:var(--line-strong)}
+.lens.open{border-color:var(--accent);background:var(--accent-tint)}
+.lens h4{font-size:1.1rem}
+.lens .q{color:var(--ink-soft);margin-top:8px;font-size:.96rem;font-style:italic}
+.lens .tap{font-size:.8rem;color:var(--accent);font-weight:600;margin-top:10px}
+.lens.open .tap{display:none}
+.lens .rev{display:none;margin-top:12px;border-top:1px dashed var(--line-strong);padding-top:12px}
+.lens.open .rev{display:block}
+.lens .rev .tps{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.lens .rev .pts{font-size:.9rem;color:var(--ink-soft)}
+.lens .rev .eg{font-size:.9rem;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin-top:9px}
+.lens .rev .eg b{color:var(--accent-deep)}
+
+/* challenges */
+.chgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.chgrid{grid-template-columns:1fr}}
+.chcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;transition:border-color .12s}
+.chcard:hover{border-color:var(--line-strong)}
+.chcard.open{border-color:var(--accent);background:var(--accent-tint)}
+.chcard h4{font-size:1.08rem;display:flex;gap:10px;align-items:baseline}
+.chcard h4 .cn{font-family:var(--font-display);font-weight:800;color:var(--accent);font-size:.9rem;flex:0 0 auto}
+.chcard .cd{color:var(--ink-soft);font-size:.94rem;margin-top:8px}
+.chcard .tap{font-size:.8rem;color:var(--accent);font-weight:600;margin-top:10px}
+.chcard.open .tap{display:none}
+.chcard .fix{display:none;margin-top:12px;border-top:1px dashed var(--line-strong);padding-top:12px;font-size:.94rem;color:var(--ink-soft)}
+.chcard.open .fix{display:block}
+.chcard .fix b{color:var(--accent-deep)}
+/* risks */
+.rkgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.rkgrid{grid-template-columns:1fr}}
+.rkcard{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--danger);border-radius:12px;padding:18px}
+.rkcard .rkt{font-size:11px;font-weight:700;letter-spacing:.03em;color:var(--danger);background:var(--danger-tint);border-radius:999px;padding:3px 11px;display:inline-block;margin-bottom:10px}
+.rkcard h4{font-size:1.08rem}
+.rkcard .what{color:var(--ink-soft);font-size:.93rem;margin-top:7px}
+.rkcard .safe{margin-top:11px;background:var(--accent-tint);border-radius:9px;padding:10px 13px;font-size:.9rem;color:var(--ink-soft)}
+.rkcard .safe b{color:var(--accent-deep)}
+
+/* leadership frameworks */
+.lf-intro{color:var(--ink-soft);margin-bottom:18px;max-width:70ch}
+.lf-cards{display:grid;gap:14px}
+.lf-cards.c4{grid-template-columns:1fr 1fr}
+.lf-cards.c3{grid-template-columns:repeat(3,1fr)}
+.lf-cards.c2{grid-template-columns:1fr 1fr}
+@media(max-width:720px){.lf-cards.c4,.lf-cards.c3,.lf-cards.c2{grid-template-columns:1fr}}
+.lfcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;border-top:4px solid var(--accent)}
+.lfcard.amber{border-top-color:var(--accent-2)}
+.lfcard.blue{border-top-color:#2A5CB8}
+.lfcard.ink{border-top-color:var(--ink-soft)}
+.lfcard .big{font-family:var(--font-display);font-weight:800;font-size:1.55rem;color:var(--accent);line-height:1}
+.lfcard.amber .big{color:#8a5510}
+.lfcard.blue .big{color:#264a9e}
+.lfcard.ink .big{color:var(--ink)}
+.lfcard h4{font-size:1.1rem;margin-top:8px}
+.lfcard .sub{color:var(--ink-soft);font-size:.9rem;margin-top:6px}
+.lfcard .eg{margin-top:12px;font-size:.9rem;color:var(--ink-soft);background:var(--accent-tint);border-radius:9px;padding:10px 12px}
+.lfcard.amber .eg{background:var(--accent-2-tint)}
+.lfcard.blue .eg{background:#DEE6F6}
+.lfcard.ink .eg{background:var(--surface-2)}
+.lfcard .eg b{color:var(--ink)}
+.lf-take{margin-top:18px;padding:15px 20px;border-radius:12px;background:var(--ink);color:#EDEAE0;font-size:.96rem}
+.lf-take b{color:#8fded0}
+
+footer{padding:40px 0 60px;color:var(--ink-faint);font-size:14px;text-align:center}
+footer .divide{margin-bottom:30px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<div class="ribbon">
+  <div class="wrap">
+    <div><span class="dot"></span><strong>Business Accelerator Programme</strong> &nbsp;·&nbsp; AI for MSMEs</div>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <span class="blob" style="width:320px;height:320px;background:var(--accent-tint);top:-90px;right:-60px"></span>
+  <span class="blob" style="width:220px;height:220px;background:var(--accent-2-tint);bottom:-120px;left:-40px"></span>
+  <div class="wrap">
+    <div class="kicker"><span class="n">Session 1</span> · 90 minutes · Introduction to AI</div>
+    <h1>AI, explained in the language of your business.</h1>
+    <p class="lede">No coding. No jargon. Just what Artificial Intelligence actually is — and how it shows up in a fabrication shop, a spice-packaging unit, an FPO, a tuition centre or a travel desk. Click through everything below; it is built for you to explore, not just watch.</p>
+    <div class="meta">
+      <span class="chip"><b>4</b> ideas to unpack: AI/ML, Generative AI, LLMs, Agents</span>
+      <span class="chip"><b>1</b> business framework: the AI Capability Ladder</span>
+      <span class="chip"><b>5-question</b> myth-buster to close</span>
+    </div>
+    <a class="scrolldown" href="#tree"><span class="arr">↓</span> Start with the big picture</a>
+  </div>
+</header>
+
+<!-- ============ FAMILY TREE ============ -->
+<section id="tree">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">01 — The big picture</div>
+      <h2>One word, many layers. AI is a family, not a single thing.</h2>
+      <p>When people say "AI", they could mean any of these. The trick is to see how they fit inside each other. Tap any ring on the left to understand it in plain terms — with an example from a business like yours.</p>
+    </div>
+    <div class="tree">
+      <div class="nest">
+        <div class="ring sel" data-lvl="ai" tabindex="0" role="button" aria-pressed="true">
+          <div class="rlabel"><span>Artificial Intelligence <span class="tag">the whole field</span></span></div>
+          <div class="inner">
+            <div class="ring" data-lvl="ml" tabindex="0" role="button" aria-pressed="false">
+              <div class="rlabel"><span>Machine Learning <span class="tag">learns from data</span></span></div>
+              <div class="inner">
+                <div class="ring" data-lvl="dl" tabindex="0" role="button" aria-pressed="false">
+                  <div class="rlabel"><span>Deep Learning <small>brain-like networks</small></span></div>
+                  <div class="inner">
+                    <div class="ring" data-lvl="gen" tabindex="0" role="button" aria-pressed="false">
+                      <div class="rlabel"><span>Generative AI &amp; LLMs <small>creates text, images, replies</small></span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ring" data-lvl="agent" tabindex="0" role="button" aria-pressed="false" style="margin-top:16px">
+          <div class="rlabel"><span>Agentic AI <span class="tag">takes action, step by step</span></span></div>
+        </div>
+        <p style="color:var(--ink-faint);font-size:.85rem;margin-top:14px">Agents sit on top: they <i>use</i> the layers above to actually get jobs done.</p>
+      </div>
+
+      <div class="treeinfo" id="treeInfo">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ FOUR KINDS ============ -->
+<section id="four">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">02 — The four you'll actually meet</div>
+      <h2>Four kinds of AI, four jobs they do for a small business.</h2>
+      <p>You do not need the science. You need to recognise which kind of AI does which job — so you know what to reach for when a problem shows up on your shop floor or in your accounts book.</p>
+    </div>
+    <div class="grid4">
+      <div class="kcard">
+        <div class="badge" style="background:#0E7A66">ML</div>
+        <h3>Machine Learning</h3>
+        <div class="sub">Learns patterns from your past</div>
+        <p class="desc">You give it history — past sales, past repairs, past orders — and it spots the pattern and predicts what comes next. It does not "create"; it forecasts and sorts.</p>
+        <div class="case"><b>For a spice-packaging unit</b>From three years of sales, it flags that turmeric and garam masala spike 6 weeks before Diwali — so you produce ahead instead of running out.</div>
+      </div>
+      <div class="kcard k2">
+        <div class="badge" style="background:#D98A1E">GEN</div>
+        <h3>Generative AI</h3>
+        <div class="sub">Creates something new</div>
+        <p class="desc">Give it an instruction and it produces fresh work: a product description, a label design, a marketing photo, a festival greeting for customers. A tireless junior assistant for creative tasks.</p>
+        <div class="case"><b>For a steel-furniture maker</b>"Write a 4-line WhatsApp catalogue caption for a foldable study table, ₹2,400, delivery across Nagpur." — done in seconds, ready to tweak.</div>
+      </div>
+      <div class="kcard">
+        <div class="badge" style="background:#0E7A66">LLM</div>
+        <h3>Large Language Models (LLMs)</h3>
+        <div class="sub">The assistant you talk to</div>
+        <p class="desc">The engine behind ChatGPT, Claude and Gemini. You ask in plain Hindi, Marathi or English; it understands and answers. It can draft, summarise, translate, explain and reply.</p>
+        <div class="case"><b>For a fabrication workshop</b>Paste a customer's rough requirement and ask it to turn it into a clean, itemised quotation with GST — a first draft in one minute.</div>
+      </div>
+      <div class="kcard k2">
+        <div class="badge" style="background:#D98A1E">AGT</div>
+        <h3>Agentic AI</h3>
+        <div class="sub">Does the task, not just the talk</div>
+        <p class="desc">The newest step. Instead of only answering, an "agent" carries out a series of steps for you — check, decide, act — using tools and information, with your permission.</p>
+        <div class="case"><b>For an FPO / agri-collective</b>An agent reads incoming buyer enquiries, checks available stock of tur dal, drafts a price reply, and lists which orders need your approval — you just review.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ POCKET ============ -->
+<section id="pocket">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">03 — It's not new to you</div>
+      <h2>You already use AI a dozen times a day. You just don't call it that.</h2>
+      <p>AI can feel like a foreign, distant thing. It isn't. It's quietly running inside apps you use every day on your phone. Tap each one to see the AI hiding inside — and feel how ordinary it already is.</p>
+    </div>
+    <div class="pocket" id="pocket"></div>
+    <p style="color:var(--ink-soft);margin-top:20px;max-width:64ch">If you already trust AI to guide you home and catch fraud on your UPI, you can trust yourself to use it for a quotation. The tools in Session 3 are the same kind of thing — just pointed at your business.</p>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ COMPARE ============ -->
+<section id="compare">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">04 — The mindset shift</div>
+      <h2>Normal software follows rules. AI learns from examples.</h2>
+      <p>This is the single most useful idea in the session. Tally, a calculator, or your billing app follow fixed rules you set. AI is trained on thousands of examples and figures out the rule itself. That is why it can handle messy, human tasks.</p>
+    </div>
+    <div class="compare">
+      <div class="seg" role="tablist">
+        <button class="on" data-eg="0">Sorting complaints</button>
+        <button data-eg="1">Reading a bill</button>
+        <button data-eg="2">Writing a reply</button>
+      </div>
+      <div class="cmp-grid">
+        <div class="cmp-col rules">
+          <h4><span class="t">Rule-based software</span></h4>
+          <ul>
+            <li>You must spell out every rule in advance.</li>
+            <li>Same input, same output, every single time.</li>
+            <li>Breaks the moment something unexpected arrives.</li>
+          </ul>
+          <div class="cmp-eg" id="cmpRules"></div>
+        </div>
+        <div class="cmp-col learns">
+          <h4><span class="t">AI that learns</span></h4>
+          <ul>
+            <li>Learns the pattern from many past examples.</li>
+            <li>Handles wording and situations it has never seen.</li>
+            <li>Improves as it sees more of your real data.</li>
+          </ul>
+          <div class="cmp-eg" id="cmpLearns"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ LLM DEMO ============ -->
+<section id="predict">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">05 — Peek under the bonnet</div>
+      <h2>How do they actually work? Take a peek at three of them.</h2>
+      <p>The three kinds you'll use most each work differently underneath. You don't need the maths — just the feel for it. Try all three tabs: guess the next word, predict from data, and watch an agent work step by step.</p>
+    </div>
+    <div class="seg" id="peekSeg" role="tablist" style="margin-bottom:20px">
+      <button class="on" data-p="llm">LLM · predicts words</button>
+      <button data-p="ml">AI/ML · predicts from data</button>
+      <button data-p="agent">Agentic AI · works in steps</button>
+    </div>
+
+    <div class="lm" id="peekLLM">
+      <h3 style="font-size:1.3rem">You are the LLM. Complete the sentence.</h3>
+      <p style="color:#CFCBBF;margin-top:6px">An LLM is a very powerful guessing machine — it picks the most sensible next word, again and again. Build a sentence yourself.</p>
+      <div class="stub" id="lmStub" style="margin-top:14px">Dear customer, your order is <span class="cur">▍</span></div>
+      <div class="opts" id="lmOpts"></div>
+      <p class="note" id="lmNote">Pick the word that sounds most natural. Notice how you are not "looking up" an answer — you are sensing what fits. That is exactly what an LLM does, at massive scale.</p>
+      <button class="reset" id="lmReset">Start again</button>
+    </div>
+
+    <div class="lm" id="peekML" style="display:none">
+      <h3 style="font-size:1.3rem">You are the ML model. Predict from the pattern.</h3>
+      <p style="color:#CFCBBF;margin-top:6px">A namkeen unit's Diwali-season sales, year by year. Machine Learning studies the past and predicts what comes next — no rules written, just the pattern.</p>
+      <div class="mlbars" id="mlBars"></div>
+      <p style="color:#EDEAE0;margin-top:18px;font-weight:600">Looking only at the trend — how many packs should you make for Diwali 2026?</p>
+      <div class="opts" id="mlOpts"></div>
+      <p class="note" id="mlNote">Each year rises by roughly the same amount. Pick the prediction that follows the pattern.</p>
+      <button class="reset" id="mlReset" style="display:none">Try again</button>
+    </div>
+
+    <div class="lm" id="peekAgent" style="display:none">
+      <h3 style="font-size:1.3rem">Watch an agent work through the steps.</h3>
+      <p style="color:#CFCBBF;margin-top:6px">A chatbot would just reply. An <b style="color:#fff">agent</b> plans and acts — checking, calculating, drafting — then pauses to hand the decision back to you.</p>
+      <div class="agentgoal">📩 New WhatsApp enquiry: <i>"Do you have 50 kg tur dal? What's the rate delivered to Gondia?"</i></div>
+      <div class="asteps" id="aSteps"></div>
+      <button class="reset" id="agentRun">Run the agent →</button>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ DATA TO DEPLOYMENT ============ -->
+<section id="e2e">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">06 — From data to deployment</div>
+      <h2>Now see each one as a full business project, start to finish.</h2>
+      <p>Real AI isn't magic dropped in overnight — it's a short journey with clear stages, from the data you already have to something working in your business. Here are three fresh, end-to-end examples: one built on an LLM, one on Machine Learning, one on an Agent. Switch tabs to follow each journey through the same six stages.</p>
+    </div>
+    <div class="seg" id="e2eSeg" role="tablist" style="margin-bottom:22px">
+      <button class="on" data-u="llm">LLM · Winning tenders</button>
+      <button data-u="ml">AI/ML · Keeping customers</button>
+      <button data-u="agent">Agentic · Daily deliveries</button>
+    </div>
+    <div id="e2eOut"></div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ TYPE MATCHER ============ -->
+<section id="typematch">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">07 — Discovery skill</div>
+      <h2>Which kind of AI is this? Learn to name it on sight.</h2>
+      <p>Once you can glance at any task and sense whether it's a job for an LLM, Machine Learning or an Agent, use-cases start jumping out at you across every function. Here's the whole rule in three questions — then test yourself.</p>
+    </div>
+    <div class="rulecards">
+      <div class="rulecard llm"><span class="tb tb-llm">LLM</span><h4>Is it about words?</h4><p class="ask">Reading, writing, replying, summarising, translating, explaining.</p><p class="verbs">Signal words: draft, reply, write, summarise, translate, explain, read.</p></div>
+      <div class="rulecard ml"><span class="tb tb-ml">AI / ML</span><h4>Is it about predicting from data?</h4><p class="ask">Forecasting, scoring, sorting, detecting or recommending — from your past records.</p><p class="verbs">Signal words: predict, forecast, score, sort, detect, spot, recommend.</p></div>
+      <div class="rulecard agent"><span class="tb tb-agent">Agentic</span><h4>Is it a multi-step job with actions?</h4><p class="ask">Carrying out a whole task across steps and tools — monitoring, chasing, coordinating.</p><p class="verbs">Signal words: monitor, chase, coordinate, process, dispatch, reconcile.</p></div>
+    </div>
+    <div class="matchbox">
+      <div class="mlabel">TRY IT · WHICH TYPE FITS?</div>
+      <div class="fn" id="mFn"></div>
+      <div class="task" id="mTask"></div>
+      <div class="mbtns" id="mBtns"></div>
+      <p class="mexp" id="mExp"></p>
+      <button class="adv" id="mAdv">Next task →</button>
+    </div>
+    <p style="color:var(--ink-soft);margin-top:16px;max-width:66ch;font-size:.95rem">Many real projects combine types — an <b>agent</b> that uses an <b>LLM</b> to write, guided by an <b>ML</b> prediction. Naming the <i>main</i> one is all you need to get started.</p>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ DISCOVERY LENSES ============ -->
+<section id="lenses-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">08 — Discovery lenses</div>
+      <h2>Where to look: six lenses for finding use-cases in any function.</h2>
+      <p>You don't find AI opportunities by staring at technology — you find them by looking hard at your own work. Point each of these lenses at any function — sales, operations, finance, service, procurement, people — and candidates appear. Tap a lens to see what it reveals.</p>
+    </div>
+    <div class="lenses" id="lenses"></div>
+    <p style="color:var(--ink-soft);margin-top:18px;max-width:68ch;font-size:.95rem"><b>The discovery habit:</b> use these lenses to <i>find</i> a task, the three questions above to <i>name its type</i>, then carry your strongest candidates into Session 2 to prioritise and plan.</p>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ LEADERSHIP FRAMEWORKS ============ -->
+<section id="leadlens">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">09 — Leadership frameworks</div>
+      <h2>Weigh use-cases like a leadership team, not just a to-do list.</h2>
+      <p>Finding candidates is one thing; deciding which deserve your team's energy is a leadership call. These three lenses weigh AI opportunities by the value they create, when to pursue them, and how they change the work — so you build a balanced portfolio, not a random pile. Switch tabs.</p>
+    </div>
+    <div class="seg" id="llSeg" role="tablist" style="margin-bottom:22px">
+      <button class="on" data-l="value">Four value levers</button>
+      <button data-l="horizon">Three horizons</button>
+      <button data-l="mode">Automate vs augment</button>
+    </div>
+    <div id="llOut"></div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ BRILLIANT VS STRUGGLES ============ -->
+<section id="strengths">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">10 — Business framework</div>
+      <h2>Know what to hand to AI — and what to keep for yourself.</h2>
+      <p>AI is not good at everything, and that's fine. The skill is knowing which jobs to give it and which to keep. Learn this line and you'll never be disappointed or caught out.</p>
+    </div>
+    <div class="bw">
+      <div class="bwcol good">
+        <h3>Hand it to AI</h3>
+        <ul>
+          <li><b>Language work</b> — drafting, replying, rewriting, summarising, translating between Marathi, Hindi and English.</li>
+          <li><b>First drafts of anything</b> — a quote, a caption, a letter, a plan. Blank-page problems vanish.</li>
+          <li><b>Finding patterns in lots of data</b> — sorting, grouping, spotting trends in your past sales.</li>
+          <li><b>Tireless repetition</b> — the same kind of task, a hundred times, without getting bored or sloppy.</li>
+          <li><b>Explaining things simply</b> — a scheme, a rule, a new idea, in words you choose.</li>
+        </ul>
+      </div>
+      <div class="bwcol bad">
+        <h3>Keep it for yourself</h3>
+        <ul>
+          <li><b>Exact arithmetic</b> — it can slip on precise sums. Recompute prices, GST and totals yourself.</li>
+          <li><b>The very latest facts</b> — unless it can search, it may not know today's rate or rule. Verify.</li>
+          <li><b>Your private information</b> — it only knows what you tell it; it can't see your books or stock on its own.</li>
+          <li><b>Final judgement & responsibility</b> — the decision, and the accountability, stay with you.</li>
+          <li><b>Relationships & trust</b> — the human touch with a customer or worker can't be outsourced.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ TEAM ============ -->
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">11 — The winning mindset</div>
+      <h2>It's not you <i>or</i> AI. It's you <i>plus</i> AI.</h2>
+      <p>The businesses that win won't be the ones with the fanciest AI — they'll be the owners who pair their judgement with AI's speed. Think of AI as a fast, tireless assistant. You stay the boss.</p>
+    </div>
+    <div class="team">
+      <div class="teamside human">
+        <div class="tl">YOU BRING</div>
+        <h3>Judgement &amp; know-how</h3>
+        <ul>
+          <li>Deep knowledge of your trade &amp; customers</li>
+          <li>The final decision on every output</li>
+          <li>Relationships, trust and reputation</li>
+          <li>Responsibility for what goes out</li>
+        </ul>
+      </div>
+      <div class="teamplus">+</div>
+      <div class="teamside ai">
+        <div class="tl">AI BRINGS</div>
+        <h3>Speed &amp; tireless effort</h3>
+        <ul>
+          <li>Instant first drafts, any time of day</li>
+          <li>No boredom, no fatigue, no bad moods</li>
+          <li>Works in every language you need</li>
+          <li>Handles the boring, repetitive load</li>
+        </ul>
+      </div>
+    </div>
+    <div class="teamnote">“AI proposes. You dispose.”</div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ LADDER (FRAMEWORK) ============ -->
+<section id="ladder">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">12 — Business framework</div>
+      <h2>The AI Capability Ladder — where does your business stand today?</h2>
+      <p>Every enterprise sits somewhere on this ladder. There is no shame in the first rung; most of India's MSMEs are there. Knowing your rung tells you what your <i>next</i> sensible step is. Tap the rung that best describes you right now.</p>
+    </div>
+    <div class="ladder" id="ladder">
+      <div class="rung" data-r="0" tabindex="0" role="button">
+        <div class="step">Rung 1</div><h4>Aware</h4>
+        <p>You've heard of AI but haven't tried it in the business yet.</p>
+      </div>
+      <div class="rung" data-r="1" tabindex="0" role="button">
+        <div class="step">Rung 2</div><h4>Exploring</h4>
+        <p>Someone has tried ChatGPT or Google once or twice, casually.</p>
+      </div>
+      <div class="rung" data-r="2" tabindex="0" role="button">
+        <div class="step">Rung 3</div><h4>Using</h4>
+        <p>You use an AI tool for at least one real task most weeks.</p>
+      </div>
+      <div class="rung" data-r="3" tabindex="0" role="button">
+        <div class="step">Rung 4</div><h4>Building in</h4>
+        <p>AI is part of a routine — replies, catalogues, or accounts.</p>
+      </div>
+      <div class="rung" data-r="4" tabindex="0" role="button">
+        <div class="step">Rung 5</div><h4>AI-led</h4>
+        <p>AI shapes decisions and is woven through daily operations.</p>
+      </div>
+    </div>
+    <div class="ladder-out" id="ladderOut"></div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ JARGON ============ -->
+<section id="jargon">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">13 — The jargon decoder</div>
+      <h2>The ten words people throw around. Now you'll know them all.</h2>
+      <p>Don't let vocabulary make AI feel exclusive. Every buzzword has a simple meaning and a business parallel. Tap a word to decode it.</p>
+    </div>
+    <div class="jchips" id="jChips"></div>
+    <div class="jbox" id="jBox"></div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ CHALLENGES ============ -->
+<section id="challenges">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">14 — Challenges</div>
+      <h2>The real hurdles — and how to clear each one.</h2>
+      <p>Let's be honest: putting AI to work in a small, busy business isn't frictionless. Knowing the common hurdles in advance means none of them stops you. Tap each to see the way through.</p>
+    </div>
+    <div class="chgrid" id="chGrid"></div>
+    <p style="color:var(--ink-soft);margin-top:18px;max-width:66ch;font-size:.95rem">Every one of these is normal, and every one has a way past it. The trick is to <b style="color:var(--ink)">expect</b> them, not be surprised by them.</p>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ RISKS ============ -->
+<section id="risks">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">15 — Risks to watch out for</div>
+      <h2>Go in with your eyes open.</h2>
+      <p>AI is powerful, not perfect — and a few risks can genuinely bite a business that isn't careful. Here's what to watch for, and the simple safeguard for each. None of these is a reason to avoid AI; they're reasons to stay the one in control.</p>
+    </div>
+    <div class="rkgrid" id="rkGrid"></div>
+    <p style="color:var(--ink-soft);margin-top:18px;max-width:68ch;font-size:.95rem"><b style="color:var(--ink)">The golden rule:</b> you are always the final checker. Session 3 turns each of these safeguards into a simple daily habit.</p>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">16 — Check yourself</div>
+      <h2>Five myths, busted. See what actually stuck.</h2>
+      <p>Answer honestly — the explanation after each is the real learning. No score is shared with anyone; this is just for you.</p>
+    </div>
+    <div class="quiz">
+      <div class="qwrap" id="quizBody">
+        <div class="qprog" id="qProg">Question 1 of 5</div>
+        <div class="qbar"><span id="qBar"></span></div>
+        <div class="qq" id="qQ"></div>
+        <div class="qopts" id="qOpts"></div>
+        <div class="qexp" id="qExp"></div>
+        <div class="qnext"><button class="btn" id="qNext" disabled>Next question</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ============ TAKEAWAYS ============ -->
+<section id="wrap-up">
+  <div class="wrap">
+    <div class="takeaways">
+      <h2>What to carry out of this room</h2>
+      <div class="tk-grid">
+        <div class="tk"><div class="num">01</div><p>AI is a <b>family of tools</b>, not a robot. ML predicts, Generative AI creates, LLMs converse, Agents act.</p></div>
+        <div class="tk"><div class="num">02</div><p>The big shift: normal software follows <b>rules you write</b>; AI <b>learns from examples</b> — so it handles messy, human work.</p></div>
+        <div class="tk"><div class="num">03</div><p>You don't need to be technical. If you can describe a task in Marathi or Hindi, you can already <b>use</b> AI.</p></div>
+      </div>
+      <p style="color:#CFCBBF;margin-top:26px;font-size:1.05rem">Next session — <b style="color:#fff">Application of AI for MSMEs</b> — we map these tools onto your marketing, operations, finance and customer service, function by function.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="divide"></div>
+  <div class="wrap">Session 1 of 3 · Introduction to AI · Business Accelerator Programme for MSMEs · A hands-on playground — explore freely.</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- FAMILY TREE ---------- */
+  var treeData = {
+    ai:{pill:"The whole field",title:"Artificial Intelligence",plain:"The umbrella term for any machine that does something we'd normally call \"smart\" — recognising, deciding, understanding, creating. Everything else here lives inside it.",exl:"In a business",ex:"An app that reads a photo of a handwritten order and turns it into a typed list is \"AI\" — even if you never see the machinery behind it."},
+    ml:{pill:"Learns from data",title:"Machine Learning",plain:"The most common form of AI. Instead of being told the rules, it studies lots of past examples and works out the pattern by itself. Give it your history, it predicts your future.",exl:"In a business",ex:"A garage feeds in two years of service records; the system learns to predict which vehicles are due for servicing next month, so you can call them first."},
+    dl:{pill:"Brain-inspired",title:"Deep Learning",plain:"A more powerful style of machine learning that stacks many layers — loosely inspired by how brain cells connect. It's what made computers good at images, speech and language.",exl:"In a business",ex:"A quality camera on a papad or snack line that learns to spot broken or oddly-shaped pieces and flags them — trained purely on photos of good vs bad."},
+    gen:{pill:"Creates & converses",title:"Generative AI & LLMs",plain:"Deep learning aimed at creating: text, images, audio, replies. Large Language Models (LLMs) are the text-and-conversation kind — the brains inside ChatGPT, Claude and Gemini.",exl:"In a business",ex:"Ask it to draft a quotation, write a product label, translate your brochure into Marathi, or reply politely to an angry customer — all from a plain-language request."},
+    agent:{pill:"Acts, step by step",title:"Agentic AI",plain:"The frontier. An \"agent\" doesn't just answer — it carries out a chain of steps to finish a job: it can look things up, use tools, and take actions, pausing for your approval where it matters.",exl:"In a business",ex:"An agent watches your enquiry inbox, checks stock, drafts price replies for tur dal orders, and hands you a shortlist to approve — turning three tasks into one review."}
+  };
+  var treeInfo=document.getElementById("treeInfo");
+  var rings=document.querySelectorAll(".ring");
+  function renderTree(lvl){
+    var d=treeData[lvl];
+    treeInfo.innerHTML='<span class="pill">'+d.pill+'</span><h3>'+d.title+'</h3><p class="plain">'+d.plain+'</p><div class="exbox"><div class="et">'+d.exl+'</div><p>'+d.ex+'</p></div>';
+    rings.forEach(function(r){var on=r.getAttribute("data-lvl")===lvl;r.classList.toggle("sel",on);r.setAttribute("aria-pressed",on?"true":"false");});
+  }
+  rings.forEach(function(r){
+    function act(e){e.stopPropagation();renderTree(r.getAttribute("data-lvl"));}
+    r.addEventListener("click",act);
+    r.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();act(e);}});
+  });
+  renderTree("ai");
+
+  /* ---------- COMPARE ---------- */
+  var cmp=[
+    {rules:"<b>You code:</b> \"If the message contains the word <i>refund</i>, mark it urgent.\" A customer writes \"paisa wapas chahiye\" — the rule misses it entirely.",learns:"<b>It learns:</b> from hundreds of past complaints it understands that \"paisa wapas\", \"return\", and \"refund\" all mean the same intent — and sorts it correctly."},
+    {rules:"<b>You code:</b> the bill format must be exactly as expected. A supplier sends a slightly different layout and the software throws an error.",learns:"<b>It learns:</b> it has seen thousands of bills, so it finds the total, GST and date even on a format it has never encountered before."},
+    {rules:"<b>You code:</b> pick from 5 fixed template replies. None quite fits a customer asking to change delivery to Gadchiroli by Saturday.",learns:"<b>It learns:</b> it writes a fresh, polite, specific reply for that exact situation — in the tone and language you ask for."}
+  ];
+  var cmpRules=document.getElementById("cmpRules"),cmpLearns=document.getElementById("cmpLearns");
+  function renderCmp(i){cmpRules.innerHTML=cmp[i].rules;cmpLearns.innerHTML=cmp[i].learns;}
+  document.querySelectorAll("#compare .seg button").forEach(function(b){
+    b.addEventListener("click",function(){
+      document.querySelectorAll("#compare .seg button").forEach(function(x){x.classList.remove("on");});
+      b.classList.add("on");renderCmp(parseInt(b.getAttribute("data-eg"),10));
+    });
+  });
+  renderCmp(0);
+
+  /* ---------- NEXT-WORD DEMO ---------- */
+  var chains={
+    start:{text:"Dear customer, your order is",opts:[["ready",62],["confirmed",24],["delayed",9],["biryani",1]]},
+    ready:{text:"Dear customer, your order is ready",opts:[["for",71],["and",18],["to",8]]},
+    "ready|for":{text:"Dear customer, your order is ready for",opts:[["pickup",66],["delivery",30],["Tuesday",3]]},
+    confirmed:{text:"Dear customer, your order is confirmed",opts:[["and",55],[".",30],["for",13]]}
+  };
+  var lmStub=document.getElementById("lmStub"),lmOpts=document.getElementById("lmOpts"),lmNote=document.getElementById("lmNote");
+  var built="Dear customer, your order is";
+  var stateKey="start";
+  function lmRender(){
+    var node=chains[stateKey];
+    lmStub.innerHTML=built.replace(/^Dear customer, your order is/,"Dear customer, your order is")+' <span class="cur">▍</span>';
+    lmOpts.innerHTML="";
+    if(!node||!node.opts){
+      lmNote.innerHTML="That's a complete, natural sentence — built one word at a time, each chosen for how well it fits. <b>No dictionary lookup, just prediction.</b> An LLM does this across billions of examples.";
+      return;
+    }
+    node.opts.forEach(function(o){
+      var btn=document.createElement("button");
+      btn.innerHTML='<span>'+o[0]+'</span><span class="pct">'+o[1]+'%</span>';
+      btn.addEventListener("click",function(){
+        built=built+" "+o[0];
+        if(stateKey==="start"&&o[0]==="ready"){stateKey="ready";}
+        else if(stateKey==="start"&&o[0]==="confirmed"){stateKey="confirmed";}
+        else if(stateKey==="ready"&&o[0]==="for"){stateKey="ready|for";}
+        else{stateKey="__end__";}
+        lmRender();
+      });
+      lmOpts.appendChild(btn);
+    });
+  }
+  document.getElementById("lmReset").addEventListener("click",function(){
+    built="Dear customer, your order is";stateKey="start";
+    lmNote.innerHTML="Pick the word that sounds most natural. Notice how you are not \"looking up\" an answer — you are sensing what fits. That is exactly what an LLM does, at massive scale.";
+    lmRender();
+  });
+  lmRender();
+
+  /* ---------- PEEK TABS ---------- */
+  var peekPanels={llm:document.getElementById("peekLLM"),ml:document.getElementById("peekML"),agent:document.getElementById("peekAgent")};
+  document.querySelectorAll("#peekSeg button").forEach(function(b){
+    b.addEventListener("click",function(){
+      document.querySelectorAll("#peekSeg button").forEach(function(x){x.classList.remove("on");});
+      b.classList.add("on");
+      var p=b.getAttribute("data-p");
+      Object.keys(peekPanels).forEach(function(k){if(peekPanels[k])peekPanels[k].style.display=(k===p)?"":"none";});
+    });
+  });
+
+  /* ---------- ML PREDICT DEMO ---------- */
+  var mlData=[{y:"2022",v:120},{y:"2023",v:175},{y:"2024",v:240},{y:"2025",v:310},{y:"2026",v:null,predict:true}];
+  var mlMax=420;
+  var mlBars=document.getElementById("mlBars"),mlOpts=document.getElementById("mlOpts"),mlNote=document.getElementById("mlNote"),mlReset=document.getElementById("mlReset");
+  function drawMlBars(showPredict){
+    if(!mlBars)return;
+    mlBars.innerHTML="";
+    mlData.forEach(function(d){
+      var wrap=document.createElement("div");wrap.className="mlbar"+(d.predict?" predict":"")+(d.predict&&showPredict?" filled":"");
+      var val=d.predict?(showPredict?385:null):d.v;
+      var h=val?Math.round(val/mlMax*100):8;
+      var vv=d.predict?(showPredict?"~385":"?"):d.v;
+      wrap.innerHTML='<div class="vv">'+vv+'</div><div class="col" style="height:'+h+'%"></div><div class="yr">'+d.y+'</div>';
+      mlBars.appendChild(wrap);
+    });
+  }
+  var mlChoices=[{t:"~250 packs",ok:false},{t:"~385 packs",ok:true},{t:"~600 packs",ok:false}];
+  function renderMlOpts(){
+    mlOpts.innerHTML="";
+    mlChoices.forEach(function(c){
+      var btn=document.createElement("button");btn.textContent=c.t;
+      btn.addEventListener("click",function(){
+        mlOpts.querySelectorAll("button").forEach(function(x){x.disabled=true;x.style.opacity="0.55";});
+        btn.style.opacity="1";
+        drawMlBars(true);
+        if(c.ok){
+          mlNote.innerHTML="Spot on. The model sees sales climbing by roughly <b style=\"color:#8fded0\">+63 packs a year</b> and predicts about <b style=\"color:#8fded0\">385</b> for 2026 — so you produce ahead instead of running short. That is Machine Learning: it finds the pattern in your data, no rules written by hand.";
+        }else{
+          mlNote.innerHTML="Not quite — that ignores the steady trend. The model reads the pattern (about <b style=\"color:#8fded0\">+63 packs a year</b>) and predicts around <b style=\"color:#8fded0\">385</b>. It's a prediction, not a promise — and it sharpens as it sees more years of data.";
+        }
+        mlReset.style.display="";
+      });
+      mlOpts.appendChild(btn);
+    });
+  }
+  if(mlBars){
+    drawMlBars(false);renderMlOpts();
+    mlReset.addEventListener("click",function(){
+      mlReset.style.display="none";
+      mlNote.innerHTML="Each year rises by roughly the same amount. Pick the prediction that follows the pattern.";
+      drawMlBars(false);renderMlOpts();
+    });
+  }
+
+  /* ---------- AGENT STEPS DEMO ---------- */
+  var agentSteps=[
+    {n:"1",t:"<b>Understand the request</b> — 50 kg tur dal, deliver to Gondia, customer wants a delivered rate."},
+    {n:"2",t:"<b>Check stock</b> — 80 kg in the godown. ✓ Available."},
+    {n:"3",t:"<b>Look up today's rate</b> and add the delivery cost to Gondia."},
+    {n:"4",t:"<b>Draft a reply</b> — price, availability, and expected delivery time, ready to send."},
+    {n:"⏸",t:"<b>Pause for you</b> — the agent flags the draft for your approval before anything goes out.",pause:true}
+  ];
+  var aSteps=document.getElementById("aSteps"),agentRun=document.getElementById("agentRun");
+  var agentIdx=0;
+  function agentNext(){
+    if(agentIdx<agentSteps.length){
+      var s=agentSteps[agentIdx];
+      var el=document.createElement("div");el.className="astep"+(s.pause?" pause":"");
+      el.innerHTML='<span class="sn">'+s.n+'</span><span>'+s.t+'</span>';
+      aSteps.appendChild(el);
+      requestAnimationFrame(function(){el.classList.add("show");});
+      agentIdx++;
+      if(agentIdx===1)agentRun.textContent="Next step →";
+      if(agentIdx===agentSteps.length){
+        agentRun.textContent="Start again";
+        var note=document.createElement("p");note.className="note";
+        note.innerHTML="That's the difference: an agent breaks a goal into steps, uses tools (your stock, your rates) and acts — but hands the real decision back to you. A chatbot would only have answered the first line.";
+        note.id="agentNote";aSteps.appendChild(note);
+      }
+    }else{
+      aSteps.innerHTML="";agentIdx=0;agentRun.textContent="Run the agent →";
+    }
+  }
+  if(agentRun){agentRun.addEventListener("click",agentNext);}
+
+  /* ---------- DATA TO DEPLOYMENT ---------- */
+  var e2e=[
+    {id:"llm",tag:"LLM · Engineering / fabrication & services",title:"Win more work with a tender & bid-response assistant",
+     out:'<b>The payoff:</b> respond to far more government &amp; institutional tenders — faster and compliant — without hiring.',
+     note:"<b>Notice:</b> for an LLM, your \u201cdata\u201d is your own knowledge and a few good examples \u2014 not a giant training dataset. That's why an LLM project is the quickest of the three to stand up.",
+     steps:[
+       {p:"Goal",t:"Pick the problem",d:"Bidding on a tender takes days of writing, so you skip most of them. Aim: respond to three times as many, without adding staff."},
+       {p:"Data",t:"Gather your inputs",d:"Your company profile, certificates (GST, Udyam, ISO), your rate card, and one or two past bids that actually won."},
+       {p:"Prepare",t:"Set it up",d:"Feed the LLM your profile and a winning bid as an example, and write one reusable instruction: \u201cread this tender and draft our response, section by section.\u201d"},
+       {p:"Build & test",t:"Try it on a known case",d:"Run it on an old tender you know well. Check it covers eligibility, specifications, the pricing format and every required declaration. Refine until the draft is dependable."},
+       {p:"Deploy",t:"Put it in your week",d:"For each new tender, paste it in and get a first draft in minutes. You verify the numbers and sign. It's now a fixed, fast step in your routine."},
+       {p:"Improve",t:"Sharpen each cycle",d:"Save every new winning bid as a fresh example and note why you lost others. The assistant gets better with every tender you run through it."}
+     ]},
+    {id:"ml",tag:"AI/ML · Food, consumer &amp; services",title:"Spot customers about to slip away — before they do",
+     out:'<b>The payoff:</b> keep your good, regular customers by acting on an early warning, instead of noticing only when revenue dips.',
+     note:"<b>Notice:</b> this is a true \u201clearn from data\u201d project. The model is only as good as your records \u2014 the more order history you keep, the sharper its warnings become.",
+     steps:[
+       {p:"Goal",t:"Pick the problem",d:"Loyal buyers quietly stop ordering and you find out too late. Aim: a weekly early-warning list of customers at risk of leaving."},
+       {p:"Data",t:"Collect the records",d:"Your order history \u2014 who bought what, how often, their last order date and size. A khata or WhatsApp order log is enough to begin."},
+       {p:"Prepare",t:"Tidy the data",d:"Turn it into one row per customer with simple signals: days since last order, usual gap between orders, total spend, and whether it's rising or falling."},
+       {p:"Build & test",t:"Train and check",d:"An ML tool learns from past customers who stayed versus left, then you test it on customers whose outcome you already know \u2014 to see how often it gets it right."},
+       {p:"Deploy",t:"Act on the list",d:"Each week it gives you a ranked \u201cat-risk\u201d list. You reach out to the top few with a targeted offer \u2014 a precise save, not a mass blast to everyone."},
+       {p:"Improve",t:"Retrain and refresh",d:"Feed back who returned and who didn't; the model relearns and grows more accurate. Refresh it now and then so it never goes stale."}
+     ]},
+    {id:"agent",tag:"Agentic AI · Food, distribution &amp; manufacturing",title:"A daily dispatch agent that gets every order out",
+     out:'<b>The payoff:</b> the day\u2019s deliveries planned on an efficient route with every customer kept informed \u2014 instead of juggling calls and a paper list.',
+     note:"<b>Notice:</b> the agent plans and acts across several steps and tools \u2014 but the guardrail (your approval of the daily plan) is what keeps you in control. Never remove the human gate on decisions that matter.",
+     steps:[
+       {p:"Goal",t:"Pick the problem",d:"Getting orders out each day is a scramble of calls, addresses and a paper list. Aim: right route, informed customers, mostly hands-off."},
+       {p:"Data & tools",t:"Give it what it needs",d:"Today's confirmed orders with delivery addresses, your available riders or vehicle, and rough delivery windows."},
+       {p:"Prepare",t:"Design steps & guardrails",d:"Set what the agent may do \u2014 group orders by area, sequence an efficient route, message each customer their slot \u2014 and the rule: you approve the day's plan before anything is sent."},
+       {p:"Build & test",t:"Run it in the loop",d:"For a few days, run it alongside your usual method in \u201csuggest only\u201d mode. Compare its route and messages with what you'd have done, and adjust the rules."},
+       {p:"Deploy",t:"Approve with one tap",d:"Each morning it hands you a ready route and drafts each customer's \u201carriving by ___\u201d message. One tap approves; it sends and tracks delivery."},
+       {p:"Improve",t:"Widen its reach",d:"Let it learn your regular stops and preferred timings, and add live updates for delays \u2014 while keeping your sign-off on the daily plan."}
+     ]}
+  ];
+  var e2eOut=document.getElementById("e2eOut");
+  function renderE2e(id){
+    var u=e2e.filter(function(x){return x.id===id;})[0];
+    document.querySelectorAll("#e2eSeg button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-u")===id);});
+    var html='<div class="e2ehead"><span class="tag">'+u.tag+'</span><h3>'+u.title+'</h3><p class="out">'+u.out+'</p></div><div class="journey">';
+    u.steps.forEach(function(s,i){
+      var last=(i===u.steps.length-1)?" last":"";
+      html+='<div class="jstep'+last+'"><div class="jnode">'+(i+1)+'</div><div class="jbody"><span class="jphase">'+s.p+'</span><h4>'+s.t+'</h4><p>'+s.d+'</p></div></div>';
+    });
+    html+='</div><div class="e2enote">'+u.note+'</div>';
+    e2eOut.innerHTML=html;
+  }
+  if(e2eOut){
+    document.querySelectorAll("#e2eSeg button").forEach(function(b){
+      b.addEventListener("click",function(){renderE2e(b.getAttribute("data-u"));});
+    });
+    renderE2e("llm");
+  }
+
+  /* ---------- TYPE MATCHER ---------- */
+  var matchTasks=[
+    {fn:"Customer service",task:"Write a calm, polite reply to an angry customer message.",ans:"llm",exp:"<b>LLM.</b> Pure language work — understand a message, write a good reply. No prediction, no chain of actions."},
+    {fn:"Sales & marketing",task:"Score each new enquiry as likely-to-buy or not, from patterns in past leads.",ans:"ml",exp:"<b>AI/ML.</b> Judging something from past data is classic Machine Learning — it learns the pattern of who tends to convert."},
+    {fn:"Finance",task:"Every evening, gather the day's bills, match them to payments and flag mismatches for you.",ans:"agent",exp:"<b>Agentic.</b> A multi-step job — gather, match, flag — run end to end. It may use an LLM inside, but the shape is an agent."},
+    {fn:"People & training",task:"Turn your rough notes into a clean, step-by-step guide for a new worker.",ans:"llm",exp:"<b>LLM.</b> Turning messy words into tidy words is exactly what a language model does best."},
+    {fn:"Operations",task:"Spot which machine is most likely to break down next, from its service history.",ans:"ml",exp:"<b>AI/ML.</b> Predicting a future event from past records is a prediction task — Machine Learning."},
+    {fn:"Marketing",task:"Watch for new online reviews, draft replies, and post the good ones after your OK.",ans:"agent",exp:"<b>Agentic.</b> Monitor, act, then pause for approval, across several steps — the signature of an agent (with an LLM writing the replies)."}
+  ];
+  var mFn=document.getElementById("mFn"),mTask=document.getElementById("mTask"),mBtns=document.getElementById("mBtns"),mExp=document.getElementById("mExp"),mAdv=document.getElementById("mAdv");
+  var mi=0,mLocked=false;
+  var mOpts=[["llm","LLM"],["ml","AI / ML"],["agent","Agentic"]];
+  function renderMatch(){
+    mLocked=false;
+    var t=matchTasks[mi];
+    mFn.textContent="Function: "+t.fn+"  ·  Task "+(mi+1)+" of "+matchTasks.length;
+    mTask.textContent=t.task;
+    mExp.classList.remove("show");mExp.innerHTML="";
+    mAdv.classList.remove("show");mAdv.textContent=(mi===matchTasks.length-1)?"Start again":"Next task →";
+    mBtns.innerHTML="";
+    mOpts.forEach(function(o){
+      var b=document.createElement("button");b.textContent=o[1];b.setAttribute("data-v",o[0]);
+      b.addEventListener("click",function(){
+        if(mLocked)return;mLocked=true;
+        var all=mBtns.querySelectorAll("button");all.forEach(function(x){x.disabled=true;});
+        if(o[0]===t.ans){b.classList.add("correct");}
+        else{b.classList.add("wrong");all.forEach(function(x){if(x.getAttribute("data-v")===t.ans)x.classList.add("correct");});}
+        mExp.innerHTML=t.exp;mExp.classList.add("show");mAdv.classList.add("show");
+      });
+      mBtns.appendChild(b);
+    });
+  }
+  if(mFn){
+    mAdv.addEventListener("click",function(){mi=(mi<matchTasks.length-1)?mi+1:0;renderMatch();});
+    renderMatch();
+  }
+
+  /* ---------- DISCOVERY LENSES ---------- */
+  var lensData=[
+    {n:"Follow the repetition",q:"What do you or your team do the same way, many times a week?",types:["llm","agent"],pts:"Repetition is the loudest signal of all. Repeated <b>writing</b> points to an LLM; a repeated <b>multi-step routine</b> points to an Agent.",eg:"<b>Sales:</b> writing near-identical quotes daily (LLM). <b>Procurement:</b> the daily check-stock-and-reorder routine (Agent)."},
+    {n:"Follow the paperwork",q:"Where does text pile up — to be read, written, sorted or translated?",types:["llm"],pts:"Anywhere words accumulate is LLM territory.",eg:"<b>Finance:</b> reading supplier bills. <b>Service:</b> replying to enquiries. <b>Marketing:</b> translating a brochure into Marathi."},
+    {n:"Follow the guesswork",q:"What do you decide on gut feel that your past records could actually inform?",types:["ml"],pts:"Instinct-based decisions, where you already have history, are where ML earns its keep.",eg:"<b>Operations:</b> how much to produce. <b>Sales:</b> which lead to chase. <b>Finance:</b> which customer might pay late."},
+    {n:"Follow the 'too late'",q:"What problems do you only notice after they've already hurt you?",types:["ml"],pts:"If a warning a week earlier would have saved you, that's a prediction job for ML.",eg:"<b>Sales:</b> a good customer already gone. <b>Operations:</b> stock already run out. <b>Maintenance:</b> a machine already broken."},
+    {n:"Follow the waiting",q:"Where do customers, orders or approvals sit waiting for someone to coordinate a step?",types:["agent"],pts:"Bottlenecks that need several steps strung together are natural Agent territory.",eg:"<b>Service:</b> enquiries waiting hours for a reply. <b>Logistics:</b> deliveries waiting to be scheduled."},
+    {n:"Follow the after-hours pain",q:"What keeps you working late, or makes you dread Monday morning?",types:["llm","ml","agent"],pts:"Your biggest, most painful task is often your best first project — whatever its type.",eg:"<b>Finance:</b> the month-end scramble (Agent + LLM). <b>Marketing:</b> refreshing the whole catalogue (LLM)."}
+  ];
+  var tbLabel={llm:"LLM",ml:"AI / ML",agent:"Agentic"};
+  var lensesWrap=document.getElementById("lenses");
+  if(lensesWrap){
+    lensData.forEach(function(l){
+      var badges=l.types.map(function(t){return '<span class="tb tb-'+t+'">'+tbLabel[t]+'</span>';}).join("");
+      var el=document.createElement("div");el.className="lens";
+      el.innerHTML='<h4>'+l.n+'</h4><p class="q">'+l.q+'</p><div class="tap">Tap to reveal →</div>'+
+        '<div class="rev"><div class="tps">'+badges+'</div><p class="pts">'+l.pts+'</p><div class="eg">'+l.eg+'</div></div>';
+      el.addEventListener("click",function(){el.classList.toggle("open");});
+      lensesWrap.appendChild(el);
+    });
+  }
+
+  /* ---------- LEADERSHIP FRAMEWORKS ---------- */
+  var leadFw={
+    value:{cls:"c4",
+      intro:"AI pays off in four ways. A strong set of use-cases pulls more than one lever — if every idea only saves cost, you're leaving growth on the table. Ask of each candidate: which lever does it pull?",
+      take:"<b>Leadership check:</b> lay your candidate use-cases against these four. If they all only \u201cSave,\u201d deliberately add a \u201cSell\u201d or a \u201cShape\u201d idea — that's where the growth is hiding.",
+      cards:[
+        {col:"green",big:"Save",h:"Cost & time",sub:"Do the same work faster and cheaper.",eg:"<b>Fabrication:</b> quotations in minutes, not hours. <b>Any:</b> supplier bills read straight into the books."},
+        {col:"amber",big:"Sell",h:"Revenue & growth",sub:"Reach more customers and convert more of them.",eg:"<b>Food:</b> multilingual catalogues open new markets. <b>Services:</b> instant enquiry replies win more orders."},
+        {col:"blue",big:"Safeguard",h:"Quality & risk",sub:"Fewer errors, steadier quality, earlier warnings.",eg:"<b>Finance:</b> flag customers likely to pay late. <b>Manufacturing:</b> catch defects before goods ship."},
+        {col:"ink",big:"Shape",h:"New capability",sub:"Do something you simply couldn't before.",eg:"<b>Micro units:</b> brand and market like a big company. <b>Any:</b> plan production on data instead of a guess."}
+      ]},
+    horizon:{cls:"c3",
+      intro:"Don't spend all your energy on quick wins — and don't only dream about big bets. Balance effort across three horizons. A useful split for a growing MSME is roughly 70 / 20 / 10.",
+      take:"<b>Leadership check:</b> keep most energy in <b style=\"color:#fff\">Now</b>, but always have at least one <b style=\"color:#fff\">Next</b> project and one small <b style=\"color:#fff\">Bold</b> experiment alive — so you're never caught flat-footed when the market shifts.",
+      cards:[
+        {col:"green",big:"70%",h:"Now",sub:"Quick wins that land within weeks. Low risk, immediate payoff.",eg:"AI quotations, WhatsApp replies, catalogue captions, reading bills."},
+        {col:"amber",big:"20%",h:"Next",sub:"Capability that builds over a quarter or two; needs some data or setup.",eg:"Demand forecasting from sales history; an at-risk-customer model; a first reorder agent."},
+        {col:"ink",big:"10%",h:"Bold",sub:"A bet that could reshape the business. Higher effort and uncertainty — run it small.",eg:"An enquiry-to-order pipeline that mostly runs itself; a new AI-enabled product or service line."}
+      ]},
+    mode:{cls:"c2",
+      intro:"Every use-case works in one of two modes. Leaders should use both — but know which you're choosing, because they suit very different kinds of work.",
+      take:"<b>Leadership check:</b> automating saves cost; augmenting lifts your best people's judgement — often the bigger prize for a growing MSME. Automate the routine, augment the decisions, and never automate what truly needs a human touch.",
+      cards:[
+        {col:"green",big:"Automate",h:"AI does the task",sub:"Best for high-volume, repetitive, low-judgement work — a human checks the output.",eg:"Auto-drafting routine replies, reading bills, sorting enquiries. <b>Frees hands.</b>"},
+        {col:"blue",big:"Augment",h:"AI makes a person better",sub:"Best for judgement-heavy, high-stakes, relationship work — the human stays in the driver's seat.",eg:"AI lays out a costing so <b>you</b> price sharper; summarises a contract so <b>you</b> decide. <b>Lifts judgement.</b>"}
+      ]}
+  };
+  var llOut=document.getElementById("llOut");
+  function renderLead(id){
+    var f=leadFw[id];
+    document.querySelectorAll("#llSeg button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-l")===id);});
+    var html='<p class="lf-intro">'+f.intro+'</p><div class="lf-cards '+f.cls+'">';
+    f.cards.forEach(function(c){
+      var cls=(c.col&&c.col!=="green")?(" "+c.col):"";
+      html+='<div class="lfcard'+cls+'"><div class="big">'+c.big+'</div><h4>'+c.h+'</h4><p class="sub">'+c.sub+'</p><div class="eg">'+c.eg+'</div></div>';
+    });
+    html+='</div><div class="lf-take">'+f.take+'</div>';
+    llOut.innerHTML=html;
+  }
+  if(llOut){
+    document.querySelectorAll("#llSeg button").forEach(function(b){
+      b.addEventListener("click",function(){renderLead(b.getAttribute("data-l"));});
+    });
+    renderLead("value");
+  }
+
+  /* ---------- LADDER ---------- */
+  var ladderMsg=[
+    "<b>Your next step is simply to try.</b> In Session 3 you'll open one AI tool and use it live for a real task — a quotation, a caption, a customer reply. That single action moves you to Rung 2.",
+    "<b>Turn casual into regular.</b> Pick one weekly task that eats your time and commit to doing it with AI every week for a month. Repetition is what carries you to Rung 3.",
+    "<b>You're ahead of most of the cohort.</b> Now widen it: add a second and third use-case, and start noting the hours you save. Session 2's prioritisation matrix will show you which to add next.",
+    "<b>Systematise it.</b> Write down your best prompts so anyone in your team can reuse them, and connect AI into your busiest workflow. You're building a real capability, not just a habit.",
+    "<b>Lead by sharing.</b> You're a model for this cohort — the most valuable thing you can do now is mentor a peer one rung below you. Teaching cements your own edge."
+  ];
+  var ladderOut=document.getElementById("ladderOut");
+  document.querySelectorAll("#ladder .rung").forEach(function(r){
+    function act(){
+      document.querySelectorAll("#ladder .rung").forEach(function(x){x.classList.remove("sel");});
+      r.classList.add("sel");
+      ladderOut.innerHTML=ladderMsg[parseInt(r.getAttribute("data-r"),10)];
+      ladderOut.classList.add("show");
+    }
+    r.addEventListener("click",act);
+    r.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();act();}});
+  });
+
+  /* ---------- QUIZ ---------- */
+  var quiz=[
+    {q:"\"AI will replace my staff and run my business on its own.\"",opts:["True — that's the whole point","Mostly a myth — today's AI assists people, it doesn't run businesses","AI has nothing to do with staff"],a:1,exp:"<b>Myth.</b> Today's AI is an assistant that speeds up tasks — drafting, sorting, predicting. It still needs a person to judge, decide and take responsibility. Think of it as a fast junior, not a replacement owner."},
+    {q:"\"I need to know coding or buy expensive software to use AI.\"",opts:["Yes, coding is essential","No — if you can type a request in Hindi or Marathi, you can use it","Only engineers can benefit"],a:1,exp:"<b>Myth.</b> Modern AI tools work through plain conversation. Most useful ones are free or nearly free to start. Your ability to describe a task clearly matters far more than any technical skill."},
+    {q:"Which of these is a job for <i>Machine Learning</i> (predicting from data), not Generative AI?",opts:["Writing a Diwali offer message","Forecasting next month's demand from past sales","Designing a new label"],a:1,exp:"<b>Correct.</b> Forecasting from history is classic Machine Learning. Writing messages and designing labels are <i>Generative</i> AI — creating something new."},
+    {q:"An \"agent\" is different from a normal chatbot because it can…",opts:["Only chat faster","Carry out a series of steps and take actions, not just reply","Work without electricity"],a:1,exp:"<b>Correct.</b> A chatbot answers. An agent can string together steps — check stock, draft a reply, flag an order — moving from talking to doing (with your approval)."},
+    {q:"Should you trust every number and fact an AI gives you?",opts:["Yes, it's a computer, so it's always right","No — always check important facts and figures yourself","Only on weekends"],a:1,exp:"<b>Crucial.</b> AI can sound confident and still be wrong (this is called \"hallucination\"). For prices, GST, quantities and legal points, you stay the final checker. We'll cover safe habits in Session 3."}
+  ];
+  var quizBody=document.getElementById("quizBody");
+  var quizTemplate=quizBody.innerHTML;
+  var qi,qScore,qLocked;
+  function resultMsg(s){
+    return s>=4?"Strong grasp — you're ready to put AI to work in Session 2.":
+           s>=3?"Good start. Skim the explanations once more and you'll have it.":
+                "That's exactly why we run this session — the ideas will settle fast. You're on your way.";
+  }
+  function renderQ(){
+    qLocked=false;
+    var item=quiz[qi];
+    var qProg=document.getElementById("qProg"),qBar=document.getElementById("qBar"),qQ=document.getElementById("qQ"),
+        qOpts=document.getElementById("qOpts"),qExp=document.getElementById("qExp"),qNext=document.getElementById("qNext");
+    qProg.textContent="Question "+(qi+1)+" of "+quiz.length;
+    qBar.style.width=(qi/quiz.length*100)+"%";
+    qQ.innerHTML=item.q;
+    qExp.classList.remove("show");qExp.innerHTML="";
+    qNext.disabled=true;qNext.textContent=(qi===quiz.length-1)?"See result":"Next question";
+    qOpts.innerHTML="";
+    var letters=["A","B","C","D"];
+    item.opts.forEach(function(opt,idx){
+      var b=document.createElement("button");b.className="qopt";
+      b.innerHTML='<span class="mk">'+letters[idx]+'</span><span>'+opt+'</span>';
+      b.addEventListener("click",function(){
+        if(qLocked)return;qLocked=true;
+        var all=qOpts.querySelectorAll(".qopt");
+        all.forEach(function(x){x.disabled=true;});
+        if(idx===item.a){b.classList.add("right");qScore++;}
+        else{b.classList.add("wrong");all[item.a].classList.add("right");}
+        qExp.innerHTML=item.exp;qExp.classList.add("show");
+        qNext.disabled=false;
+      });
+      qOpts.appendChild(b);
+    });
+  }
+  function showResult(){
+    quizBody.innerHTML='<div class="qresult"><div class="score">'+qScore+' / '+quiz.length+'</div>'+
+      '<p>'+resultMsg(qScore)+'</p>'+
+      '<div style="margin-top:22px"><button class="btn ghost" id="qRetry">Try again</button></div></div>';
+    document.getElementById("qRetry").addEventListener("click",initQuiz);
+  }
+  function initQuiz(){
+    qi=0;qScore=0;
+    quizBody.innerHTML=quizTemplate;
+    document.getElementById("qNext").addEventListener("click",function(){
+      if(qi<quiz.length-1){qi++;renderQ();}else{showResult();}
+    });
+    renderQ();
+  }
+  initQuiz();
+
+  /* ---------- POCKET ---------- */
+  var pocketData=[
+    {i:"🗺️",t:"Google Maps",r:"AI predicts traffic and picks your fastest route — learning from millions of journeys."},
+    {i:"💳",t:"UPI / GPay alerts",r:"AI watches for unusual payments and flags likely fraud in real time."},
+    {i:"📺",t:"YouTube / Instagram",r:"AI decides which video or reel to show you next, based on what you watch."},
+    {i:"📷",t:"Google Photos",r:"Search \"bill\" or \"Aai\" and it finds the photo — AI recognises what's in each image."},
+    {i:"📧",t:"Spam filter",r:"AI reads incoming mail and quietly moves junk out of your inbox."},
+    {i:"⌨️",t:"Keyboard suggestions",r:"Autocorrect and next-word suggestions are a tiny language model — the same idea as an LLM."},
+    {i:"🔤",t:"Google Translate",r:"AI converts Marathi to English and back, understanding meaning, not just words."},
+    {i:"🎙️",t:"Voice typing",r:"Speak and it types — AI turning the sound of your voice into text."}
+  ];
+  var pocket=document.getElementById("pocket");
+  if(pocket){
+    pocketData.forEach(function(p){
+      var el=document.createElement("button");el.className="pcard";
+      el.innerHTML='<div class="pi">'+p.i+'</div><h4>'+p.t+'</h4><div class="tap">Tap to reveal</div><div class="reveal">'+p.r+'</div>';
+      el.addEventListener("click",function(){el.classList.toggle("open");});
+      pocket.appendChild(el);
+    });
+  }
+
+  /* ---------- JARGON ---------- */
+  var jargon=[
+    {w:"AI / ML",d:"Artificial Intelligence is the whole field; Machine Learning is its most common form — software that learns patterns from data instead of following fixed rules you write.",a:"Like a seasoned manager who has learned from years on the job that \"sales dip in monsoon\" \u2014 spotting the pattern, then predicting what's next."},
+    {w:"Agentic AI",d:"AI that doesn't just answer, but carries out a chain of steps to finish a job \u2014 checking, calculating, drafting and acting, pausing for your approval where it matters.",a:"Like handing a reliable assistant a whole task \u2014 \"process this order\" \u2014 and having them do each step and report back, instead of answering one question at a time."},
+    {w:"Prompt",d:"The instruction you type to an AI — your question or request.",a:"Like the brief you give a new employee. A clear brief gets good work; a vague one gets guesswork."},
+    {w:"Model",d:"The trained \"brain\" behind a tool. ChatGPT, Claude and Gemini are each a model.",a:"Like the make of a vehicle. Different models, same idea — pick the one that suits the job."},
+    {w:"Training",d:"The process of teaching an AI by showing it huge amounts of examples.",a:"Like an apprentice learning a trade by watching thousands of jobs before working solo."},
+    {w:"Token",d:"The small chunks of text an AI reads and writes — roughly a word or part of a word.",a:"Like counting work by the piece rather than the hour. It's just how AI measures text."},
+    {w:"Hallucination",d:"When AI states something false but sounds completely confident.",a:"Like a smooth-talking salesman who's sure of a wrong fact. This is exactly why you always check."},
+    {w:"Agent",d:"An AI that can take a series of actions to finish a job, not just answer.",a:"Like a capable assistant you can send off to complete a task, who reports back for approval."},
+    {w:"Multimodal",d:"An AI that handles more than text — images, voice and documents too.",a:"Like a worker who can read, listen and look at a photo, not just read letters."},
+    {w:"Fine-tuning",d:"Extra training to make a general AI better at one specific job.",a:"Like sending a good all-rounder for special training in your particular trade."}
+  ];
+  var jChips=document.getElementById("jChips"),jBox=document.getElementById("jBox");
+  function renderJargon(i){
+    jChips.querySelectorAll("button").forEach(function(b,idx){b.classList.toggle("on",idx===i);});
+    var j=jargon[i];
+    jBox.innerHTML='<div class="jt">'+j.w+'</div><div class="jd">'+j.d+'</div><div class="ja"><b>In business terms:</b> '+j.a+'</div>';
+  }
+  if(jChips){
+    jargon.forEach(function(j,i){
+      var b=document.createElement("button");b.textContent=j.w;
+      b.addEventListener("click",function(){renderJargon(i);});
+      jChips.appendChild(b);
+    });
+    renderJargon(0);
+  }
+
+  /* ---------- CHALLENGES ---------- */
+  var challenges=[
+    {t:"Not knowing where to start",d:"Too many tools and too much noise can leave you frozen before you begin.",fix:"<b>Clear it:</b> ignore the noise. Pick one painful, repetitive task and one free tool. The discovery lenses above hand you a candidate in minutes."},
+    {t:"Your records are scattered",d:"Your data lives in a khata, in WhatsApp and in your head — not in tidy files.",fix:"<b>Clear it:</b> you don't need clean data to start. Language tasks need none — begin there, and digitise a little at a time as you go."},
+    {t:"Finding the time to learn",d:"You're already stretched running the business; a new skill can feel like one more burden.",fix:"<b>Clear it:</b> 15–20 minutes a day for two weeks is enough. Choose first tasks that save more time than they take — within a week you're ahead."},
+    {t:"Getting good results",d:"Early attempts can disappoint, and it's tempting to blame the tool and give up.",fix:"<b>Clear it:</b> good prompting is a skill, not luck. The R-T-C-F recipe in Session 3 fixes most weak answers — and you improve any reply by just talking back to it."},
+    {t:"It depends only on you",d:"If only the owner knows how, it stops the moment you're busy and never scales.",fix:"<b>Clear it:</b> save your best prompts and bring one team member along early, so AI becomes the business's habit, not yours alone."},
+    {t:"Patchy internet & devices",d:"Reliable connectivity and the newest phone aren't a given in the district.",fix:"<b>Clear it:</b> most tools run on a basic smartphone with modest data. Do AI work when you have signal, and keep saved prompts ready to reuse."}
+  ];
+  var chGrid=document.getElementById("chGrid");
+  if(chGrid){
+    challenges.forEach(function(c,i){
+      var el=document.createElement("div");el.className="chcard";
+      el.innerHTML='<h4><span class="cn">'+(i+1)+'</span>'+c.t+'</h4><p class="cd">'+c.d+'</p><div class="tap">Tap for how to clear it →</div><div class="fix">'+c.fix+'</div>';
+      el.addEventListener("click",function(){el.classList.toggle("open");});
+      chGrid.appendChild(el);
+    });
+  }
+
+  /* ---------- RISKS ---------- */
+  var risks=[
+    {tag:"Accuracy",t:"Confident wrong answers",what:"AI can state a false fact, price or figure with complete confidence — this is called a \u201challucination.\u201d",safe:"Verify every number, GST rate, date and legal point yourself before it is used or sent."},
+    {tag:"Privacy",t:"Data & privacy leaks",what:"Pasting customer or business details into a public tool can expose information you're responsible for.",safe:"Never enter Aadhaar, PAN, bank details, customer phone lists or secret recipes. Use placeholders and fill real details in yourself."},
+    {tag:"Dependence",t:"Over-reliance",what:"Leaning on AI for everything can quietly dull your own judgement and your team's skills.",safe:"Use it to speed up your thinking, not to replace it. You keep making the decisions."},
+    {tag:"Security",t:"Scams & fake tools",what:"Fake \u201cAI\u201d apps, phishing links, and paying for what is actually free are common traps.",safe:"Stick to well-known tools, never pay for basics that are free, and be wary of unsolicited \u201cAI\u201d offers."},
+    {tag:"Reputation",t:"Reputation & legal slips",what:"Sending unchecked AI content to a customer, or acting on wrong tax or legal advice, can cost you dearly.",safe:"Treat every output as a draft. A human reads and approves anything that leaves your business."},
+    {tag:"Fairness",t:"Hidden bias",what:"AI learns from data that can carry human bias, so its suggestions aren't always fair or right for your context.",safe:"Sense-check recommendations against your own knowledge of your customers and your market."}
+  ];
+  var rkGrid=document.getElementById("rkGrid");
+  if(rkGrid){
+    risks.forEach(function(r){
+      var el=document.createElement("div");el.className="rkcard";
+      el.innerHTML='<span class="rkt">'+r.tag+'</span><h4>'+r.t+'</h4><p class="what">'+r.what+'</p><div class="safe"><b>Your safeguard:</b> '+r.safe+'</div>';
+      rkGrid.appendChild(el);
+    });
+  }
+})();
+</script>
+</body>
+</html>

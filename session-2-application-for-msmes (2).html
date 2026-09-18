@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Session 2 · Application of AI for MSMEs — Business Accelerator Programme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,500;10..48,600;10..48,700;10..48,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#F3F4F0;
+  --surface:#FBFBF8;
+  --surface-2:#E9EAF2;
+  --ink:#1B2135;
+  --ink-soft:#535B72;
+  --ink-faint:#868DA0;
+  --line:#DCDEE6;
+  --line-strong:#C4C7D6;
+  --accent:#2A46B0;
+  --accent-deep:#1E3488;
+  --accent-tint:#DFE4F6;
+  --accent-2:#D98A1E;
+  --accent-2-tint:#F6E7CC;
+  --danger:#B24A3B;
+  --danger-tint:#F1DDD7;
+  --ok:#0E7A66;--ok-tint:#DCEDE7;
+  --focus:#2A46B0;
+  --radius:14px;--radius-lg:22px;
+  --maxw:1120px;
+  --font-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--paper);color-scheme:light}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.08;letter-spacing:-.02em;margin:0}
+p{margin:0}
+a{color:var(--accent-deep)}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+
+.ribbon{background:var(--ink);color:#EDECE6;font-size:14px}
+.ribbon .wrap{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between;padding:11px 24px}
+.ribbon strong{color:#fff;font-weight:600}
+.ribbon .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;margin-right:9px;vertical-align:middle}
+.ses-nav{display:flex;gap:6px}
+.ses-nav a{padding:5px 11px;border-radius:999px;font-size:13px;text-decoration:none;color:#C9CAD3;border:1px solid transparent}
+.ses-nav a.on{background:var(--accent);color:#fff}
+.ses-nav a:not(.on):hover{border-color:#3a3f52}
+
+.hero{padding:64px 0 30px;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:2}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--accent-deep);background:var(--accent-tint);padding:7px 14px;border-radius:999px;margin-bottom:22px}
+.kicker .n{font-family:var(--font-display);font-weight:700}
+.hero h1{font-size:clamp(2.5rem,6vw,4.4rem);font-weight:800;max-width:17ch}
+.hero .lede{font-size:clamp(1.12rem,2.3vw,1.4rem);color:var(--ink-soft);max-width:58ch;margin-top:22px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.chip{font-size:14px;padding:8px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);color:var(--ink-soft)}
+.chip b{color:var(--ink);font-weight:600}
+.scrolldown{margin-top:34px;display:inline-flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);text-decoration:none;font-size:15px}
+.scrolldown .arr{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:18px}
+.blob{position:absolute;border-radius:50%;filter:blur(8px);opacity:.55;z-index:1}
+
+section{padding:52px 0}
+.sec-head{max-width:66ch;margin-bottom:34px}
+.sec-num{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--accent);letter-spacing:.02em}
+.sec-head h2{font-size:clamp(1.8rem,3.6vw,2.7rem);margin-top:8px}
+.sec-head p{color:var(--ink-soft);margin-top:14px;font-size:1.08rem}
+.divide{height:1px;background:var(--line);max-width:var(--maxw);margin:0 auto}
+
+/* function map */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.tabs button{border:1.5px solid var(--line);background:var(--surface);padding:10px 16px;border-radius:11px;font-weight:600;font-size:15px;color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;gap:8px}
+.tabs button .ic{font-size:1.05rem}
+.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.tabs button:not(.on):hover{border-color:var(--line-strong)}
+.fnpanel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;display:grid;grid-template-columns:.9fr 1.1fr;gap:28px}
+@media(max-width:820px){.fnpanel{grid-template-columns:1fr}}
+.fnpanel h3{font-size:1.6rem}
+.fnpanel .pain{margin-top:12px;color:var(--ink-soft)}
+.fnpanel .pain b{color:var(--danger)}
+.uses{display:grid;gap:12px}
+.use{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:11px;padding:15px 17px;background:#fff}
+.use.llm{border-left-color:#0E7A66}
+.use.ml{border-left-color:#2A46B0}
+.use.gen{border-left-color:#D98A1E}
+.use.agent{border-left-color:#6D4AAE}
+/* shared AI-type badge */
+.atb{font-size:11px;font-weight:700;letter-spacing:.02em;padding:2px 9px;border-radius:999px;display:inline-block}
+.atb.llm{background:#DCEDE7;color:#0A5A4B}
+.atb.ml{background:#DEE4F6;color:#22408f}
+.atb.gen{background:#F6E7CC;color:#8a5510}
+.atb.agent{background:#E8DEF6;color:#5a37a0}
+/* by-type filter grid */
+.tfilter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tfilter button{border:1.5px solid var(--line);background:var(--surface);padding:9px 16px;border-radius:999px;font-weight:600;font-size:14.5px;color:var(--ink-soft);cursor:pointer}
+.tfilter button:not(.on):hover{border-color:var(--line-strong)}
+.tfilter button.on{color:#fff;border-color:transparent}
+.tfilter button.on[data-t="all"]{background:var(--ink)}
+.tfilter button.on[data-t="llm"]{background:#0E7A66}
+.tfilter button.on[data-t="ml"]{background:#2A46B0}
+.tfilter button.on[data-t="gen"]{background:#D98A1E}
+.tfilter button.on[data-t="agent"]{background:#6D4AAE}
+.texplain{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:18px;color:var(--ink-soft);font-size:.96rem}
+.texplain b{color:var(--ink)}
+.texplain .cnt{color:var(--ink-faint);font-weight:600;white-space:nowrap}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:820px){.tgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.tgrid{grid-template-columns:1fr}}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px;border-top:3px solid var(--line-strong)}
+.tcard.llm{border-top-color:#0E7A66}
+.tcard.ml{border-top-color:#2A46B0}
+.tcard.gen{border-top-color:#D98A1E}
+.tcard.agent{border-top-color:#6D4AAE}
+.tcard .fnlab{font-size:11.5px;color:var(--ink-faint);font-weight:600;margin-top:9px}
+.tcard h4{font-size:1rem;margin-top:3px}
+.use h4{font-size:1.05rem;display:flex;gap:9px;align-items:baseline}
+.use h4 .k{font-size:11.5px;font-weight:700;color:#fff;background:var(--accent);padding:2px 8px;border-radius:999px;letter-spacing:.02em}
+.use p{color:var(--ink-soft);font-size:.96rem;margin-top:6px}
+
+/* sector explorer */
+.secpick{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.secpick button{border:1.5px solid var(--line);background:var(--surface);padding:14px 18px;border-radius:14px;cursor:pointer;text-align:left;min-width:150px}
+.secpick button .pic{font-size:1.6rem;line-height:1}
+.secpick button .nm{display:block;font-weight:600;margin-top:2px}
+.secpick button .ct{display:block;font-size:12.5px;color:var(--ink-faint);margin-top:2px}
+.secpick button.on{border-color:var(--accent);background:var(--accent-tint)}
+.secout{background:var(--ink);color:#EBEAE2;border-radius:var(--radius-lg);padding:30px}
+.secout h3{color:#fff;font-size:1.7rem}
+.secout .intro{color:#C9CAD3;margin-top:8px}
+.secgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+@media(max-width:680px){.secgrid{grid-template-columns:1fr}}
+.scard{background:#282e44;border-radius:13px;padding:18px;border-top:3px solid var(--accent-2)}
+.scard h4{color:#fff;font-size:1.1rem}
+.scard p{color:#D4D3CA;font-size:.94rem;margin-top:7px}
+.scard .win{margin-top:10px;font-size:.85rem;color:#9db4f0;font-weight:600}
+
+/* matrix */
+.matrix-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
+@media(max-width:860px){.matrix-wrap{grid-template-columns:1fr}}
+.plot{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:44px 20px 30px 46px}
+.plotarea{position:relative;width:100%;aspect-ratio:1/.82;border-left:2px solid var(--line-strong);border-bottom:2px solid var(--line-strong)}
+.qlabel{position:absolute;font-size:11.5px;font-weight:600;color:var(--ink-faint);pointer-events:none}
+.quad{position:absolute;width:50%;height:50%;opacity:.5}
+.quad.q1{left:0;top:0;background:linear-gradient(135deg,var(--ok-tint),transparent)}
+.quad.q2{right:0;top:0;background:linear-gradient(225deg,var(--accent-2-tint),transparent)}
+.quad.q3{left:0;bottom:0;background:linear-gradient(45deg,var(--surface-2),transparent)}
+.quad.q4{right:0;bottom:0;background:linear-gradient(315deg,var(--danger-tint),transparent)}
+.dot{position:absolute;width:34px;height:34px;border-radius:50%;transform:translate(-50%,50%);background:var(--accent);color:#fff;border:2px solid #fff;display:grid;place-items:center;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.18);transition:transform .12s}
+.dot:hover{transform:translate(-50%,50%) scale(1.15)}
+.dot.sel{transform:translate(-50%,50%) scale(1.3);outline:3px solid var(--ink);outline-offset:1px}
+.axis-x{position:absolute;left:46px;right:20px;bottom:6px;text-align:center;font-weight:600;font-size:13px;color:var(--ink-soft)}
+.axis-y{position:absolute;left:8px;top:44px;bottom:30px;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-weight:600;font-size:13px;color:var(--ink-soft)}
+.matrix-info{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:24px;position:sticky;top:16px}
+.matrix-info .badge{display:inline-block;font-size:12.5px;font-weight:700;padding:4px 11px;border-radius:999px;margin-bottom:12px}
+.matrix-info h3{font-size:1.35rem}
+.matrix-info .strat{margin-top:14px;padding:14px 16px;border-radius:11px;background:var(--surface-2);font-size:.95rem}
+.matrix-info .strat b{color:var(--ink)}
+.legkey{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:18px;font-size:13px;color:var(--ink-soft)}
+.legkey span{display:flex;align-items:center;gap:6px}
+.legkey i{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+/* value chain */
+.vc{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:900px){.vc{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.vc{grid-template-columns:1fr}}
+.vcstep{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:16px;position:relative}
+.vcstep .s{font-family:var(--font-display);font-weight:800;color:var(--accent);font-size:.95rem}
+.vcstep h4{margin-top:6px;font-size:1.02rem}
+.vcstep .ai{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line-strong);font-size:.86rem;color:var(--ok)}
+.vcstep .ai b{color:var(--ok);display:block;font-size:.74rem;letter-spacing:.03em;margin-bottom:2px}
+
+/* decision */
+.decide{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:760px){.decide{grid-template-columns:1fr}}
+.dcard{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:var(--surface)}
+.dcard.rec{border-color:var(--ok);background:var(--ok-tint)}
+.dcard h4{font-size:1.2rem;display:flex;align-items:center;justify-content:space-between}
+.dcard .rtag{font-size:11px;font-weight:700;color:#fff;background:var(--ok);padding:3px 9px;border-radius:999px}
+.dcard .when{color:var(--ink-soft);font-size:.94rem;margin-top:10px}
+.dcard ul{margin:12px 0 0;padding-left:18px;color:var(--ink-soft);font-size:.92rem}
+.dcard li{margin:5px 0}
+
+/* ROI calc */
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:760px){.calc{grid-template-columns:1fr}}
+.calc label{font-weight:600;font-size:.95rem;display:block;margin-bottom:8px}
+.calc .fld{margin-bottom:24px}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.presets button{border:1px solid var(--line);background:#fff;padding:7px 12px;border-radius:9px;font-size:13px;cursor:pointer;color:var(--ink-soft)}
+.presets button.on{background:var(--accent-tint);border-color:var(--accent);color:var(--accent-deep)}
+input[type=range]{width:100%;accent-color:var(--accent);height:6px}
+.rngval{font-family:var(--font-display);font-weight:800;font-size:1.6rem;color:var(--accent);margin-bottom:4px}
+.calcout{background:var(--ink);color:#EBEAE2;border-radius:16px;padding:26px;display:flex;flex-direction:column;justify-content:center}
+.calcout .big{font-family:var(--font-display);font-weight:800;font-size:2.9rem;color:#fff;line-height:1}
+.calcout .biglab{color:#9db4f0;font-weight:600;margin-top:6px}
+.calcout .row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #333a52;font-size:.98rem;color:#D4D3CA}
+.calcout .row:last-child{border-bottom:none}
+.calcout .row b{color:#fff}
+.calcout .cav{color:#9198ad;font-size:.82rem;margin-top:16px}
+
+/* planner */
+.planner{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px}
+.plopts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:680px){.plopts{grid-template-columns:1fr}}
+.plopt{border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;display:flex;gap:12px;align-items:flex-start;background:#fff}
+.plopt:hover{border-color:var(--line-strong)}
+.plopt.on{border-color:var(--accent);background:var(--accent-tint)}
+.plopt .cb{width:24px;height:24px;border-radius:7px;border:2px solid var(--line-strong);flex:0 0 auto;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+.plopt.on .cb{background:var(--accent);border-color:var(--accent)}
+.plopt .pt{font-weight:600;font-size:.98rem;display:block}
+.plopt .pd{font-size:.85rem;color:var(--ink-faint);margin-top:2px;display:block}
+.plmeta{display:flex;justify-content:space-between;align-items:center;margin:22px 0 16px;flex-wrap:wrap;gap:12px}
+.plcount{font-size:.9rem;color:var(--ink-soft)}
+.btn{background:var(--accent);color:#fff;border:none;padding:12px 22px;border-radius:11px;font-weight:600;font-size:15px;cursor:pointer}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.ghost{background:transparent;color:var(--accent-deep);border:1.5px solid var(--accent)}
+.roadmap{margin-top:8px;border:1px solid var(--accent);border-radius:16px;overflow:hidden;display:none}
+.roadmap.show{display:block}
+.rmhead{background:var(--accent);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.rmhead h3{color:#fff;font-size:1.3rem}
+.rmphase{padding:18px 22px;border-bottom:1px solid var(--line)}
+.rmphase:last-child{border-bottom:none}
+.rmphase .pw{font-family:var(--font-display);font-weight:800;color:var(--accent);font-size:.9rem}
+.rmphase h4{margin-top:4px;font-size:1.1rem}
+.rmphase ul{margin:8px 0 0;padding-left:20px;color:var(--ink-soft);font-size:.95rem}
+.rmphase li{margin:4px 0}
+
+.takeaways{background:var(--ink);color:#EBEAE2;border-radius:var(--radius-lg);padding:34px}
+.takeaways h2{color:#fff;font-size:2rem}
+.tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+@media(max-width:760px){.tk-grid{grid-template-columns:1fr}}
+.tk{background:#282e44;border-radius:14px;padding:20px;border-top:3px solid var(--accent-2)}
+.tk .num{font-family:var(--font-display);font-weight:800;color:#9db4f0;font-size:1.1rem}
+.tk p{color:#E2E1D9;margin-top:8px;font-size:.98rem}
+
+/* day in the life */
+.daypick{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.daypick button{border:1.5px solid var(--line);background:var(--surface);padding:12px 18px;border-radius:12px;cursor:pointer;font-weight:600;color:var(--ink-soft)}
+.daypick button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.daygrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:720px){.daygrid{grid-template-columns:1fr}}
+.daycol{border-radius:var(--radius-lg);padding:24px}
+.daycol.before{background:var(--surface);border:1px solid var(--line)}
+.daycol.after{background:var(--ink);color:#EBEAE2}
+.daycol .dh{font-size:12px;font-weight:700;padding:4px 11px;border-radius:999px;display:inline-block;margin-bottom:14px}
+.daycol.before .dh{background:var(--surface-2);color:var(--ink-soft)}
+.daycol.after .dh{background:#9db4f0;color:#12224e}
+.daycol h3{font-size:1.25rem}
+.daycol.after h3{color:#fff}
+.daycol ul{margin:14px 0 0;padding:0;list-style:none}
+.daycol li{padding:9px 0 9px 26px;position:relative;font-size:.96rem}
+.daycol.before li{color:var(--ink-soft);border-top:1px solid rgba(0,0,0,.06)}
+.daycol.after li{color:#D4D3CA;border-top:1px solid #333a52}
+.daycol li:first-child{border-top:none}
+.daycol li:before{position:absolute;left:0;top:9px;font-weight:700}
+.daycol.before li:before{content:"○";color:var(--ink-faint)}
+.daycol.after li:before{content:"◆";color:#9db4f0}
+.daywin{margin-top:16px;font-weight:600;font-size:.95rem;color:#8fded0}
+
+/* canvas */
+.canvas{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.canvas{grid-template-columns:1fr}}
+.cvcell{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.cvcell label{font-family:var(--font-display);font-weight:700;font-size:.95rem;display:block;margin-bottom:4px}
+.cvcell .hint{font-size:.8rem;color:var(--ink-faint);margin-bottom:10px}
+.cvcell input,.cvcell select{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:9px;font-family:inherit;font-size:14.5px;background:#fff;color:var(--ink)}
+.cvcell input:focus,.cvcell select:focus{border-color:var(--accent);outline:none}
+.cvcell .num{font-family:var(--font-display);font-weight:800;color:var(--accent);font-size:1rem}
+.cvout{margin-top:18px;background:var(--ink);color:#EBEAE2;border-radius:16px;padding:24px}
+.cvout .lab{font-size:.8rem;color:#9db4f0;font-weight:700;letter-spacing:.03em}
+.cvout .stmt{font-size:1.15rem;line-height:1.6;margin-top:10px}
+.cvout .stmt b{color:#fff}
+.cvout .stmt .ph{color:#7f8aa8;font-style:italic}
+
+/* readiness */
+.ready{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+@media(max-width:760px){.ready{grid-template-columns:1fr}}
+.rchecks{display:grid;gap:12px}
+.rchk{border:1.5px solid var(--line);border-radius:12px;padding:15px 17px;cursor:pointer;display:flex;gap:12px;align-items:flex-start;background:var(--surface)}
+.rchk:hover{border-color:var(--line-strong)}
+.rchk.on{border-color:var(--accent);background:var(--accent-tint)}
+.rchk .cb{width:24px;height:24px;border-radius:7px;border:2px solid var(--line-strong);flex:0 0 auto;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+.rchk.on .cb{background:var(--accent);border-color:var(--accent)}
+.rchk .rt{font-weight:600;font-size:.98rem;display:block}
+.rchk .rd{font-size:.84rem;color:var(--ink-faint);margin-top:2px;display:block}
+.rscore{background:var(--ink);color:#EBEAE2;border-radius:var(--radius-lg);padding:26px;position:sticky;top:16px;text-align:center}
+.rscore .big{font-family:var(--font-display);font-weight:800;font-size:3.4rem;color:#fff;line-height:1}
+.rscore .rlab{color:#9db4f0;font-weight:600;margin-top:4px}
+.rscore .verdict{margin-top:18px;font-size:.98rem;color:#D8D0C0;text-align:left;background:#282e44;border-radius:12px;padding:16px 18px}
+.rscore .verdict b{color:#fff}
+
+footer{padding:40px 0 60px;color:var(--ink-faint);font-size:14px;text-align:center}
+footer .divide{margin-bottom:30px}
+</style>
+</head>
+<body>
+
+<div class="ribbon">
+  <div class="wrap">
+    <div><span class="dot"></span><strong>Business Accelerator Programme</strong> &nbsp;·&nbsp; AI for MSMEs</div>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <span class="blob" style="width:320px;height:320px;background:var(--accent-tint);top:-90px;right:-60px"></span>
+  <span class="blob" style="width:220px;height:220px;background:var(--accent-2-tint);bottom:-120px;left:-40px"></span>
+  <div class="wrap">
+    <div class="kicker"><span class="n">Session 2</span> · 90 minutes · Application of AI for MSMEs</div>
+    <h1>Now, where does AI actually fit in your business?</h1>
+    <p class="lede">Session 1 was the "what". This is the "where" and "which first". We'll walk your business function by function, dive into your own sector, and use three simple frameworks to decide what's worth doing — ending with a 90-day plan you build yourself.</p>
+    <div class="meta">
+      <span class="chip"><b>6</b> business functions mapped to AI</span>
+      <span class="chip"><b>5</b> sectors from this cohort</span>
+      <span class="chip"><b>3</b> decision frameworks + an ROI calculator</span>
+    </div>
+    <a class="scrolldown" href="#functions"><span class="arr">↓</span> Map it to your functions</a>
+  </div>
+</header>
+
+<!-- ===== FUNCTION MAP ===== -->
+<section id="functions">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">01 — The business function map</div>
+      <h2>Every business runs on the same six engines. AI helps in each one.</h2>
+      <p>Whether you fabricate steel or process spices, your work splits into these functions. Pick one to see the everyday pains and exactly where AI can lighten the load — with examples you'll recognise.</p>
+    </div>
+    <div class="tabs" id="fnTabs"></div>
+    <div class="fnpanel" id="fnPanel"></div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== BY KIND OF AI ===== -->
+<section id="bytype">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">02 — The same list, by kind of AI</div>
+      <h2>Now sort those use-cases by the kind of AI behind each one.</h2>
+      <p>Every use-case above is powered by one of four kinds of AI. Grouping them this way tells you what to expect: language tasks are the easiest to start, prediction needs your own data, generative tools need no data, and agents need setup and guardrails. Filter the list to see each group.</p>
+    </div>
+    <div class="tfilter" id="tFilter"></div>
+    <div class="texplain" id="tExplain"></div>
+    <div class="tgrid" id="tGrid"></div>
+    <p style="color:var(--ink-soft);margin-top:18px;max-width:70ch;font-size:.95rem"><b style="color:var(--ink)">Reading the mix:</b> most everyday MSME wins are <b>LLM</b> language tasks — so that's where to start. Keep <b>AI/ML</b> for when your records are ready, and treat <b>Agentic</b> as a build-up-to, not a day-one move.</p>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== SECTOR EXPLORER ===== -->
+<section id="sectors">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">03 — Your sector, your use-cases</div>
+      <h2>Find your line of business. Here's where AI earns its keep.</h2>
+      <p>Pick your line of business for a set of concrete, ready-to-try applications — each tied to a real payoff, not a shiny gimmick. Don't see yours exactly? The closest domain will still spark plenty of ideas.</p>
+    </div>
+    <div class="secpick" id="secPick"></div>
+    <div class="secout" id="secOut"></div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== DAY IN THE LIFE ===== -->
+<section id="dayinlife">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">04 — See it, don't just hear it</div>
+      <h2>A day in the life — the same owner, before and after AI.</h2>
+      <p>Frameworks are useful, but this is what it actually feels like. Pick an owner from a range of trades and see how an ordinary working day changes once AI is doing the routine load.</p>
+    </div>
+    <div class="daypick" id="dayPick"></div>
+    <div class="daygrid">
+      <div class="daycol before"><span class="dh">A usual day now</span><h3 id="dayBT"></h3><ul id="dayBefore"></ul></div>
+      <div class="daycol after"><span class="dh">The same day with AI</span><h3 id="dayAT"></h3><ul id="dayAfter"></ul><div class="daywin" id="dayWin"></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== MATRIX ===== -->
+<section id="matrix">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">05 — Framework 1: Impact vs Effort</div>
+      <h2>You can't do everything at once. Start where impact is high and effort is low.</h2>
+      <p>This is the most important prioritising tool you'll use all programme. Every idea sits somewhere on this 2×2. Tap any dot to see what it is and what the smart move is. Notice how the top-left "quick wins" almost always come first.</p>
+    </div>
+    <div class="matrix-wrap">
+      <div class="plot">
+        <div class="plotarea" id="plotArea">
+          <div class="quad q1"></div><div class="quad q2"></div><div class="quad q3"></div><div class="quad q4"></div>
+          <div class="qlabel" style="left:8px;top:6px">Quick wins</div>
+          <div class="qlabel" style="right:8px;top:6px">Big bets</div>
+          <div class="qlabel" style="left:8px;bottom:6px">Fill-ins</div>
+          <div class="qlabel" style="right:8px;bottom:6px">Think twice</div>
+        </div>
+        <div class="axis-x">Effort &amp; cost  →</div>
+        <div class="axis-y">Impact on your business  →</div>
+      </div>
+      <div class="matrix-info" id="matrixInfo">
+        <span class="badge" style="background:var(--accent-tint);color:var(--accent-deep)">Tap a dot</span>
+        <h3>How to read this map</h3>
+        <p style="color:var(--ink-soft);margin-top:8px;font-size:.96rem">Impact goes up the side; effort and cost go across the bottom. The best first projects hug the top-left corner: big result, little work.</p>
+        <div class="legkey">
+          <span><i style="background:#0E7A66"></i>Quick wins — do first</span>
+          <span><i style="background:#D98A1E"></i>Big bets — plan for</span>
+          <span><i style="background:#868DA0"></i>Fill-ins — spare time</span>
+          <span><i style="background:#B24A3B"></i>Think twice — usually skip</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== VALUE CHAIN ===== -->
+<section id="valuechain">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">06 — Framework 2: The MSME value chain</div>
+      <h2>Follow the journey from raw material to repeat customer. AI has a role at every stop.</h2>
+      <p>Value is added step by step as work flows through your business. Seeing the whole chain stops you from bolting AI onto just one spot — and shows the quieter places it can help.</p>
+    </div>
+    <div class="vc">
+      <div class="vcstep"><div class="s">Stage 1</div><h4>Sourcing &amp; procurement</h4><div class="ai"><b>AI helps</b>Compare supplier quotes, track raw-material price trends, draft purchase enquiries.</div></div>
+      <div class="vcstep"><div class="s">Stage 2</div><h4>Production &amp; operations</h4><div class="ai"><b>AI helps</b>Forecast demand, spot quality defects from photos, plan capacity and shifts.</div></div>
+      <div class="vcstep"><div class="s">Stage 3</div><h4>Marketing &amp; branding</h4><div class="ai"><b>AI helps</b>Write captions, design labels &amp; posters, generate product photos, translate to Marathi.</div></div>
+      <div class="vcstep"><div class="s">Stage 4</div><h4>Sales &amp; distribution</h4><div class="ai"><b>AI helps</b>Draft quotations, qualify leads, write follow-ups, list on marketplaces.</div></div>
+      <div class="vcstep"><div class="s">Stage 5</div><h4>Service &amp; retention</h4><div class="ai"><b>AI helps</b>Answer FAQs on WhatsApp, handle complaints politely, nudge repeat orders.</div></div>
+    </div>
+    <p style="color:var(--ink-soft);margin-top:20px;max-width:66ch">Running underneath all five: <b style="color:var(--ink)">Finance &amp; admin</b> — where AI reads bills, tracks receivables, drafts GST-ready summaries and answers "can I afford this?" questions.</p>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== DECISION ===== -->
+<section id="decision">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">07 — Framework 3: Use, Buy or Build?</div>
+      <h2>The honest answer for almost every micro-enterprise: <span style="color:var(--ok)">just use what already exists.</span></h2>
+      <p>Vendors will try to sell you custom "AI solutions". You rarely need them. Here's how to tell which path fits — and why "Use" wins nine times out of ten for a business your size.</p>
+    </div>
+    <div class="decide">
+      <div class="dcard rec">
+        <h4>Use <span class="rtag">Start here</span></h4>
+        <p class="when">Adopt ready-made tools as they are — ChatGPT, Claude, Canva, Google tools, WhatsApp Business.</p>
+        <ul>
+          <li>₹0 to a few hundred rupees a month</li>
+          <li>Live today, no setup or developer</li>
+          <li>Covers 90% of what an MSME needs</li>
+          <li>Risk is tiny — try, keep or drop</li>
+        </ul>
+      </div>
+      <div class="dcard">
+        <h4>Buy</h4>
+        <p class="when">Pay for a specialised tool that fits one clear, recurring need — accounting with AI, an inventory app, a CRM.</p>
+        <ul>
+          <li>Worth it once a task is daily and painful</li>
+          <li>Check it works in your language &amp; on mobile</li>
+          <li>Prefer monthly plans; avoid lock-in</li>
+          <li>Ask a peer who already uses it first</li>
+        </ul>
+      </div>
+      <div class="dcard">
+        <h4>Build</h4>
+        <p class="when">Commission something custom for your business. For micro-enterprises, almost never the right first move.</p>
+        <ul>
+          <li>High cost, long wait, needs maintenance</li>
+          <li>Only if your edge truly depends on it</li>
+          <li>Prove the need with "Use" tools first</li>
+          <li>Revisit only after real scale</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== OPPORTUNITY CANVAS ===== -->
+<section id="canvas">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">08 — Framework 4: The AI Opportunity Canvas</div>
+      <h2>Before you touch a tool, answer six questions. This canvas keeps you honest.</h2>
+      <p>Every good AI use-case can be written on one line. Fill these six boxes for an idea you have in mind, and watch a clear opportunity statement build itself. If you can't fill a box, that's exactly where the work is.</p>
+    </div>
+    <div class="canvas">
+      <div class="cvcell"><label><span class="num">1</span> The problem</label><div class="hint">What's slow, costly or painful today?</div><input id="cv1" type="text" placeholder="e.g. quotations take half a day to prepare"></div>
+      <div class="cvcell"><label><span class="num">2</span> The task for AI</label><div class="hint">The specific job you'd hand over.</div><input id="cv2" type="text" placeholder="e.g. draft itemised quotes from a customer's requirement"></div>
+      <div class="cvcell"><label><span class="num">3</span> What you already have</label><div class="hint">The information or data you can give it.</div><input id="cv3" type="text" placeholder="e.g. my rate list and past quotations"></div>
+      <div class="cvcell"><label><span class="num">4</span> The tool you'll use</label><div class="hint">Start with something free.</div><select id="cv4"><option>ChatGPT or Claude</option><option>Canva</option><option>Google Sheets + AI</option><option>WhatsApp Business</option><option>not sure yet</option></select></div>
+      <div class="cvcell"><label><span class="num">5</span> Who checks the output</label><div class="hint">A human must sign off. Who?</div><input id="cv5" type="text" placeholder="e.g. I review every quote before sending"></div>
+      <div class="cvcell"><label><span class="num">6</span> How you'll measure success</label><div class="hint">One number that proves it worked.</div><input id="cv6" type="text" placeholder="e.g. quote sent within 30 minutes"></div>
+    </div>
+    <div class="cvout">
+      <div class="lab">YOUR OPPORTUNITY STATEMENT</div>
+      <div class="stmt" id="cvStmt"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== READINESS ===== -->
+<section id="readiness">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">09 — Framework 5: Are you AI-ready?</div>
+      <h2>You need far less than you think. Tick what's true for you.</h2>
+      <p>People delay AI thinking they need money, staff or tech skills. You don't. This short check shows you're almost certainly ready to start today. Tick each one that's true.</p>
+    </div>
+    <div class="ready">
+      <div class="rchecks" id="readyChecks"></div>
+      <div class="rscore">
+        <div class="big" id="readyBig">0/5</div>
+        <div class="rlab">readiness</div>
+        <div class="verdict" id="readyVerdict"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== ROI CALC ===== -->
+<section id="roi">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">10 — Is it worth it? The time-saving calculator</div>
+      <h2>AI's first payoff is usually time. Put a rupee value on it.</h2>
+      <p>Pick a task, estimate how much time AI saves you each week, and set what an hour of that time is worth to your business. The point isn't a precise figure — it's to see that small weekly savings add up to real money over a year.</p>
+    </div>
+    <div class="calc">
+      <div>
+        <div class="fld">
+          <label>1. Which task?</label>
+          <div class="presets" id="roiPresets"></div>
+        </div>
+        <div class="fld">
+          <label>2. Hours saved per week: <span id="hrsLab" style="color:var(--accent)"></span></label>
+          <div class="rngval" id="hrsVal"></div>
+          <input type="range" id="hrsRange" min="0.5" max="20" step="0.5" value="4">
+        </div>
+        <div class="fld">
+          <label>3. What is one hour of that time worth? <span style="color:var(--ink-faint);font-weight:400">(₹)</span></label>
+          <div class="rngval" id="rateVal"></div>
+          <input type="range" id="rateRange" min="50" max="1000" step="25" value="200">
+        </div>
+      </div>
+      <div class="calcout">
+        <div class="big" id="yearOut"></div>
+        <div class="biglab">saved per year</div>
+        <div style="margin-top:22px">
+          <div class="row"><span>Time back each week</span><b id="wkHrs"></b></div>
+          <div class="row"><span>Value per month</span><b id="moOut"></b></div>
+          <div class="row"><span>Full working weeks freed / year</span><b id="wksOut"></b></div>
+        </div>
+        <p class="cav">A rough guide, not a promise. Real savings depend on how consistently you use the tool — but even the low end is time you can spend on customers and growth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== PLANNER ===== -->
+<section id="planner">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">11 — Build your 90-day AI starter plan</div>
+      <h2>Pick two or three quick wins. We'll turn them into a phased plan.</h2>
+      <p>Don't leave with a vague intention. Choose the applications you'll actually start with (2–3 is ideal), and generate a simple, realistic roadmap you can copy and keep.</p>
+    </div>
+    <div class="planner">
+      <div class="plopts" id="plOpts"></div>
+      <div class="plmeta">
+        <span class="plcount" id="plCount">0 selected — pick 2 or 3 to begin</span>
+        <div style="display:flex;gap:10px">
+          <button class="btn ghost" id="plClear">Clear</button>
+          <button class="btn" id="plGo" disabled>Build my 90-day plan</button>
+        </div>
+      </div>
+      <div class="roadmap" id="roadmap"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<section id="wrap-up">
+  <div class="wrap">
+    <div class="takeaways">
+      <h2>What to carry out of this room</h2>
+      <div class="tk-grid">
+        <div class="tk"><div class="num">01</div><p>AI isn't one project — it's a helper across all six functions. Find <b>your</b> function's biggest pain first.</p></div>
+        <div class="tk"><div class="num">02</div><p>Prioritise with <b>Impact vs Effort</b>. Quick wins first. And for your size, <b>"just use"</b> existing tools beats buying or building.</p></div>
+        <div class="tk"><div class="num">03</div><p>Small weekly time savings compound into <b>real annual value</b>. Start your 90-day plan with 2–3 quick wins — no more.</p></div>
+      </div>
+      <p style="color:#C9CAD3;margin-top:26px;font-size:1.05rem">Next session — <b style="color:#fff">Essential Tools of AI</b> — we get hands-on: the exact tools, and how to write instructions ("prompts") that get you a usable result the first time.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="divide"></div>
+  <div class="wrap">Session 2 of 3 · Application of AI for MSMEs · Business Accelerator Programme · Explore, prioritise, and plan.</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ===== FUNCTION MAP ===== */
+  var atLabel={llm:"LLM",ml:"AI/ML",gen:"Generative",agent:"Agentic"};
+  var funcs=[
+    {id:"sales",ic:"📣",name:"Marketing & Sales",title:"Marketing & Sales",pain:"Struggling to reach beyond your local market, thin catalogues, slow follow-ups, and <b>quotations that take too long to send</b>.",uses:[
+      {type:"llm",t:"Instant quotations & proposals",p:"Turn a rough requirement into a clean, itemised, GST-ready quote in a minute — you just check the numbers."},
+      {type:"llm",t:"Catalogue & social captions",p:"Generate WhatsApp and Instagram captions for your whole range in your own tone, in Marathi, Hindi or English."},
+      {type:"gen",t:"Product photos & ad creatives",p:"Create clean product images and promo graphics from a description — no photographer or designer needed."},
+      {type:"gen",t:"Festival & offer graphics",p:"Design Diwali, wedding-season and discount posters in minutes for WhatsApp status and social posts."},
+      {type:"ml",t:"Lead scoring — who to chase",p:"Rank incoming enquiries by how likely they are to buy, so you spend your time on the ones that convert."},
+      {type:"agent",t:"Auto follow-up sequences",p:"An assistant that nudges each lead with timely, polite follow-ups until they reply — nothing slips through."}
+    ]},
+    {id:"service",ic:"💬",name:"Customer Service",title:"Customer Service",pain:"The same questions over and over, replies at odd hours, and <b>complaints that need a calm, careful answer</b> you don't have time to write.",uses:[
+      {type:"llm",t:"WhatsApp FAQ replies",p:"Draft ready answers to your ten most-asked questions — price, delivery, sizes, warranty — to send in seconds."},
+      {type:"llm",t:"Complaint response drafting",p:"Paste an angry message; get a calm, firm, solution-focused reply that protects the relationship."},
+      {type:"llm",t:"Multi-language support",p:"Reply to every customer in the language they wrote in — no fumbling for words."},
+      {type:"agent",t:"24×7 auto-answer assistant",p:"A bot that answers common questions on WhatsApp or your page around the clock, and hands the tricky ones to you."},
+      {type:"agent",t:"Repeat-order reminder campaigns",p:"Automatically message customers around the time they're due to reorder, with the right nudge."},
+      {type:"ml",t:"Sort messages by urgency",p:"Automatically flag which incoming messages are complaints or urgent, so nothing important waits."}
+    ]},
+    {id:"ops",ic:"⚙️",name:"Operations & Production",title:"Operations & Production",pain:"Guessing how much to produce, uneven quality, and <b>capacity that sits idle or gets overbooked</b>.",uses:[
+      {type:"ml",t:"Demand forecasting",p:"Use past sales to anticipate festival and seasonal spikes, so you produce ahead instead of scrambling."},
+      {type:"ml",t:"Visual quality inspection",p:"A phone camera trained to flag broken, mis-shaped or mislabelled pieces on the line — fewer rejects reach customers."},
+      {type:"ml",t:"Predictive maintenance",p:"Spot which machine is likely to fail next from its run-hours and service history — fix it before it breaks."},
+      {type:"llm",t:"SOPs & work instructions",p:"Turn how-you-do-it into clear written standard procedures a new worker can follow."},
+      {type:"llm",t:"Shift handover summaries",p:"Turn messy shift notes into a tidy handover so the next shift knows exactly where things stand."},
+      {type:"agent",t:"Auto work-order routing",p:"An assistant that turns a confirmed order into a work order and routes it to the right station or team."}
+    ]},
+    {id:"finance",ic:"📊",name:"Finance & Accounts",title:"Finance & Accounts",pain:"Bills piling up for entry, unclear cash position, and <b>payments you forgot to chase</b>.",uses:[
+      {type:"llm",t:"Bill & invoice reading",p:"Photograph a supplier bill and get the total, GST and date pulled out, ready for your books."},
+      {type:"llm",t:"Plain-language money summaries",p:"Ask \"how did last month look?\" and get a clear summary from your figures — no accountant jargon."},
+      {type:"llm",t:"\"Can I afford it?\" checks",p:"Talk through a machine purchase or a bulk order and see the cash-flow impact before you commit."},
+      {type:"ml",t:"Cash-flow forecasting",p:"Predict the weeks money will be tight from your past ins and outs, so you plan ahead."},
+      {type:"ml",t:"Expense categorisation",p:"Automatically sort transactions into buckets so you can see where the money actually goes."},
+      {type:"agent",t:"Auto-chase overdue payments",p:"An assistant that tracks receivables and sends firm-but-polite reminders on schedule until you're paid."}
+    ]},
+    {id:"procure",ic:"📦",name:"Procurement & Inventory",title:"Procurement & Inventory",pain:"Overstocking what won't sell, running out of what will, and <b>no easy way to compare supplier prices</b>.",uses:[
+      {type:"llm",t:"Supplier quote comparison",p:"Drop in three quotes; get a clear side-by-side on price, terms and delivery to negotiate better."},
+      {type:"llm",t:"Purchase-enquiry (RFQ) drafts",p:"Generate professional enquiry messages to send to several suppliers at once."},
+      {type:"ml",t:"Reorder-point predictions",p:"Work out when to reorder each item from how fast it moves, cutting both stockouts and dead stock."},
+      {type:"ml",t:"Raw-material price tracking",p:"Track and summarise where key input prices are heading so you buy at the right time."},
+      {type:"ml",t:"Stock-out risk alerts",p:"Get an early warning on items about to run out, based on your current sales pace."},
+      {type:"agent",t:"Auto-reorder agent",p:"An assistant that watches stock, drafts purchase orders at the right moment, and waits for your approval."}
+    ]},
+    {id:"people",ic:"👥",name:"People & Admin",title:"People & Admin",pain:"Hiring by gut feel, training that lives only in your head, and <b>paperwork that eats your evenings</b>.",uses:[
+      {type:"llm",t:"Job posts & screening questions",p:"Write clear job adverts and a short set of screening questions for the role you're filling."},
+      {type:"llm",t:"Training material & guides",p:"Turn a task you know by heart into a step-by-step guide a new hire can learn from."},
+      {type:"llm",t:"Letters & basic documents",p:"Offer letters, notices, simple agreements — drafted fast, for you to review and adjust."},
+      {type:"llm",t:"Meeting notes → action lists",p:"Turn a messy voice note or scribble into a tidy action list with owners and dates."},
+      {type:"gen",t:"Training visuals & posters",p:"Create simple safety posters and visual how-to guides for the shop floor."},
+      {type:"agent",t:"Roster & shift drafting",p:"An assistant that drafts weekly rosters around availability and workload for you to approve."}
+    ]}
+  ];
+  var fnTabs=document.getElementById("fnTabs"),fnPanel=document.getElementById("fnPanel");
+  function renderFn(id){
+    var f=funcs.filter(function(x){return x.id===id;})[0];
+    fnTabs.querySelectorAll("button").forEach(function(b){b.classList.toggle("on",b.dataset.id===id);});
+    var html='<div><h3>'+f.title+'</h3><p class="pain">'+f.pain+'</p></div><div class="uses">';
+    f.uses.forEach(function(u){html+='<div class="use '+u.type+'"><h4><span class="atb '+u.type+'">'+atLabel[u.type]+'</span>'+u.t+'</h4><p>'+u.p+'</p></div>';});
+    html+='</div>';
+    fnPanel.innerHTML=html;
+  }
+  funcs.forEach(function(f){
+    var b=document.createElement("button");b.dataset.id=f.id;
+    b.innerHTML='<span class="ic">'+f.ic+'</span>'+f.name;
+    b.addEventListener("click",function(){renderFn(f.id);});
+    fnTabs.appendChild(b);
+  });
+  renderFn("sales");
+
+  /* ===== BY KIND OF AI ===== */
+  var typeInfo={
+    all:{ex:"All use-cases from the six functions, colour-coded by the kind of AI behind each. Notice the mix — most everyday wins are language (LLM) tasks."},
+    llm:{ex:"<b>LLM · language work</b> — drafting, replying, summarising, translating, reading. The biggest and easiest group to start with: no data, no setup, just a good prompt."},
+    ml:{ex:"<b>AI/ML · prediction from data</b> — forecasting, scoring, detecting. These learn from your past records, so they're a next-step rather than a day-one task."},
+    gen:{ex:"<b>Generative AI · creating content</b> — images, designs, visuals. Great for marketing and branding; start with a free tool like Canva's AI."},
+    agent:{ex:"<b>Agentic AI · multi-step jobs</b> — monitoring, chasing, coordinating, done for you. The most powerful, and the most setup; always add guardrails and human approval."}
+  };
+  var allUses=[];
+  funcs.forEach(function(f){f.uses.forEach(function(u){allUses.push({fn:f.name,t:u.t,type:u.type});});});
+  var tFilterWrap=document.getElementById("tFilter"),tExplain=document.getElementById("tExplain"),tGrid=document.getElementById("tGrid");
+  var tOrder=[["all","All"],["llm","LLM"],["ml","AI/ML"],["gen","Generative AI"],["agent","Agentic AI"]];
+  function renderByType(sel){
+    tFilterWrap.querySelectorAll("button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-t")===sel);});
+    var list=(sel==="all")?allUses:allUses.filter(function(u){return u.type===sel;});
+    tExplain.innerHTML=typeInfo[sel].ex+' <span class="cnt">· '+list.length+' use-case'+(list.length===1?'':'s')+'</span>';
+    tGrid.innerHTML=list.map(function(u){return '<div class="tcard '+u.type+'"><span class="atb '+u.type+'">'+atLabel[u.type]+'</span><div class="fnlab">'+u.fn+'</div><h4>'+u.t+'</h4></div>';}).join("");
+  }
+  if(tFilterWrap){
+    tOrder.forEach(function(o){
+      var b=document.createElement("button");b.setAttribute("data-t",o[0]);b.textContent=o[1];
+      b.addEventListener("click",function(){renderByType(o[0]);});
+      tFilterWrap.appendChild(b);
+    });
+    renderByType("all");
+  }
+
+  /* ===== SECTOR EXPLORER ===== */
+  var sectors=[
+    {id:"mfg",ic:"🏭",nm:"Manufacturing & Engineering",ct:"Fabrication, electrical, industrial",title:"Manufacturing & Engineering",intro:"Fabrication, panels, industrial and technical work — where costing, capacity and B2B sales decide your margin.",cards:[
+      {h:"Faster, accurate quotations",p:"Convert a customer's rough spec into an itemised quote with material, labour and GST — win work before a competitor even replies.",w:"Payoff: quote in minutes, not a day"},
+      {h:"Costing & true-margin checks",p:"Break a job into material, labour and overhead to see your real margin before you quote, so you never underprice.",w:"Payoff: protect every margin"},
+      {h:"Demand & capacity planning",p:"Predict busy periods from past orders and plan machine and labour capacity so you neither sit idle nor overpromise.",w:"Payoff: fewer missed deadlines"},
+      {h:"Visual quality checks",p:"Train a phone camera to flag defects in welds, finishes or dimensions before goods leave the shop.",w:"Payoff: fewer rejects & returns"},
+      {h:"Predictive machine maintenance",p:"Spot which machine is likely to fail next from run-hours and service history, and service it before it breaks.",w:"Payoff: less unplanned downtime"},
+      {h:"Vendor quote comparison",p:"Put steel, wire or component quotes side by side on price, terms and delivery to sharpen buying and negotiate harder.",w:"Payoff: lower input costs"},
+      {h:"B2B outreach, tenders & IndiaMART",p:"Draft tender responses, enquiry replies and marketplace listings that read like an established firm.",w:"Payoff: reach beyond your district"},
+      {h:"SOPs & worker training guides",p:"Turn the way you do a job into clear step-by-step instructions a new worker can follow.",w:"Payoff: consistent workmanship"}
+    ]},
+    {id:"construction",ic:"🏗️",nm:"Construction & Infrastructure",ct:"Contractors, builders, interiors",title:"Construction & Infrastructure",intro:"Contracting, building, interiors and infrastructure — where estimation, site coordination and payments make or break a project.",cards:[
+      {h:"BOQ & cost estimation",p:"Draft a first-cut bill of quantities and cost estimate from a scope or plan so you bid faster and more accurately.",w:"Payoff: faster, sharper bids"},
+      {h:"Tender & bid responses",p:"Read a government or private tender and draft a compliant response using your profile, past work and rates.",w:"Payoff: win more contracts"},
+      {h:"Material & labour planning",p:"Work out material take-offs and labour needs per stage so you order right and avoid site stoppages.",w:"Payoff: fewer stoppages"},
+      {h:"Site progress reports",p:"Turn a supervisor's voice note or photos into a clean daily or weekly progress report for the client.",w:"Payoff: happier clients"},
+      {h:"Subcontractor & supplier comparison",p:"Compare quotes from suppliers and subcontractors side by side on price, terms and delivery.",w:"Payoff: lower project cost"},
+      {h:"Running bills & payment follow-ups",p:"Draft running-account bills and chase client payments and retention money on schedule.",w:"Payoff: healthier cash flow"},
+      {h:"Safety checklists & method statements",p:"Generate site-safety checklists, toolbox-talk notes and method statements in minutes.",w:"Payoff: safer sites, less risk"},
+      {h:"Change-requests & RFI replies",p:"Draft clear, on-record replies to client change-requests and requests for information.",w:"Payoff: fewer disputes"}
+    ]},
+    {id:"food",ic:"🍲",nm:"Food & Food Processing",ct:"Spices, snacks, dairy, processing",title:"Food & Food Processing",intro:"Spice packs, snacks, pickles, dairy and processed foods — where branding, compliance and repeat sales drive growth.",cards:[
+      {h:"Labels, packaging & branding",p:"Generate label copy, packaging design ideas and a brand story that makes a local product look shelf-ready.",w:"Payoff: premium look, low cost"},
+      {h:"Seasonal demand forecasting",p:"Anticipate festival and wedding-season spikes from history so you produce ahead and never miss a sale.",w:"Payoff: catch every peak"},
+      {h:"Compliance & FSSAI help",p:"Get plain-language guidance on labelling rules, ingredient declarations and documentation you must display.",w:"Payoff: fewer compliance slips"},
+      {h:"Recipe & product descriptions",p:"Write mouth-watering descriptions and serving ideas for catalogues, marketplaces and WhatsApp broadcasts.",w:"Payoff: more repeat orders"},
+      {h:"Costing & pricing per SKU",p:"Break each product into ingredient, packaging and labour cost to price every SKU for a healthy margin.",w:"Payoff: protect your margin"},
+      {h:"Distributor & retailer outreach",p:"Write pitch messages and rate sheets to approach kirana stores, distributors and modern retail.",w:"Payoff: wider distribution"},
+      {h:"Batch, MRP & shelf-life labelling",p:"Draft clear batch, MRP and best-before label text and answer packaging-rule questions in plain language.",w:"Payoff: fewer packaging errors"},
+      {h:"Reviews & testimonials",p:"Turn happy WhatsApp feedback into polished testimonials and reply warmly to every review.",w:"Payoff: stronger trust"}
+    ]},
+    {id:"agri",ic:"🌾",nm:"Agriculture & Agri-business",ct:"Inputs, FPOs, aggregation, agri-tech",title:"Agriculture & Agri-business",intro:"The whole agri value chain — inputs, farming advisory, FPOs, aggregation, processing and market linkage — where timing and information decide income.",cards:[
+      {h:"Crop & input advisory",p:"Answer farmer questions on crop choice, spacing, pest control and inputs in simple Marathi (an expert confirms the tricky ones).",w:"Payoff: better yields"},
+      {h:"Buyer & market linkage",p:"Reach institutional buyers, mandis and processors and compare the prices they offer for your produce.",w:"Payoff: better rates, wider reach"},
+      {h:"Grading & quality sorting",p:"Use a camera to grade produce by size and quality so each grade sells for what it is worth.",w:"Payoff: capture grade premiums"},
+      {h:"Price & mandi-trend tracking",p:"Summarise where crop and input prices are heading to time buying, storage and selling.",w:"Payoff: sell high, buy low"},
+      {h:"Pest & disease identification",p:"Snap a photo of an affected leaf to get a likely diagnosis and remedy to check with an expert.",w:"Payoff: catch problems early"},
+      {h:"Weather & advisory summaries",p:"Turn scattered weather and crop advisories into short, clear WhatsApp updates for members.",w:"Payoff: better-timed decisions"},
+      {h:"Scheme & subsidy paperwork",p:"Draft and simplify applications for subsidies, grants and FPO compliance so nothing is left on the table.",w:"Payoff: unlock support funds"},
+      {h:"Value-addition & processing ideas",p:"Explore turning raw produce into higher-value products, with rough costing and market fit for each option.",w:"Payoff: earn more per kg"},
+      {h:"Member communication & records",p:"Send clear updates and keep tidy member, collection and payment records.",w:"Payoff: engaged members"}
+    ]},
+    {id:"cotton",ic:"🧵",nm:"Cotton Industry (CICR)",ct:"Ginning, spinning, trade, research",title:"Cotton Industry (CICR)",intro:"The cotton chain from farm to gin to trade to research — where quality grading, price timing and traceability drive value. Relevant to CICR-linked ginners, traders and research units.",cards:[
+      {h:"Fibre quality grading",p:"Use imaging and lab data to grade lint by staple length, micronaire and trash content, consistently and fairly.",w:"Payoff: fair, faster grading"},
+      {h:"Cotton & yarn price tracking",p:"Track domestic and global cotton and yarn prices and MSP to time buying and selling.",w:"Payoff: better price timing"},
+      {h:"Pest & bollworm advisory",p:"Turn scouting photos and reports into pest-pressure summaries and advisory notes for farmers.",w:"Payoff: protect the crop"},
+      {h:"Ginning yield & quality analysis",p:"Analyse ginning records to spot yield loss and quality dips, and where to improve.",w:"Payoff: higher realisation"},
+      {h:"Traceability & documentation",p:"Draft and organise lot, bale and traceability records that buyers and exporters demand.",w:"Payoff: export-ready records"},
+      {h:"Research summaries & reports",p:"Summarise trials, literature and field data into clear reports and farmer advisories.",w:"Payoff: faster knowledge transfer"},
+      {h:"Buyer & mill outreach",p:"Draft professional offers and rate sheets to spinning mills and traders.",w:"Payoff: wider buyer base"},
+      {h:"Farmer training content",p:"Create simple Marathi guides on seed, spacing, spraying and picking best-practice.",w:"Payoff: better farm outcomes"}
+    ]},
+    {id:"health",ic:"🏥",nm:"Healthcare",ct:"Clinics, diagnostics, pharmacies",title:"Healthcare",intro:"Clinics, diagnostic labs, pharmacies and small hospitals — where patient communication, records and scheduling shape care and cash. AI assists your staff; it never replaces clinical judgement.",cards:[
+      {h:"Scheduling & reminders",p:"Auto-send appointment reminders and follow-up nudges to cut no-shows and fill the day.",w:"Payoff: fewer no-shows"},
+      {h:"Patient FAQ & instructions",p:"Draft clear pre-test, post-visit and medication instructions in the patient's own language.",w:"Payoff: better adherence"},
+      {h:"Report & record summaries",p:"Turn notes into a clean, plain-language summary for the patient, which the doctor verifies.",w:"Payoff: clearer communication"},
+      {h:"Front-desk & enquiry replies",p:"Answer common questions on timings, tests, prices and directions instantly, around the clock.",w:"Payoff: smoother front desk"},
+      {h:"Inventory & medicine reordering",p:"Track stock of medicines and consumables and flag what to reorder before it runs out.",w:"Payoff: no stock-outs"},
+      {h:"Billing & insurance paperwork",p:"Draft bills and help assemble insurance and claim documentation accurately.",w:"Payoff: faster reimbursement"},
+      {h:"Health-awareness content",p:"Create simple awareness posts and health-camp announcements for the local community.",w:"Payoff: more footfall & goodwill"},
+      {h:"Feedback & review management",p:"Gather patient feedback and reply to reviews professionally to build a trusted name.",w:"Payoff: stronger reputation"}
+    ]},
+    {id:"lifesci",ic:"🧬",nm:"Life Sciences",ct:"Labs, biotech, research, pharma",title:"Life Sciences",intro:"Research labs, biotech, analytical services and small pharma units — where documentation, literature and compliance eat time better spent on science.",cards:[
+      {h:"Literature review & summaries",p:"Summarise papers and patents into clear briefs so your team stays current far faster.",w:"Payoff: faster research"},
+      {h:"Protocol & SOP drafting",p:"Draft and tidy standard operating procedures and experiment protocols.",w:"Payoff: consistent, compliant work"},
+      {h:"Documentation & compliance",p:"Draft and check quality and regulatory documents for completeness before an audit.",w:"Payoff: audit-ready records"},
+      {h:"Data cleanup & analysis help",p:"Organise messy experiment data and explain in plain words what simple analyses show.",w:"Payoff: clearer results"},
+      {h:"Grant & proposal writing",p:"Draft research grant and funding proposals from your notes and objectives.",w:"Payoff: more funding wins"},
+      {h:"Report & result write-ups",p:"Turn results into structured reports and plain-language summaries for clients or management.",w:"Payoff: hours saved"},
+      {h:"Client & vendor communication",p:"Draft quotes, method notes and updates for analytical-service clients.",w:"Payoff: professional, prompt"},
+      {h:"Training & technique guides",p:"Create onboarding and technique guides so new lab staff get productive sooner.",w:"Payoff: faster onboarding"}
+    ]},
+    {id:"finance",ic:"💰",nm:"Finance & Financial Services",ct:"Accounting, lending, advisory",title:"Finance & Financial Services",intro:"Accounting practices, loan and insurance advisors, and small financial-service firms — where client communication, documentation and accuracy build trust. A qualified professional must verify every tax and legal specific.",cards:[
+      {h:"Client query replies",p:"Draft clear answers to client questions on tax, filings, loans or policies, which you verify before sending.",w:"Payoff: faster client service"},
+      {h:"Documents & statement summaries",p:"Draft engagement letters and reminders, and summarise long statements into plain language.",w:"Payoff: hours saved"},
+      {h:"Loan & scheme explainers",p:"Explain loan products and government schemes in simple language so clients understand and act.",w:"Payoff: more conversions"},
+      {h:"Reconciliation & data cleanup",p:"Organise and cross-check transaction data to spot mismatches far faster.",w:"Payoff: fewer errors"},
+      {h:"Reminders & collections",p:"Send filing-deadline and payment reminders on schedule so nothing is missed.",w:"Payoff: on-time compliance"},
+      {h:"Proposals & pitch decks",p:"Draft insurance and investment proposals tailored to a client's situation.",w:"Payoff: sharper pitches"},
+      {h:"Filing & compliance checklists",p:"Generate checklists for GST, ITR and ROC filings so nothing slips through.",w:"Payoff: fewer penalties"},
+      {h:"Financial-literacy content",p:"Create simple explainer posts and guides that attract and educate new clients.",w:"Payoff: trust & leads"}
+    ]},
+    {id:"retail",ic:"🛍️",nm:"Retail & Trade",ct:"Shops, distributors, wholesale",title:"Retail & Trade",intro:"Retail shops, distributors and wholesale traders — where stock, pricing and customer relationships decide the day.",cards:[
+      {h:"Listings & WhatsApp catalogues",p:"Write titles, descriptions and WhatsApp catalogues for your whole range, ready to send.",w:"Payoff: sell online & on WhatsApp"},
+      {h:"Demand & reorder planning",p:"Predict what will sell and when to reorder, cutting both dead stock and stock-outs.",w:"Payoff: right stock, right time"},
+      {h:"Offers & festival campaigns",p:"Draft promotions and festival graphics for WhatsApp status and social posts.",w:"Payoff: more footfall"},
+      {h:"Customer replies & follow-ups",p:"Answer product, price and availability questions and nudge repeat buyers.",w:"Payoff: more repeat sales"},
+      {h:"Supplier price comparison",p:"Compare distributor and wholesale prices side by side to buy better.",w:"Payoff: lower cost of goods"},
+      {h:"Billing & receivables",p:"Draft invoices and chase credit customers politely on schedule.",w:"Payoff: healthier cash flow"},
+      {h:"Loyalty & reactivation",p:"Spot customers who have gone quiet and win them back with a targeted offer.",w:"Payoff: keep good customers"},
+      {h:"Bookkeeping summaries",p:"Turn day-book entries into clear weekly money summaries you actually read.",w:"Payoff: know your numbers"}
+    ]},
+    {id:"svc",ic:"🧰",nm:"Services & Business Support",ct:"Travel, automotive, repair",title:"Services & Business Support",intro:"Travel, automotive, repair and business-support services — where pricing, lead conversion and standardisation matter most.",cards:[
+      {h:"Service packaging & pricing",p:"Turn a vague we-do-everything into clear, priced packages customers can understand and choose from.",w:"Payoff: easier to sell & compare"},
+      {h:"Lead capture & follow-up",p:"Reply to every enquiry instantly and follow up on a schedule, so fewer leads slip away.",w:"Payoff: more enquiries convert"},
+      {h:"Quotes & booking confirmations",p:"Draft tailored quotes and tidy confirmations for each customer's specific request in seconds.",w:"Payoff: professional, fast"},
+      {h:"Process SOPs & checklists",p:"Document how each service is delivered so quality stays consistent no matter who does the job.",w:"Payoff: consistent quality"},
+      {h:"Review & reputation replies",p:"Respond to Google and social reviews promptly and professionally to build a trustworthy name.",w:"Payoff: more walk-ins"},
+      {h:"Invoices & payment reminders",p:"Generate clean invoices and firm-but-polite reminders so receivables come in on time.",w:"Payoff: healthier cash flow"},
+      {h:"Staff scheduling & job cards",p:"Draft rosters, job cards and simple checklists to keep bookings and technicians organised.",w:"Payoff: less daily chaos"},
+      {h:"Service-due reminders",p:"Automatically remind customers when a next service is due, with the right nudge.",w:"Payoff: more repeat business"}
+    ]},
+    {id:"edu",ic:"🎓",nm:"Education & Training",ct:"Coaching, tuition, skilling",title:"Education & Training",intro:"Coaching, tuition and skill-training — where content, acquisition and retention decide whether you fill your seats.",cards:[
+      {h:"Lesson & content creation",p:"Generate worksheets, practice questions, notes and lesson plans in minutes, freeing you to teach.",w:"Payoff: hours saved weekly"},
+      {h:"Practice tests & question banks",p:"Generate topic-wise question banks and mock tests with answer keys.",w:"Payoff: exam-ready students"},
+      {h:"Admissions & enquiry replies",p:"Answer parent and student questions instantly and follow up with those who have not enrolled yet.",w:"Payoff: fill more seats"},
+      {h:"Marketing to parents",p:"Write result announcements, admission-open posts and testimonials that build trust in your centre.",w:"Payoff: stronger local brand"},
+      {h:"Progress reports & feedback",p:"Turn marks and observations into clear, encouraging progress notes for each student.",w:"Payoff: happier, retained families"},
+      {h:"Doubt-solving & explanations",p:"Explain a tough concept five different ways until a student gets it, and drill weak areas.",w:"Payoff: better results"},
+      {h:"Fee reminders & records",p:"Draft polite fee-due reminders and keep tidy records of enrolments and payments.",w:"Payoff: fewer fee leaks"},
+      {h:"Course & batch planning",p:"Lay out syllabi, batch schedules and revision timetables in minutes instead of evenings.",w:"Payoff: hours saved"}
+    ]}
+  ];
+  var secPick=document.getElementById("secPick"),secOut=document.getElementById("secOut");
+  function renderSec(id){
+    var s=sectors.filter(function(x){return x.id===id;})[0];
+    secPick.querySelectorAll("button").forEach(function(b){b.classList.toggle("on",b.dataset.id===id);});
+    var html='<h3>'+s.title+'</h3><p class="intro">'+s.intro+'</p><div class="secgrid">';
+    s.cards.forEach(function(c){html+='<div class="scard"><h4>'+c.h+'</h4><p>'+c.p+'</p><div class="win">'+c.w+'</div></div>';});
+    html+='</div>';
+    secOut.innerHTML=html;
+  }
+  sectors.forEach(function(s){
+    var b=document.createElement("button");b.dataset.id=s.id;
+    b.innerHTML='<span class="pic">'+s.ic+'</span><span class="nm">'+s.nm+'</span><span class="ct">'+s.ct+'</span>';
+    b.addEventListener("click",function(){renderSec(s.id);});
+    secPick.appendChild(b);
+  });
+  renderSec("mfg");
+
+  /* ===== MATRIX ===== */
+  var dots=[
+    {n:1,x:18,y:18,q:"win",t:"AI-drafted quotations",s:"A ready tool, minutes to learn, and it saves time on something you do daily. This is the textbook first project."},
+    {n:2,x:26,y:30,q:"win",t:"WhatsApp FAQ replies",s:"Write your top-10 answers once with AI, reuse forever. Almost no effort, immediate daily relief."},
+    {n:3,x:34,y:26,q:"win",t:"Catalogue captions & labels",s:"High impact on how professional you look, very low effort. A clear quick win for product businesses."},
+    {n:4,x:70,y:22,q:"bet",t:"Demand forecasting from data",s:"Real impact on production and cash, but needs clean past-sales data and some setup. Plan it as a next-quarter project."},
+    {n:5,x:78,y:30,q:"bet",t:"Camera-based quality checks",s:"Powerful for reducing rejects, but takes effort to set up and train. A big bet — pursue once quick wins are running."},
+    {n:6,x:30,y:74,q:"fill",t:"Meeting notes & to-do lists",s:"Handy and effortless, but low business impact. Do it in spare moments — don't let it crowd out the quick wins."},
+    {n:7,x:22,y:66,q:"fill",t:"Social media post ideas",s:"Nice to have, easy to do. Useful filler, but it won't move your numbers much on its own."},
+    {n:8,x:76,y:74,q:"skip",t:"Custom-built AI software",s:"High cost, high effort, uncertain payoff for a micro-enterprise. Almost always the wrong first move — prove the need with ready tools first."}
+  ];
+  var qmeta={
+    win:{lab:"Quick win — do first",col:"#0E7A66",tint:"var(--ok-tint)",deep:"#0A5A4B"},
+    bet:{lab:"Big bet — plan for it",col:"#D98A1E",tint:"var(--accent-2-tint)",deep:"#8a5510"},
+    fill:{lab:"Fill-in — spare time",col:"#868DA0",tint:"var(--surface-2)",deep:"#535B72"},
+    skip:{lab:"Think twice — usually skip",col:"#B24A3B",tint:"var(--danger-tint)",deep:"#8a2f22"}
+  };
+  var plotArea=document.getElementById("plotArea"),matrixInfo=document.getElementById("matrixInfo");
+  dots.forEach(function(d){
+    var el=document.createElement("button");el.className="dot";el.textContent=d.n;
+    el.style.left=d.x+"%";el.style.bottom=(100-d.y)+"%";
+    el.style.background=qmeta[d.q].col;
+    el.setAttribute("aria-label",d.t);
+    el.addEventListener("click",function(){
+      plotArea.querySelectorAll(".dot").forEach(function(x){x.classList.remove("sel");});
+      el.classList.add("sel");
+      var m=qmeta[d.q];
+      matrixInfo.innerHTML='<span class="badge" style="background:'+m.tint+';color:'+m.deep+'">'+m.lab+'</span>'+
+        '<h3>'+d.n+'. '+d.t+'</h3>'+
+        '<div class="strat"><b>Smart move:</b> '+d.s+'</div>';
+    });
+    plotArea.appendChild(el);
+  });
+
+  /* ===== ROI CALC ===== */
+  var roiPresets=[
+    {t:"Quotations & proposals",h:4,r:250},
+    {t:"Customer replies & FAQs",h:5,r:150},
+    {t:"Marketing content",h:3,r:200},
+    {t:"Accounts & bills",h:3,r:300},
+    {t:"Set your own",h:4,r:200}
+  ];
+  var presetWrap=document.getElementById("roiPresets");
+  var hrsRange=document.getElementById("hrsRange"),rateRange=document.getElementById("rateRange");
+  function fmt(n){return "₹"+Math.round(n).toLocaleString("en-IN");}
+  function calc(){
+    var h=parseFloat(hrsRange.value),r=parseFloat(rateRange.value);
+    document.getElementById("hrsVal").textContent=h+" hrs";
+    document.getElementById("rateVal").textContent="₹"+r;
+    document.getElementById("hrsLab").textContent="";
+    var wk=h*r,mo=wk*4.33,yr=wk*52;
+    document.getElementById("yearOut").textContent=fmt(yr);
+    document.getElementById("wkHrs").textContent=h+" hrs";
+    document.getElementById("moOut").textContent=fmt(mo);
+    document.getElementById("wksOut").textContent=(h*52/40).toFixed(1)+" weeks";
+  }
+  roiPresets.forEach(function(p,i){
+    var b=document.createElement("button");b.textContent=p.t;if(i===0)b.classList.add("on");
+    b.addEventListener("click",function(){
+      presetWrap.querySelectorAll("button").forEach(function(x){x.classList.remove("on");});
+      b.classList.add("on");hrsRange.value=p.h;rateRange.value=p.r;calc();
+    });
+    presetWrap.appendChild(b);
+  });
+  hrsRange.addEventListener("input",calc);rateRange.addEventListener("input",calc);
+  hrsRange.value=roiPresets[0].h;rateRange.value=roiPresets[0].r;calc();
+
+  /* ===== PLANNER ===== */
+  var plItems=[
+    {id:"quote",t:"AI-drafted quotations",d:"Marketing & Sales"},
+    {id:"faq",t:"WhatsApp FAQ replies",d:"Customer Service"},
+    {id:"catalogue",t:"Catalogue captions & labels",d:"Marketing"},
+    {id:"complaint",t:"Complaint response drafting",d:"Customer Service"},
+    {id:"bills",t:"Bill & invoice reading",d:"Finance"},
+    {id:"receivables",t:"Payment-reminder drafting",d:"Finance"},
+    {id:"content",t:"Social & marketing content",d:"Marketing"},
+    {id:"forecast",t:"Demand forecasting",d:"Operations"}
+  ];
+  var plOpts=document.getElementById("plOpts"),plCount=document.getElementById("plCount"),
+      plGo=document.getElementById("plGo"),plClear=document.getElementById("plClear"),roadmap=document.getElementById("roadmap");
+  var chosen=[];
+  function updatePlMeta(){
+    plCount.textContent=chosen.length===0?"0 selected — pick 2 or 3 to begin":
+      chosen.length+" selected"+(chosen.length>3?" — 2 or 3 is ideal, but go ahead":"");
+    plGo.disabled=chosen.length===0;
+  }
+  plItems.forEach(function(it){
+    var el=document.createElement("button");el.className="plopt";el.dataset.id=it.id;
+    el.innerHTML='<span class="cb">✓</span><span><span class="pt">'+it.t+'</span><span class="pd">'+it.d+'</span></span>';
+    el.addEventListener("click",function(){
+      var i=chosen.indexOf(it.id);
+      if(i>=0){chosen.splice(i,1);el.classList.remove("on");}
+      else{chosen.push(it.id);el.classList.add("on");}
+      updatePlMeta();
+    });
+    plOpts.appendChild(el);
+  });
+  plClear.addEventListener("click",function(){
+    chosen=[];plOpts.querySelectorAll(".plopt").forEach(function(x){x.classList.remove("on");});
+    roadmap.classList.remove("show");updatePlMeta();
+  });
+  plGo.addEventListener("click",function(){
+    var names=chosen.map(function(id){return plItems.filter(function(x){return x.id===id;})[0].t;});
+    var first=names[0],rest=names.slice(1);
+    var html='<div class="rmhead"><h3>Your 90-day AI starter plan</h3><span style="font-size:.85rem;opacity:.9">'+names.length+' focus area'+(names.length>1?'s':'')+'</span></div>';
+    html+='<div class="rmphase"><div class="pw">Weeks 1–2 · Set up</div><h4>Get comfortable with one tool</h4><ul>'+
+      '<li>Create a free ChatGPT or Claude account on your phone.</li>'+
+      '<li>Spend 20 minutes a day just asking it work questions in your own language.</li>'+
+      '<li>Try your first focus area — <b>'+first+'</b> — on a real, low-stakes task.</li></ul></div>';
+    html+='<div class="rmphase"><div class="pw">Weeks 3–6 · Make it a habit</div><h4>Run '+first+' for real</h4><ul>'+
+      '<li>Use AI for <b>'+first+'</b> every single time the task comes up.</li>'+
+      '<li>Save your best instruction ("prompt") so you can reuse it — Session 3 shows you how.</li>'+
+      '<li>Always check the output before it goes to a customer.</li>'+
+      '<li>Note roughly how much time you save each week.</li></ul></div>';
+    if(rest.length){
+      html+='<div class="rmphase"><div class="pw">Weeks 7–10 · Add the next</div><h4>Bring in '+rest.join(" &amp; ")+'</h4><ul>'+
+        rest.map(function(r){return '<li>Introduce <b>'+r+'</b> the same way — try, reuse, check.</li>';}).join("")+
+        '<li>Bring one team member along so it doesn\'t depend only on you.</li></ul></div>';
+    }
+    html+='<div class="rmphase"><div class="pw">Weeks 11–13 · Review &amp; decide</div><h4>Keep what works</h4><ul>'+
+      '<li>Add up the time and money saved across your focus areas.</li>'+
+      '<li>Drop anything that isn\'t helping; double down on what is.</li>'+
+      '<li>Pick your next one or two use-cases from the Impact vs Effort map above.</li></ul></div>';
+    roadmap.innerHTML=html;roadmap.classList.add("show");
+    roadmap.scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
+  updatePlMeta();
+
+  /* ===== DAY IN THE LIFE ===== */
+  var days=[
+    {id:"fab",name:"Fabrication shop owner",bt:"Making, quoting, chasing",at:"Same work, half the friction",
+     before:["9am: three enquiries on WhatsApp — reply to none yet, no time.","11am: a walk-in wants a quote; you promise it by evening.","2pm: scribble the quote by hand between jobs.","6pm: finally type and send it; the customer already asked a competitor.","9pm: remember two enquiries you never answered."],
+     after:["9am: AI drafts polite replies to all three enquiries in 5 minutes.","11am: you dictate the requirement; AI returns an itemised quote with GST.","2pm: you check the figures and send it on the spot.","6pm: AI has drafted follow-ups to yesterday's leads.","9pm: inbox clear — nothing forgotten."],
+     win:"Result: quotes out same-hour, no lead left cold."},
+    {id:"food",name:"Spice / snack processor",bt:"Cooking, packing, selling",at:"More time on the product",
+     before:["Morning: production runs; marketing waits, as always.","Noon: a retailer asks for a rate list — you don't have one ready.","Afternoon: struggle to write a festival offer message.","Evening: labels look plain next to branded rivals.","Night: too tired to post anything on social media."],
+     after:["Morning: production runs; AI drafts this week's posts in advance.","Noon: AI generates a clean rate list and catalogue in minutes.","Afternoon: a warm Marathi festival message, ready to broadcast.","Evening: AI suggests polished label copy that looks shelf-ready.","Night: a week of captions scheduled in ten minutes."],
+     win:"Result: a small unit that markets like a brand."},
+    {id:"construction",name:"Construction contractor",bt:"Bidding, building, chasing bills",at:"Same site, less scramble",
+     before:["Morning: a tender is due today; the estimate is still half-done by hand.","Midday: the supervisor calls with a site update you will write up later.","Afternoon: a client wants a change; you argue over what was agreed.","Evening: running bills for two sites still not raised.","Night: payments unchased, cash tight again."],
+     after:["Morning: AI drafts the BOQ and estimate; you refine and submit on time.","Midday: the supervisor's voice note becomes a tidy progress report in a minute.","Afternoon: AI drafts a clear, on-record reply to the change-request.","Evening: running bills drafted for both sites, ready to send.","Night: payment reminders scheduled — cash comes in on time."],
+     win:"Result: more bids submitted, fewer disputes, steadier cash."},
+    {id:"cotton",name:"Cotton trader / ginner",bt:"Grading, pricing, paperwork",at:"Sharper calls, cleaner records",
+     before:["Dawn: cotton arrives; grading is by eye and by argument.","Morning: unsure if today's price is fair — no clear view of the market.","Afternoon: a buyer wants lot and traceability records you don't have ready.","Evening: farmer advisories sit unread on your phone.","Night: ginning yield is slipping but you can't see why."],
+     after:["Dawn: imaging and lab data give consistent, fair grades.","Morning: AI summarises domestic and global prices — you buy and sell on timing.","Afternoon: lot and traceability records drafted and export-ready.","Evening: advisories turned into a short Marathi note for farmers.","Night: yield analysis flags exactly where quality dips."],
+     win:"Result: fairer grades, better price timing, buyer-ready records."},
+    {id:"health",name:"Clinic / lab owner",bt:"Patients, records, no-shows",at:"More care, less admin",
+     before:["Morning: the front desk drowns in the same phone questions.","Midday: two patients no-showed; no reminder went out.","Afternoon: post-visit instructions written hurriedly, unclear.","Evening: the medicine stock check is forgotten again.","Night: insurance paperwork piling up."],
+     after:["Morning: an assistant answers timings, tests and price questions around the clock.","Midday: reminders went out automatically — the chairs are full.","Afternoon: clear, language-matched instructions for each patient, which you verify.","Evening: low-stock medicines flagged before they run out.","Night: billing and claim documents drafted and tidy."],
+     win:"Result: fuller schedule, clearer care, less paperwork — clinical calls stay with the doctor."},
+    {id:"agri",name:"Agri / FPO manager",bt:"Aggregating, linking, reporting",at:"Better rates, engaged members",
+     before:["Morning: members ask crop and pest questions you can't all answer.","Midday: unsure which buyer offers the best rate for this lot.","Afternoon: a subsidy form sits half-filled for weeks.","Evening: grading disputes with members over quality.","Night: no time to send the scheme update you promised."],
+     after:["Morning: an advisory assistant answers crop and pest questions in Marathi.","Midday: AI compares buyer prices — you route the lot to the best rate.","Afternoon: the subsidy application is drafted and ready to file.","Evening: camera grading settles quality fairly, no arguments.","Night: a clear scheme update goes out to every WhatsApp group."],
+     win:"Result: better prices, fair grading, members who trust the FPO."},
+    {id:"retail",name:"Retail shop owner",bt:"Stocking, selling, chasing",at:"Right stock, more repeat sales",
+     before:["Morning: bestsellers out of stock; slow items overflowing.","Midday: customers ask for a catalogue you don't have.","Afternoon: no festival offer ready while rivals are posting.","Evening: credit customers unpaid, unchased.","Night: regulars drifting away unnoticed."],
+     after:["Morning: reorder alerts keep bestsellers in and dead stock out.","Midday: a WhatsApp catalogue with prices, sent in minutes.","Afternoon: a festival offer and graphic ready to broadcast.","Evening: polite payment reminders go out on schedule.","Night: quiet regulars flagged and won back with an offer."],
+     win:"Result: leaner stock, livelier sales, loyal customers."},
+    {id:"coach",name:"Coaching / tuition owner",bt:"Teaching, then paperwork",at:"Teaching, minus the paperwork",
+     before:["Day: teach back-to-back batches.","Evening: make worksheets and tests by hand.","Late: reply to parent enquiries one by one.","Weekend: write progress notes for every student.","Always: admissions follow-ups slip through."],
+     after:["Day: teach — lesson plans already prepared by AI.","Evening: AI generates worksheets and practice tests instantly.","Late: AI drafts warm replies to every parent enquiry.","Weekend: progress notes drafted from your marks in minutes.","Always: AI keeps a follow-up list so no admission is lost."],
+     win:"Result: hours back each week, more seats filled."}
+  ];
+  var dayPick=document.getElementById("dayPick");
+  function renderDay(id){
+    var d=days.filter(function(x){return x.id===id;})[0];
+    dayPick.querySelectorAll("button").forEach(function(b){b.classList.toggle("on",b.dataset.id===id);});
+    document.getElementById("dayBT").textContent=d.bt;
+    document.getElementById("dayAT").textContent=d.at;
+    document.getElementById("dayBefore").innerHTML=d.before.map(function(x){return "<li>"+x+"</li>";}).join("");
+    document.getElementById("dayAfter").innerHTML=d.after.map(function(x){return "<li>"+x+"</li>";}).join("");
+    document.getElementById("dayWin").textContent=d.win;
+  }
+  if(dayPick){
+    days.forEach(function(d){
+      var b=document.createElement("button");b.dataset.id=d.id;b.textContent=d.name;
+      b.addEventListener("click",function(){renderDay(d.id);});
+      dayPick.appendChild(b);
+    });
+    renderDay("fab");
+  }
+
+  /* ===== OPPORTUNITY CANVAS ===== */
+  var cvIds=["cv1","cv2","cv3","cv4","cv5","cv6"];
+  var cvStmt=document.getElementById("cvStmt");
+  function ph(v,fallback){return v&&v.trim()?("<b>"+v.trim()+"</b>"):('<span class="ph">'+fallback+'</span>');}
+  function renderCanvas(){
+    if(!cvStmt)return;
+    var v={};cvIds.forEach(function(id){var el=document.getElementById(id);v[id]=el?el.value:"";});
+    cvStmt.innerHTML="Because "+ph(v.cv1,"[the problem]")+", we\u2019ll use "+ph(v.cv4,"[a tool]")+" to "+
+      ph(v.cv2,"[the task]")+", using "+ph(v.cv3,"[what we have]")+". "+
+      ph(v.cv5,"[who checks]")+", and we\u2019ll know it worked when "+ph(v.cv6,"[success measure]")+".";
+  }
+  cvIds.forEach(function(id){var el=document.getElementById(id);if(el){el.addEventListener("input",renderCanvas);el.addEventListener("change",renderCanvas);}});
+  renderCanvas();
+
+  /* ===== READINESS ===== */
+  var readyItems=[
+    {t:"A smartphone with internet",d:"That\u2019s the only device you need to begin."},
+    {t:"At least one painful, repeat task",d:"Something slow you do again and again."},
+    {t:"One willing person",d:"You, or someone on your team, ready to try."},
+    {t:"Some records, even on paper or WhatsApp",d:"Rate lists, past messages, order history \u2014 anything."},
+    {t:"Willingness to check the output",d:"You\u2019ll review before it reaches a customer."}
+  ];
+  var readyChecks=document.getElementById("readyChecks"),readyBig=document.getElementById("readyBig"),readyVerdict=document.getElementById("readyVerdict");
+  var readyState=[false,false,false,false,false];
+  function readyVerdictText(n){
+    if(n<=1)return "<b>Start ticking.</b> Most owners in this room have all five already \u2014 read each one again.";
+    if(n<=3)return "<b>You\u2019re basically ready.</b> The missing pieces are easy: a smartphone and one willing person are enough to begin this week.";
+    if(n===4)return "<b>Ready to go.</b> You have almost everything. Pick one quick win from the matrix and start.";
+    return "<b>Fully ready \u2014 no excuses left!</b> You have every ingredient. Your only task now is to choose the first task and begin today.";
+  }
+  function renderReady(){
+    var n=readyState.filter(Boolean).length;
+    readyBig.textContent=n+"/5";
+    readyVerdict.innerHTML=readyVerdictText(n);
+  }
+  if(readyChecks){
+    readyItems.forEach(function(it,i){
+      var el=document.createElement("button");el.className="rchk";
+      el.innerHTML='<span class="cb">\u2713</span><span><span class="rt">'+it.t+'</span><span class="rd">'+it.d+'</span></span>';
+      el.addEventListener("click",function(){readyState[i]=!readyState[i];el.classList.toggle("on",readyState[i]);renderReady();});
+      readyChecks.appendChild(el);
+    });
+    renderReady();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Session 3 · Essential Tools of AI — Business Accelerator Programme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,500;10..48,600;10..48,700;10..48,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#F5F1E8;
+  --surface:#FCFAF4;
+  --surface-2:#EEE7D6;
+  --ink:#241E10;
+  --ink-soft:#5E5540;
+  --ink-faint:#938A72;
+  --line:#E4DCC7;
+  --line-strong:#D2C7A9;
+  --accent:#BF7A0E;
+  --accent-deep:#935C08;
+  --accent-tint:#F5E7C8;
+  --accent-2:#0E7A66;
+  --accent-2-tint:#DCEDE7;
+  --danger:#B24A3B;
+  --danger-tint:#F1DDD7;
+  --focus:#BF7A0E;
+  --radius:14px;--radius-lg:22px;
+  --maxw:1120px;
+  --font-display:"Bricolage Grotesque",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--paper);color-scheme:light}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:700;line-height:1.08;letter-spacing:-.02em;margin:0}
+p{margin:0}
+a{color:var(--accent-deep)}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+
+.ribbon{background:var(--ink);color:#EDE7D8;font-size:14px}
+.ribbon .wrap{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between;padding:11px 24px}
+.ribbon strong{color:#fff;font-weight:600}
+.ribbon .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;margin-right:9px;vertical-align:middle}
+.ses-nav{display:flex;gap:6px}
+.ses-nav a{padding:5px 11px;border-radius:999px;font-size:13px;text-decoration:none;color:#CFC7B4;border:1px solid transparent}
+.ses-nav a.on{background:var(--accent);color:#fff}
+.ses-nav a:not(.on):hover{border-color:#41392a}
+
+.hero{padding:64px 0 30px;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:2}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--accent-deep);background:var(--accent-tint);padding:7px 14px;border-radius:999px;margin-bottom:22px}
+.kicker .n{font-family:var(--font-display);font-weight:700}
+.hero h1{font-size:clamp(2.5rem,6vw,4.4rem);font-weight:800;max-width:16ch}
+.hero .lede{font-size:clamp(1.12rem,2.3vw,1.4rem);color:var(--ink-soft);max-width:58ch;margin-top:22px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.chip{font-size:14px;padding:8px 14px;border-radius:10px;background:var(--surface);border:1px solid var(--line);color:var(--ink-soft)}
+.chip b{color:var(--ink);font-weight:600}
+.scrolldown{margin-top:34px;display:inline-flex;align-items:center;gap:10px;font-weight:600;color:var(--ink);text-decoration:none;font-size:15px}
+.scrolldown .arr{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:18px}
+.blob{position:absolute;border-radius:50%;filter:blur(8px);opacity:.55;z-index:1}
+
+section{padding:52px 0}
+.sec-head{max-width:66ch;margin-bottom:34px}
+.sec-num{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--accent-deep);letter-spacing:.02em}
+.sec-head h2{font-size:clamp(1.8rem,3.6vw,2.7rem);margin-top:8px}
+.sec-head p{color:var(--ink-soft);margin-top:14px;font-size:1.08rem}
+.divide{height:1px;background:var(--line);max-width:var(--maxw);margin:0 auto}
+
+/* tool directory */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.tabs button{border:1.5px solid var(--line);background:var(--surface);padding:10px 16px;border-radius:11px;font-weight:600;font-size:15px;color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;gap:8px}
+.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.tabs button:not(.on):hover{border-color:var(--line-strong)}
+.toolgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:820px){.toolgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.toolgrid{grid-template-columns:1fr}}
+.tool{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;position:relative}
+.tool h4{font-size:1.15rem;display:flex;align-items:center;gap:9px}
+.tool .cost{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;margin-left:auto}
+.tool .cost.free{background:var(--accent-2-tint);color:var(--accent-2)}
+.tool .cost.freemium{background:var(--accent-tint);color:var(--accent-deep)}
+.tool .cost.paid{background:var(--surface-2);color:var(--ink-soft)}
+.tool .best{color:var(--ink-soft);font-size:.95rem;margin-top:10px}
+.tool .good{margin-top:12px;font-size:.85rem;color:var(--accent-deep);font-weight:600}
+.taskintro{background:var(--ink);color:#EDE7D8;border-radius:var(--radius);padding:18px 22px;margin-bottom:18px;font-size:1rem}
+.taskintro b{color:#fff}
+
+/* recipe */
+.recipe{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:820px){.recipe{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.recipe{grid-template-columns:1fr}}
+.ring{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;border-top:4px solid var(--accent)}
+.ring .lt{font-family:var(--font-display);font-weight:800;font-size:2.2rem;color:var(--accent);line-height:1}
+.ring h4{margin-top:8px;font-size:1.15rem}
+.ring p{color:var(--ink-soft);font-size:.92rem;margin-top:8px}
+.ring .eg{margin-top:12px;font-size:.85rem;color:var(--ink);background:var(--accent-tint);padding:9px 11px;border-radius:9px;font-style:italic}
+.recipe-demo{margin-top:22px;background:var(--ink);color:#EDE7D8;border-radius:16px;padding:24px}
+.recipe-demo .lab{font-size:.8rem;color:#e0b667;font-weight:700;letter-spacing:.04em}
+.recipe-demo .full{font-size:1.15rem;line-height:1.55;margin-top:10px}
+.recipe-demo .full .r{color:#9db4f0}.recipe-demo .full .t{color:#e0b667}.recipe-demo .full .c{color:#8fded0}.recipe-demo .full .f{color:#f0a89d}
+
+/* makeover */
+.makeover{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px}
+.seg{display:inline-flex;background:var(--surface-2);border-radius:999px;padding:5px;gap:4px;margin-bottom:24px;flex-wrap:wrap}
+.seg button{border:none;background:transparent;padding:9px 18px;border-radius:999px;font-weight:600;font-size:14.5px;color:var(--ink-soft);cursor:pointer}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.mo-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:720px){.mo-grid{grid-template-columns:1fr}}
+.mo-col{border-radius:14px;padding:20px}
+.mo-col.weak{background:var(--danger-tint);border:1px solid #e2b6ac}
+.mo-col.strong{background:var(--accent-2-tint);border:1px solid #a9d8cd}
+.mo-col .tg{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:12px}
+.mo-col.weak .tg{background:var(--danger);color:#fff}
+.mo-col.strong .tg{background:var(--accent-2);color:#fff}
+.mo-col .txt{font-size:1rem;line-height:1.5}
+.mo-why{margin-top:20px;padding:16px 18px;border-radius:12px;background:var(--surface-2);font-size:.96rem}
+.mo-why b{color:var(--ink)}
+
+/* prompt builder */
+.builder{display:grid;grid-template-columns:.95fr 1.05fr;gap:26px;align-items:start}
+@media(max-width:860px){.builder{grid-template-columns:1fr}}
+.bform{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:26px}
+.bform label{font-weight:600;font-size:.92rem;display:block;margin:0 0 7px}
+.bform .fld{margin-bottom:18px}
+.bform select,.bform input,.bform textarea{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:15px;background:#fff;color:var(--ink)}
+.bform textarea{resize:vertical;min-height:64px}
+.bform select:focus,.bform input:focus,.bform textarea:focus{border-color:var(--accent);outline:none}
+.bout{background:var(--ink);color:#EDE7D8;border-radius:var(--radius-lg);padding:26px;position:sticky;top:16px}
+.bout .lab{font-size:.8rem;color:#e0b667;font-weight:700;letter-spacing:.04em;display:flex;justify-content:space-between;align-items:center}
+.bout .promptbox{margin-top:14px;background:#2c2617;border:1px solid #443b26;border-radius:12px;padding:18px;font-size:1.02rem;line-height:1.6;white-space:pre-wrap;min-height:150px}
+.copybtn{background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:9px;font-weight:600;font-size:13.5px;cursor:pointer}
+.copybtn.done{background:var(--accent-2)}
+.bhint{color:#b7ab8f;font-size:.85rem;margin-top:16px}
+
+/* workflow loop */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;position:relative}
+@media(max-width:900px){.flow{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.flow{grid-template-columns:1fr}}
+.fstep{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;cursor:pointer;transition:border-color .12s,transform .12s}
+.fstep:hover{border-color:var(--line-strong)}
+.fstep.sel{border-color:var(--accent);background:var(--accent-tint);transform:translateY(-3px)}
+.fstep .fn{font-family:var(--font-display);font-weight:800;color:var(--accent);font-size:.9rem}
+.fstep h4{margin-top:6px;font-size:1.05rem}
+.fstep .fs{color:var(--ink-soft);font-size:.85rem;margin-top:6px}
+.flowdetail{margin-top:20px;padding:22px 24px;border-radius:14px;background:var(--ink);color:#EDE7D8;display:none}
+.flowdetail.show{display:block}
+.flowdetail h3{color:#fff;font-size:1.4rem}
+.flowdetail p{color:#D8D0BE;margin-top:8px}
+.flowdetail .key{margin-top:14px;padding:12px 16px;border-radius:10px;background:#2c2617;border-left:3px solid var(--accent);font-size:.95rem}
+.flowdetail .key b{color:#e0b667}
+
+/* safety */
+.safety{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:720px){.safety{grid-template-columns:1fr}}
+.scol{border-radius:var(--radius-lg);padding:26px}
+.scol.do{background:var(--accent-2-tint);border:1px solid #a9d8cd}
+.scol.dont{background:var(--danger-tint);border:1px solid #e2b6ac}
+.scol h3{font-size:1.4rem;display:flex;align-items:center;gap:10px}
+.scol.do h3{color:var(--accent-2)}
+.scol.dont h3{color:var(--danger)}
+.scol ul{margin:16px 0 0;padding:0;list-style:none}
+.scol li{padding:10px 0 10px 30px;position:relative;color:var(--ink-soft);border-top:1px solid rgba(0,0,0,.06)}
+.scol li:first-child{border-top:none}
+.scol li b{color:var(--ink)}
+.scol li:before{position:absolute;left:0;top:9px;font-weight:700;font-size:1.05rem}
+.scol.do li:before{content:"✓";color:var(--accent-2)}
+.scol.dont li:before{content:"✕";color:var(--danger)}
+
+.takeaways{background:var(--ink);color:#EDE7D8;border-radius:var(--radius-lg);padding:34px}
+.takeaways h2{color:#fff;font-size:2rem}
+.tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+@media(max-width:760px){.tk-grid{grid-template-columns:1fr}}
+.tk{background:#2c2617;border-radius:14px;padding:20px;border-top:3px solid var(--accent)}
+.tk .num{font-family:var(--font-display);font-weight:800;color:#e0b667;font-size:1.1rem}
+.tk p{color:#E4DECC;margin-top:8px;font-size:.98rem}
+
+/* levels of prompting */
+.levels{display:grid;gap:12px}
+.lvl{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;cursor:pointer;transition:border-color .12s}
+.lvl:hover{border-color:var(--line-strong)}
+.lvl.open{border-color:var(--accent);background:var(--accent-tint)}
+.lvl .ln{width:44px;height:44px;border-radius:11px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:1.3rem;flex:0 0 auto}
+.lvl h4{font-size:1.15rem}
+.lvl .lsub{color:var(--ink-soft);font-size:.95rem;margin-top:3px}
+.lvl .ldet{display:none;margin-top:12px;font-size:.95rem;color:var(--ink-soft)}
+.lvl.open .ldet{display:block}
+.lvl .leg{margin-top:12px;padding:12px 15px;background:#fff;border:1px dashed var(--line-strong);border-radius:10px;font-size:.92rem;font-style:italic;color:var(--ink)}
+.lvl.open .leg{background:#fffaf0}
+
+/* prompt library */
+.libpick{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.libpick button{border:1.5px solid var(--line);background:var(--surface);padding:11px 17px;border-radius:11px;cursor:pointer;font-weight:600;color:var(--ink-soft)}
+.libpick button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.libgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.libgrid{grid-template-columns:1fr}}
+.libcard{background:var(--ink);color:#EDE7D8;border-radius:14px;padding:18px;display:flex;flex-direction:column}
+.libcard .lh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.libcard .lt{font-family:var(--font-display);font-weight:700;color:#fff;font-size:1.02rem}
+.libcard .lp{background:#2c2617;border:1px solid #443b26;border-radius:10px;padding:13px;font-size:.92rem;line-height:1.5;flex:1;white-space:pre-wrap}
+.libcopy{background:var(--accent);color:#fff;border:none;padding:6px 13px;border-radius:8px;font-weight:600;font-size:12.5px;cursor:pointer;flex:0 0 auto}
+.libcopy.done{background:var(--accent-2)}
+
+/* tool checklist */
+.tcheck{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+@media(max-width:760px){.tcheck{grid-template-columns:1fr}}
+.tchecks{display:grid;gap:12px}
+.tc{border:1.5px solid var(--line);border-radius:12px;padding:15px 17px;cursor:pointer;display:flex;gap:12px;align-items:flex-start;background:var(--surface)}
+.tc:hover{border-color:var(--line-strong)}
+.tc.on{border-color:var(--accent);background:var(--accent-tint)}
+.tc .cb{width:24px;height:24px;border-radius:7px;border:2px solid var(--line-strong);flex:0 0 auto;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px}
+.tc.on .cb{background:var(--accent);border-color:var(--accent)}
+.tc .tt{font-weight:600;font-size:.98rem;display:block}
+.tc .td{font-size:.84rem;color:var(--ink-faint);margin-top:2px;display:block}
+.tverd{background:var(--ink);color:#EDE7D8;border-radius:var(--radius-lg);padding:26px;position:sticky;top:16px;text-align:center}
+.tverd .big{font-family:var(--font-display);font-weight:800;font-size:3.2rem;color:#fff;line-height:1}
+.tverd .vl{color:#e0b667;font-weight:600;margin-top:4px}
+.tverd .vt{margin-top:18px;text-align:left;background:#2c2617;border-radius:12px;padding:16px 18px;font-size:.95rem;color:#D8D0BE}
+.tverd .vt b{color:#fff}
+
+/* ===== technology landscape ===== */
+.diagram-title{font-family:var(--font-display);font-weight:800;font-size:1.3rem;margin-bottom:6px}
+.diagram-sub{color:var(--ink-soft);font-size:.96rem;margin-bottom:16px;max-width:74ch}
+.stack-scale{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--ink-faint);margin-bottom:10px;flex-wrap:wrap;gap:6px}
+.stack{display:flex;flex-direction:column}
+.slayer{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;border-radius:12px;padding:15px 18px;margin-bottom:8px;cursor:pointer;border:1px solid transparent;transition:transform .12s}
+.slayer:hover{transform:translateX(4px)}
+@media(max-width:560px){.slayer{grid-template-columns:1fr;gap:6px}}
+.slayer .tier{font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase}
+.slayer .lname{font-family:var(--font-display);font-weight:700;font-size:1.05rem}
+.slayer .legs{font-size:.85rem;margin-top:4px;line-height:1.5}
+.slayer.use{background:var(--accent-2-tint);border-color:#a9d8cd}
+.slayer.use .tier{color:var(--accent-2)}
+.slayer.use .legs{color:var(--ink-soft)}
+.slayer.build{background:var(--accent-tint)}
+.slayer.build .tier{color:var(--accent-deep)}
+.slayer.build .legs{color:var(--ink-soft)}
+.slayer.infra{background:var(--ink);color:#EDE7D8}
+.slayer.infra .tier{color:#e0b667}
+.slayer.infra .lname{color:#fff}
+.slayer.infra .legs{color:#b7ab8f}
+.slayer.sel{outline:3px solid var(--accent);outline-offset:2px}
+.stack-detail{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:.96rem;color:var(--ink-soft)}
+.stack-detail b{color:var(--ink)}
+.matrix-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+.landmatrix{display:grid;grid-template-columns:150px repeat(4,minmax(180px,1fr));gap:8px;min-width:840px}
+.lm-corner{padding:10px}
+.lm-h{padding:12px 14px;border-radius:10px;color:#fff}
+.lm-h .lt{font-family:var(--font-display);font-weight:800;font-size:1rem}
+.lm-h .ls{font-weight:500;font-size:.78rem;opacity:.92;display:block;margin-top:2px}
+.lm-h.ml{background:#2A5CB8}.lm-h.dl{background:#0E7A66}.lm-h.gen{background:#BF7A0E}.lm-h.agent{background:#6D4AAE}
+.lm-rowlab{padding:12px 14px;font-family:var(--font-display);font-weight:700;font-size:.9rem;color:var(--ink);display:flex;align-items:center;background:var(--surface-2);border-radius:10px}
+.lm-cell{padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:.86rem;color:var(--ink-soft);line-height:1.55}
+.lm-cell.ml{border-top:3px solid #2A5CB8}
+.lm-cell.dl{border-top:3px solid #0E7A66}
+.lm-cell.gen{border-top:3px solid #BF7A0E}
+.lm-cell.agent{border-top:3px solid #6D4AAE}
+.matrix-foot{color:var(--ink-faint);font-size:.86rem;margin-top:12px;max-width:80ch}
+.matrix-foot b{color:var(--ink-soft)}
+.clouds{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:760px){.clouds{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.clouds{grid-template-columns:1fr}}
+.cloud{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;border-top:3px solid var(--accent-2)}
+.cloud h4{font-size:1rem}
+.cloud .cp{font-size:.85rem;color:var(--accent-deep);font-weight:600;margin-top:6px}
+.cloud .cn{font-size:.85rem;color:var(--ink-soft);margin-top:6px}
+.msme-note{margin-top:34px;background:var(--ink);color:#EDE7D8;border-radius:14px;padding:20px 24px;font-size:.98rem;line-height:1.6}
+.msme-note b{color:#e0b667}
+
+footer{padding:40px 0 60px;color:var(--ink-faint);font-size:14px;text-align:center}
+footer .divide{margin-bottom:30px}
+</style>
+</head>
+<body>
+
+<div class="ribbon">
+  <div class="wrap">
+    <div><span class="dot"></span><strong>Business Accelerator Programme</strong> &nbsp;·&nbsp; AI for MSMEs</div>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <span class="blob" style="width:320px;height:320px;background:var(--accent-tint);top:-90px;right:-60px"></span>
+  <span class="blob" style="width:220px;height:220px;background:var(--accent-2-tint);bottom:-120px;left:-40px"></span>
+  <div class="wrap">
+    <div class="kicker"><span class="n">Session 3</span> · 90 minutes · Essential Tools of AI</div>
+    <h1>Enough theory. Let's actually use it.</h1>
+    <p class="lede">The tools you'll reach for, what each is best at, and the one skill that decides whether AI is useless or brilliant to you: writing a good instruction — a "prompt". Build a real, copy-ready prompt for your own business before you leave.</p>
+    <div class="meta">
+      <span class="chip"><b>6</b> task areas, real tools for each</span>
+      <span class="chip"><b>R-T-C-F</b> — the prompt recipe</span>
+      <span class="chip"><b>Live</b> prompt builder you can copy</span>
+    </div>
+    <a class="scrolldown" href="#tools"><span class="arr">↓</span> Open the toolkit</a>
+  </div>
+</header>
+
+<!-- ===== TOOL DIRECTORY ===== -->
+<section id="tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">01 — The toolkit, sorted by the job</div>
+      <h2>Don't memorise tools. Start from the task, then pick the tool.</h2>
+      <p>There are hundreds of AI tools and more every week. You only need a handful. Choose what you're trying to do; here are dependable, mostly-free tools that do it — all working on a basic smartphone, most understanding Hindi and Marathi.</p>
+    </div>
+    <div class="tabs" id="toolTabs"></div>
+    <div class="taskintro" id="taskIntro"></div>
+    <div class="toolgrid" id="toolGrid"></div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== TECHNOLOGY LANDSCAPE ===== -->
+<section id="landscape">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">02 — The technology landscape</div>
+      <h2>The whole AI toolbox — from chips to chatbots — on two maps.</h2>
+      <p>You'll mostly use ready-made products, but it pays to see the full landscape: what a vendor means, what sits under the tools you use, and where your money is best spent. Here are two maps — the <b>stack</b> (how it's layered) and the <b>families</b> (what each kind of AI is built with).</p>
+    </div>
+
+    <h3 class="diagram-title">Map 1 · The AI technology stack</h3>
+    <p class="diagram-sub">Seven layers, from the chips at the very bottom to the apps you open at the top. The higher up you are, the less you need to know — most small businesses only ever touch the top two layers. Tap any layer to understand it.</p>
+    <div class="stack-scale"><span>↑ Closest to you — just open and use</span><span>↓ Infrastructure — vendors handle this</span></div>
+    <div class="stack" id="stack"></div>
+    <div class="stack-detail" id="stackDetail"></div>
+
+    <h3 class="diagram-title" style="margin-top:44px">Map 2 · The four AI families &amp; their tooling</h3>
+    <p class="diagram-sub">The same landscape sliced a different way. Each kind of AI is built with certain <b>frameworks</b>, runs on certain <b>cloud &amp; platforms</b>, and reaches you as certain <b>ready-to-use products</b>. Scroll sideways on a phone.</p>
+    <div class="matrix-scroll"><div class="landmatrix" id="landMatrix"></div></div>
+    <p class="matrix-foot">LLMs (ChatGPT, Claude, Gemini) are the text side of <b>Generative AI</b>, and all Generative AI is built on <b>Deep Learning</b> — the families overlap, but this shows where each shows up in the market. Names are well-known examples, not endorsements; the landscape changes fast.</p>
+
+    <h3 class="diagram-title" style="margin-top:44px">The big cloud AI platforms, at a glance</h3>
+    <p class="diagram-sub">Behind most AI tools sits one of a few giant clouds. You rarely deal with them directly, but this is what a vendor means when they name one.</p>
+    <div class="clouds" id="clouds"></div>
+
+    <div class="msme-note" id="msmeNote"></div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== RECIPE ===== -->
+<section id="recipe">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">03 — The prompt recipe</div>
+      <h2>A good prompt has four parts: Role, Task, Context, Format.</h2>
+      <p>The difference between a disappointing answer and a brilliant one is almost never the tool — it's how you ask. Give the AI these four things and it stops guessing. Remember it as <b>R-T-C-F</b>.</p>
+    </div>
+    <div class="recipe">
+      <div class="ring"><div class="lt">R</div><h4>Role</h4><p>Tell it who to be. This sets the tone and expertise.</p><div class="eg">"You are my sales assistant…"</div></div>
+      <div class="ring"><div class="lt">T</div><h4>Task</h4><p>Say exactly what you want done, in one clear line.</p><div class="eg">"…write a WhatsApp offer message…"</div></div>
+      <div class="ring"><div class="lt">C</div><h4>Context</h4><p>Give the details only you know — product, price, audience.</p><div class="eg">"…for 20% off masala packs this Diwali, for regular customers in Nagpur…"</div></div>
+      <div class="ring"><div class="lt">F</div><h4>Format</h4><p>Say how the answer should look — length, language, style.</p><div class="eg">"…in Marathi, under 4 lines, warm and friendly."</div></div>
+    </div>
+    <div class="recipe-demo">
+      <div class="lab">THE FULL PROMPT, ASSEMBLED</div>
+      <div class="full"><span class="r">You are my sales assistant.</span> <span class="t">Write a WhatsApp offer message</span> <span class="c">for 20% off masala packs this Diwali, for regular customers in Nagpur.</span> <span class="f">Reply in Marathi, under 4 lines, warm and friendly.</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== LEVELS ===== -->
+<section id="levels">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">04 — Framework: the 5 levels of prompting</div>
+      <h2>R-T-C-F is level 2. Here's how to go further when you need to.</h2>
+      <p>Most of your work only needs levels 1–2. But when an answer isn't good enough, climbing a level almost always fixes it. Tap each level to see the trick and an example.</p>
+    </div>
+    <div class="levels" id="levels">
+      <div class="lvl" data-l="0">
+        <div class="ln">1</div>
+        <div><h4>Just ask</h4><div class="lsub">Type your request in plain words. Fine for simple things.</div>
+          <div class="ldet">Good enough for quick, low-stakes questions. The weakness: the AI has to guess everything you didn't say.</div>
+          <div class="leg">"Write a thank-you message for a customer."</div>
+        </div>
+      </div>
+      <div class="lvl" data-l="1">
+        <div class="ln">2</div>
+        <div><h4>Add Role, Task, Context, Format</h4><div class="lsub">The R-T-C-F recipe. Your everyday default.</div>
+          <div class="ldet">Tell it who to be, what to do, the details only you know, and how the answer should look. This alone fixes 80% of weak results.</div>
+          <div class="leg">"You are my sales assistant. Write a thank-you WhatsApp to a customer who bought 5kg of chikki, inviting them to reorder. Warm, 3 lines, Marathi."</div>
+        </div>
+      </div>
+      <div class="lvl" data-l="2">
+        <div class="ln">3</div>
+        <div><h4>Show an example</h4><div class="lsub">Give it a sample of the style you want it to copy.</div>
+          <div class="ldet">Paste one message you've written before and say "write more like this". The AI matches your tone and format far better than any description.</div>
+          <div class="leg">"Here's a message I liked: [paste]. Write 3 more in the same style for these products."</div>
+        </div>
+      </div>
+      <div class="lvl" data-l="3">
+        <div class="ln">4</div>
+        <div><h4>Ask it to ask you first</h4><div class="lsub">Let the AI interview you before it answers.</div>
+          <div class="ldet">For anything important, tell it to ask you questions first. It gathers exactly what it needs, and the final answer is sharper.</div>
+          <div class="leg">"Before writing my business plan summary, ask me any questions you need, one at a time."</div>
+        </div>
+      </div>
+      <div class="lvl" data-l="4">
+        <div class="ln">5</div>
+        <div><h4>Break it into steps &amp; self-check</h4><div class="lsub">For big tasks, guide it step by step and have it review its own work.</div>
+          <div class="ldet">Split a large job into stages, and finish with "now check your answer for mistakes". This catches errors before you do.</div>
+          <div class="leg">"First list the sections. Then draft each one. Finally, review the whole thing for anything unclear or wrong."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== MAKEOVER ===== -->
+<section id="makeover">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">05 — Weak prompt vs strong prompt</div>
+      <h2>Same tool, very different result. See the makeover.</h2>
+      <p>These are real, everyday tasks for this cohort. Flip between them: on the left is what most people type first; on the right is the R-T-C-F version — and why it works better.</p>
+    </div>
+    <div class="makeover">
+      <div class="seg" id="moSeg"></div>
+      <div class="mo-grid">
+        <div class="mo-col weak"><span class="tg">Weak — vague</span><div class="txt" id="moWeak"></div></div>
+        <div class="mo-col strong"><span class="tg">Strong — R-T-C-F</span><div class="txt" id="moStrong"></div></div>
+      </div>
+      <div class="mo-why" id="moWhy"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== BUILDER ===== -->
+<section id="builder">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">06 — Build your own prompt, right now</div>
+      <h2>Fill in the blanks. Copy the result. Paste it into any AI tool.</h2>
+      <p>This is the heart of today. Choose a task, add your own details, and watch a ready-to-use prompt build itself on the right. Copy it, open ChatGPT or Claude on your phone, and try it on something real from your business.</p>
+    </div>
+    <div class="builder">
+      <div class="bform">
+        <div class="fld">
+          <label for="bTask">What do you want to do?</label>
+          <select id="bTask"></select>
+        </div>
+        <div id="bFields"></div>
+      </div>
+      <div class="bout">
+        <div class="lab"><span>YOUR READY-TO-USE PROMPT</span><button class="copybtn" id="copyBtn">Copy</button></div>
+        <div class="promptbox" id="promptBox"></div>
+        <p class="bhint">Tip: paste this as-is. If the first answer isn't quite right, just reply to the AI in plain words — "make it shorter", "more formal", "in Hindi" — and it will fix it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== LIBRARY ===== -->
+<section id="library">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">07 — Your take-home prompt library</div>
+      <h2>Ready-made prompts for your sector. Copy, paste, tweak the details.</h2>
+      <p>Don't start from a blank screen. Pick your line of business and take these proven prompts with you. Change the bits in brackets to fit your own products and customers.</p>
+    </div>
+    <div class="libpick" id="libPick"></div>
+    <div class="libgrid" id="libGrid"></div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== TOOL CHECKLIST ===== -->
+<section id="toolcheck">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">08 — Framework: choosing a tool</div>
+      <h2>Five questions before you adopt any AI tool.</h2>
+      <p>New tools appear every week and most are noise. Run any tool past these five questions. Tick the ones it passes — a good tool for an MSME should clear at least four.</p>
+    </div>
+    <div class="tcheck">
+      <div class="tchecks" id="toolChecks"></div>
+      <div class="tverd">
+        <div class="big" id="tcBig">0/5</div>
+        <div class="vl">passes</div>
+        <div class="vt" id="tcVerdict"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== WORKFLOW ===== -->
+<section id="workflow">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">09 — Business framework: the AI adoption loop</div>
+      <h2>A safe, repeatable way to bring any AI tool into your business.</h2>
+      <p>Don't adopt AI in a big risky leap. Run this small loop for each new task. The most important step is the one people skip — <b>Check</b>. Tap each step.</p>
+    </div>
+    <div class="flow" id="flow">
+      <div class="fstep sel" data-s="0"><div class="fn">Step 1</div><h4>Pick</h4><div class="fs">Choose one small, low-risk task.</div></div>
+      <div class="fstep" data-s="1"><div class="fn">Step 2</div><h4>Try</h4><div class="fs">Use a free tool with a good prompt.</div></div>
+      <div class="fstep" data-s="2"><div class="fn">Step 3</div><h4>Check</h4><div class="fs">Review the output carefully. Always.</div></div>
+      <div class="fstep" data-s="3"><div class="fn">Step 4</div><h4>Refine</h4><div class="fs">Tell it what to fix; save what works.</div></div>
+      <div class="fstep" data-s="4"><div class="fn">Step 5 ↺</div><h4>Adopt</h4><div class="fs">Make it routine, then pick the next task.</div></div>
+    </div>
+    <div class="flowdetail show" id="flowDetail"></div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- ===== SAFETY ===== -->
+<section id="safety">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">10 — Use it safely and well</div>
+      <h2>A short list that keeps you out of trouble.</h2>
+      <p>AI is powerful, not perfect. These habits protect your customers, your money and your reputation. They take two minutes to learn and save you real grief.</p>
+    </div>
+    <div class="safety">
+      <div class="scol do">
+        <h3>Do</h3>
+        <ul>
+          <li><b>Check every fact and figure.</b> AI can sound sure and still be wrong — verify prices, GST, dates and legal points yourself.</li>
+          <li><b>Treat it as a first draft.</b> You are always the final editor and the one responsible.</li>
+          <li><b>Write in your own language.</b> Hindi and Marathi work fine — use whatever you think in.</li>
+          <li><b>Save your best prompts.</b> Keep a note of what worked so you and your team can reuse it.</li>
+          <li><b>Start small and free.</b> Prove value on low-stakes tasks before paying for anything.</li>
+        </ul>
+      </div>
+      <div class="scol dont">
+        <h3>Don't</h3>
+        <ul>
+          <li><b>Don't paste sensitive personal data.</b> No Aadhaar, PAN, bank details or customer phone lists into public AI tools.</li>
+          <li><b>Don't share trade secrets.</b> Keep secret recipes, formulas and pricing strategies out of it.</li>
+          <li><b>Don't send unchecked replies.</b> Never forward an AI message to a customer without reading it first.</li>
+          <li><b>Don't trust numbers blindly.</b> AI is weak at exact arithmetic — recompute anything that matters.</li>
+          <li><b>Don't let it decide alone.</b> Use it to inform your judgement, never to replace it.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<section id="wrap-up">
+  <div class="wrap">
+    <div class="takeaways">
+      <h2>What to carry out of this room</h2>
+      <div class="tk-grid">
+        <div class="tk"><div class="num">01</div><p>Start from the <b>task</b>, pick a free tool, and know a handful well rather than chasing every new app.</p></div>
+        <div class="tk"><div class="num">02</div><p>The one skill that matters: <b>R-T-C-F</b> prompts. Role, Task, Context, Format — and refine by just talking back to it.</p></div>
+        <div class="tk"><div class="num">03</div><p>Run the <b>Pick → Try → Check → Refine → Adopt</b> loop. Never skip Check, never paste sensitive data.</p></div>
+      </div>
+      <p style="color:#CFC7B4;margin-top:26px;font-size:1.05rem">That completes the three sessions. You now know <b style="color:#fff">what AI is</b>, <b style="color:#fff">where it fits your business</b>, and <b style="color:#fff">how to use it today</b>. The next move is one real task, this week. Pick it now.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="divide"></div>
+  <div class="wrap">Session 3 of 3 · Essential Tools of AI · Business Accelerator Programme · Build a prompt, run the loop, start this week.</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ===== TOOL DIRECTORY ===== */
+  var taskCats=[
+    {id:"write",ic:"✍️",name:"Write & reply",intro:"Drafting quotations, messages, replies, descriptions, letters — the biggest everyday time-saver for most MSMEs.",tools:[
+      {n:"ChatGPT",cost:"freemium",best:"The all-rounder. Draft quotes, replies, captions, letters — in any language.",good:"Best starting point for everyone"},
+      {n:"Claude",cost:"freemium",best:"Excellent for longer, careful writing and thinking through a reply.",good:"Great for tone & nuance"},
+      {n:"Google Gemini",cost:"freemium",best:"Built into Google apps you may already use on Android.",good:"Handy if you live in Gmail"}
+    ]},
+    {id:"design",ic:"🎨",name:"Design & images",intro:"Labels, posters, catalogue photos, festival greetings, social posts — a design team in your pocket.",tools:[
+      {n:"Canva",cost:"freemium",best:"Templates plus AI for posters, labels, catalogues and logos. No design skill needed.",good:"The MSME favourite"},
+      {n:"ChatGPT / Gemini images",cost:"freemium",best:"Describe a product photo or graphic in words and it generates one.",good:"Quick product visuals"},
+      {n:"Photo cleanup tools",cost:"freemium",best:"Remove backgrounds and tidy product photos for listings in seconds.",good:"Shelf-ready photos"}
+    ]},
+    {id:"numbers",ic:"🧮",name:"Numbers & sheets",intro:"Costing, simple accounts, comparisons and summaries — but always recheck the maths yourself.",tools:[
+      {n:"Google Sheets + AI",cost:"free",best:"Build costing sheets and let AI suggest formulas in plain language.",good:"Free & on any phone"},
+      {n:"ChatGPT (with care)",cost:"freemium",best:"Explain costing logic and lay out a quote — then you verify the figures.",good:"Structure, not final maths"},
+      {n:"AI accounting apps",cost:"paid",best:"Apps that read bills and track GST; worth it once volumes grow.",good:"For daily bookkeeping"}
+    ]},
+    {id:"support",ic:"💬",name:"Customer support",intro:"Answering enquiries and complaints fast, at any hour, in the customer's language.",tools:[
+      {n:"WhatsApp Business",cost:"free",best:"Quick replies, catalogues and greeting messages — where your customers already are.",good:"Essential, and free"},
+      {n:"ChatGPT / Claude",cost:"freemium",best:"Draft calm complaint replies and FAQ answers to paste into WhatsApp.",good:"For tricky messages"},
+      {n:"Chatbot builders",cost:"freemium",best:"Auto-answer common questions on your page; add only once demand is steady.",good:"When enquiries pile up"}
+    ]},
+    {id:"learn",ic:"🔎",name:"Learn & research",intro:"Understanding a scheme, a rule, a competitor or a new market — explained in plain words.",tools:[
+      {n:"ChatGPT / Claude",cost:"freemium",best:"Ask any business question and get a plain-language explanation you can question further.",good:"Your patient advisor"},
+      {n:"Perplexity",cost:"freemium",best:"Answers with sources — better when you need up-to-date facts and links.",good:"For current info"},
+      {n:"Google + AI overviews",cost:"free",best:"Everyday lookups with an AI summary on top of normal search.",good:"Fast everyday checks"}
+    ]},
+    {id:"voice",ic:"🎤",name:"Voice & language",intro:"Speak instead of type, and move easily between Marathi, Hindi and English.",tools:[
+      {n:"Voice typing (keyboard)",cost:"free",best:"Speak in Marathi or Hindi; your phone types it. Then let AI clean it up.",good:"No typing needed"},
+      {n:"ChatGPT voice",cost:"freemium",best:"Talk to the AI and hear it reply — useful on the move or on the shop floor.",good:"Hands-free help"},
+      {n:"Google Translate",cost:"free",best:"Translate brochures, labels and messages between languages instantly.",good:"Cross-language selling"}
+    ]}
+  ];
+  var toolTabs=document.getElementById("toolTabs"),toolGrid=document.getElementById("toolGrid"),taskIntro=document.getElementById("taskIntro");
+  var costLabel={free:"Free",freemium:"Free to start",paid:"Paid"};
+  function renderTools(id){
+    var c=taskCats.filter(function(x){return x.id===id;})[0];
+    toolTabs.querySelectorAll("button").forEach(function(b){b.classList.toggle("on",b.dataset.id===id);});
+    taskIntro.innerHTML="<b>"+c.name+":</b> "+c.intro;
+    var html="";
+    c.tools.forEach(function(t){
+      html+='<div class="tool"><h4>'+t.n+'<span class="cost '+t.cost+'">'+costLabel[t.cost]+'</span></h4><p class="best">'+t.best+'</p><div class="good">'+t.good+'</div></div>';
+    });
+    toolGrid.innerHTML=html;
+  }
+  taskCats.forEach(function(c){
+    var b=document.createElement("button");b.dataset.id=c.id;
+    b.innerHTML='<span>'+c.ic+'</span>'+c.name;
+    b.addEventListener("click",function(){renderTools(c.id);});
+    toolTabs.appendChild(b);
+  });
+  renderTools("write");
+
+  /* ===== TECHNOLOGY LANDSCAPE ===== */
+  var stack=[
+    {grp:"use",tier:"You are here",name:"Ready-to-use products (apps & SaaS)",egs:"ChatGPT · Claude · Gemini · Microsoft Copilot · Canva · Perplexity · Notion AI · WhatsApp Business",det:"Finished apps you just open and use — no setup, mostly free to start. This is where almost every small business should live."},
+    {grp:"use",tier:"You are here",name:"Point solutions & no-code automation",egs:"Jasper · GitHub Copilot · Gamma · ElevenLabs · Zapier / Make · DataRobot",det:"Specialised tools for one job — writing, slides, voice, coding — plus no-code automation that connects your apps. Buy one when a task is daily and painful."},
+    {grp:"build",tier:"For builders",name:"APIs & model access",egs:"OpenAI API · Anthropic API · Google AI Studio · Azure OpenAI · AWS Bedrock · Cohere",det:"How developers plug an AI model into their own software. Relevant when you commission a custom app — you'd rarely touch this yourself."},
+    {grp:"build",tier:"For builders",name:"Foundation models",egs:"GPT · Claude · Gemini · Llama · Mistral   |   DALL·E · Midjourney · Stable Diffusion",det:"The big pre-trained \u201cbrains\u201d behind everything above — for text, images, voice and video. You use them indirectly, through the products on top."},
+    {grp:"build",tier:"For builders",name:"Frameworks & orchestration",egs:"PyTorch · TensorFlow · scikit-learn · Hugging Face · LangChain · LlamaIndex · LangGraph · vector databases",det:"The engineering toolkits used to build, connect and train AI. This is developer territory — the workshop behind the showroom."},
+    {grp:"infra",tier:"Infrastructure",name:"Cloud & data/AI platforms",egs:"AWS SageMaker · Azure Machine Learning · Google Vertex AI · Databricks · Dataiku · Snowflake · IBM watsonx",det:"Where data is prepared and models are trained, hosted and served at scale — the big clouds plus end-to-end data-and-ML platforms like Databricks and Dataiku that work across them. Vendors build on these; you get the benefit without ever seeing them."},
+    {grp:"infra",tier:"Infrastructure",name:"Compute & infrastructure (chips)",egs:"NVIDIA GPUs · Google TPUs · AWS Trainium / Inferentia · data centres",det:"The raw computing power — specialised chips in giant data centres — that makes all AI possible. The foundation of the entire stack."}
+  ];
+  var stackWrap=document.getElementById("stack"),stackDetail=document.getElementById("stackDetail");
+  function renderStackDetail(i){
+    stackWrap.querySelectorAll(".slayer").forEach(function(x,idx){x.classList.toggle("sel",idx===i);});
+    stackDetail.innerHTML='<b>'+stack[i].name+':</b> '+stack[i].det;
+  }
+  if(stackWrap){
+    stack.forEach(function(l,i){
+      var el=document.createElement("div");el.className="slayer "+l.grp;
+      el.innerHTML='<div><span class="tier">'+l.tier+'</span></div><div><div class="lname">'+l.name+'</div><div class="legs">'+l.egs+'</div></div>';
+      el.addEventListener("click",function(){renderStackDetail(i);});
+      stackWrap.appendChild(el);
+    });
+    renderStackDetail(0);
+  }
+
+  var families=[
+    {key:"ml",name:"AI / ML",tag:"predict from data"},
+    {key:"dl",name:"Deep Learning",tag:"see, hear, perceive"},
+    {key:"gen",name:"Generative AI",tag:"create content"},
+    {key:"agent",name:"Agentic AI",tag:"take actions"}
+  ];
+  var matrixRows=[
+    {label:"Frameworks & libraries",cells:{
+      ml:"scikit-learn · XGBoost · LightGBM",
+      dl:"PyTorch · TensorFlow · Keras · JAX",
+      gen:"Hugging Face · Diffusers · LangChain · LlamaIndex",
+      agent:"LangGraph · CrewAI · AutoGen · Semantic Kernel"}},
+    {label:"Cloud & platforms",cells:{
+      ml:"AWS SageMaker · Azure ML · Vertex AI · Databricks · Dataiku · DataRobot",
+      dl:"AWS Rekognition · Google Vision · Azure Speech · NVIDIA",
+      gen:"OpenAI / Anthropic / Google APIs · Azure OpenAI · AWS Bedrock",
+      agent:"Copilot Studio · Vertex Agent Builder · Bedrock Agents · OpenAI Assistants"}},
+    {label:"Ready-to-use products",cells:{
+      ml:"Amazon Forecast · BigML · predictive CRM & analytics",
+      dl:"Google Lens · transcription apps · quality-check cameras",
+      gen:"ChatGPT · Claude · Gemini · Canva · Jasper · Midjourney · ElevenLabs",
+      agent:"Claude with tools · Zapier AI · coding agents · workflow bots"}}
+  ];
+  var landMatrix=document.getElementById("landMatrix");
+  if(landMatrix){
+    var h='<div class="lm-corner"></div>';
+    families.forEach(function(f){h+='<div class="lm-h '+f.key+'"><span class="lt">'+f.name+'</span><span class="ls">'+f.tag+'</span></div>';});
+    matrixRows.forEach(function(r){
+      h+='<div class="lm-rowlab">'+r.label+'</div>';
+      families.forEach(function(f){h+='<div class="lm-cell '+f.key+'">'+r.cells[f.key]+'</div>';});
+    });
+    landMatrix.innerHTML=h;
+  }
+
+  var clouds=[
+    {name:"Amazon Web Services",prod:"SageMaker · Bedrock",note:"The widest set of services; Bedrock offers many models in one place."},
+    {name:"Microsoft Azure",prod:"Azure AI · Azure OpenAI",note:"Deep Office & Copilot integration; hosts OpenAI's models."},
+    {name:"Google Cloud",prod:"Vertex AI · Gemini",note:"Strong data & ML tooling; home of the Gemini models."},
+    {name:"Others",prod:"IBM watsonx · Oracle · NVIDIA",note:"Enterprise, database and GPU-focused options."}
+  ];
+  var cloudsWrap=document.getElementById("clouds");
+  if(cloudsWrap){
+    clouds.forEach(function(c){
+      var el=document.createElement("div");el.className="cloud";
+      el.innerHTML='<h4>'+c.name+'</h4><div class="cp">'+c.prod+'</div><div class="cn">'+c.note+'</div>';
+      cloudsWrap.appendChild(el);
+    });
+  }
+  var msmeNote=document.getElementById("msmeNote");
+  if(msmeNote){
+    msmeNote.innerHTML="<b>What this means for you:</b> vendors sell at every layer, but as a small business you almost always want the <b>top of the stack</b> — ready-to-use products — and the <b>bottom row</b> of the family map. Everything below and behind that is for developers and big enterprises. Knowing the map simply means no one can oversell you a \u201ccustom AI platform\u201d when a \u20b90 app would do the job.";
+  }
+
+  /* ===== MAKEOVER ===== */
+  var makeovers=[
+    {name:"WhatsApp offer",
+     weak:"\"Write a Diwali offer message.\"",
+     strong:"\"You are my sales assistant. Write a WhatsApp message announcing 20% off on masala combo packs this Diwali, for my regular customers in Nagpur. Keep it under 4 lines, warm and friendly, in Marathi.\"",
+     why:"<b>Why it wins:</b> the weak version could produce anything, for anyone. The strong one names the offer, the audience, the length, the tone and the language — so the very first reply is usable."},
+    {name:"Quotation",
+     weak:"\"Make a quotation for a customer.\"",
+     strong:"\"You are my office assistant. Prepare an itemised quotation for a customer who wants 10 mild-steel storage racks, 6ft tall. Include material, labour and 18% GST as separate lines, add a 7-day delivery note for Bhandara, and a polite closing. Lay it out as a neat table.\"",
+     why:"<b>Why it wins:</b> it gives the AI the quantities, specs, tax, delivery and format. You get a near-final quote to check, instead of a vague template you'd have to rewrite."},
+    {name:"Complaint reply",
+     weak:"\"Reply to this angry customer.\"",
+     strong:"\"You are my customer-care manager. A customer is upset that their pickle order arrived 3 days late. Write a calm, apologetic reply that takes responsibility, offers 10% off their next order, and reassures them. Keep it short and respectful, in Hindi.\"",
+     why:"<b>Why it wins:</b> it tells the AI the exact problem, the goodwill gesture you're willing to give, the tone and the language — turning a risky message into a relationship-saving one."},
+    {name:"Product description",
+     weak:"\"Describe my product.\"",
+     strong:"\"You are a marketplace copywriter. Write a product description for hand-roasted groundnut chikki, 200g, ₹80, no preservatives, made in Amravati. Highlight taste and purity for health-conscious buyers. Give a catchy title and 3 short bullet points for a Flipkart listing.\"",
+     why:"<b>Why it wins:</b> it supplies the product facts, price, selling points, audience and exact format. The output is ready to paste into a listing, not a generic paragraph."},
+    {name:"Buyer email",
+     weak:"\"Write an email to a buyer.\"",
+     strong:"\"You are my business-development manager. Write a short, professional email to a potential institutional buyer introducing our steel storage racks, offering to send a catalogue and samples, and requesting a 10-minute call. Confident but not pushy, in English, with a clear subject line.\"",
+     why:"<b>Why it wins:</b> it sets the goal (a call), the offer (catalogue, samples), the tone and even the subject line \u2014 so you get a send-ready email, not a rough sketch."},
+    {name:"Summarise a document",
+     weak:"\"Explain this.\"",
+     strong:"\"You are my office assistant. Read the pasted supplier agreement and explain it to me in simple Marathi: the price, payment terms, delivery timeline, and anything risky I should watch out for. Use short bullet points.\"",
+     why:"<b>Why it wins:</b> it tells the AI exactly what to pull out, in which language and format \u2014 turning a dense document into a decision you can actually make."}
+  ];
+  var moSeg=document.getElementById("moSeg"),moWeak=document.getElementById("moWeak"),moStrong=document.getElementById("moStrong"),moWhy=document.getElementById("moWhy");
+  function renderMo(i){
+    moSeg.querySelectorAll("button").forEach(function(b,idx){b.classList.toggle("on",idx===i);});
+    moWeak.textContent=makeovers[i].weak;
+    moStrong.textContent=makeovers[i].strong;
+    moWhy.innerHTML=makeovers[i].why;
+  }
+  makeovers.forEach(function(m,i){
+    var b=document.createElement("button");b.textContent=m.name;
+    b.addEventListener("click",function(){renderMo(i);});
+    moSeg.appendChild(b);
+  });
+  renderMo(0);
+
+  /* ===== PROMPT BUILDER ===== */
+  var langOpts=["Marathi","Hindi","English"];
+  var toneOpts=["warm & friendly","professional","short & direct","persuasive"];
+  var tasks=[
+    {id:"whatsapp",label:"Write a WhatsApp message to customers",
+     fields:[
+       {id:"purpose",label:"What is the message about?",type:"select",opts:["a festival offer / discount","a new product launch","a payment reminder","a thank-you to loyal customers","reopening / timing update"]},
+       {id:"detail",label:"Key detail (offer, product, amount, date…)",type:"text",ph:"e.g. 20% off masala combo packs till Diwali"},
+       {id:"audience",label:"Who is it for?",type:"text",ph:"e.g. regular retail customers in Nagpur"},
+       {id:"tone",label:"Tone",type:"select",opts:toneOpts},
+       {id:"lang",label:"Language",type:"select",opts:langOpts}
+     ],
+     build:function(v){return "You are my sales assistant. Write a WhatsApp message about "+v.purpose+" — "+(v.detail||"[add your detail]")+" — for "+(v.audience||"my customers")+". Keep it "+v.tone+", under 4 lines, in "+v.lang+". Add one friendly line and a clear call to action.";}},
+    {id:"quote",label:"Draft a quotation for a customer",
+     fields:[
+       {id:"items",label:"What does the customer want? (items & quantity)",type:"text",ph:"e.g. 10 mild-steel storage racks, 6ft tall"},
+       {id:"place",label:"Delivery location",type:"text",ph:"e.g. Bhandara"},
+       {id:"gst",label:"Include GST?",type:"select",opts:["yes, 18% GST as a separate line","yes, 12% GST as a separate line","yes, 5% GST as a separate line","no GST"]},
+       {id:"lang",label:"Language",type:"select",opts:["English","Hindi","Marathi"]}
+     ],
+     build:function(v){return "You are my office assistant. Prepare an itemised quotation for: "+(v.items||"[items and quantity]")+". Show material and labour as separate lines, "+v.gst+", and add a delivery note for "+(v.place||"[location]")+". Include a polite closing. Lay it out as a neat table, in "+v.lang+". Leave any price I haven't given as a blank for me to fill.";}},
+    {id:"complaint",label:"Reply to a customer complaint",
+     fields:[
+       {id:"issue",label:"What is the customer upset about?",type:"text",ph:"e.g. pickle order arrived 3 days late"},
+       {id:"offer",label:"What can you offer to make it right?",type:"text",ph:"e.g. 10% off their next order"},
+       {id:"tone",label:"Tone",type:"select",opts:["calm & apologetic","professional & firm","warm & reassuring"]},
+       {id:"lang",label:"Language",type:"select",opts:langOpts}
+     ],
+     build:function(v){return "You are my customer-care manager. A customer is upset because "+(v.issue||"[the problem]")+". Write a "+v.tone+" reply that takes responsibility, offers "+(v.offer||"a suitable gesture")+", and reassures them we value their business. Keep it short and respectful, in "+v.lang+".";}},
+    {id:"listing",label:"Write a product description / listing",
+     fields:[
+       {id:"product",label:"Product (name, size, price)",type:"text",ph:"e.g. hand-roasted groundnut chikki, 200g, ₹80"},
+       {id:"selling",label:"Main selling points",type:"text",ph:"e.g. no preservatives, made fresh in Amravati"},
+       {id:"where",label:"Where will it be listed?",type:"select",opts:["a Flipkart / Amazon listing","a WhatsApp catalogue","an Instagram post","IndiaMART"]},
+       {id:"lang",label:"Language",type:"select",opts:["English","Hindi","Marathi"]}
+     ],
+     build:function(v){return "You are a marketplace copywriter. Write a product description for "+(v.product||"[product, size, price]")+". Highlight these selling points: "+(v.selling||"[key features]")+". Give a catchy title and 3 short bullet points, suitable for "+v.where+", in "+v.lang+".";}},
+    {id:"social",label:"Create social media post ideas",
+     fields:[
+       {id:"topic",label:"What's the post about?",type:"text",ph:"e.g. our new millet snack range"},
+       {id:"goal",label:"Goal of the post",type:"select",opts:["drive enquiries / orders","build trust and brand","announce something new","share a customer review"]},
+       {id:"lang",label:"Language",type:"select",opts:langOpts}
+     ],
+     build:function(v){return "You are my social media assistant. Give me 3 short Instagram/Facebook post ideas about "+(v.topic||"[topic]")+", with the goal to "+v.goal+". For each, include a caption, 5 relevant hashtags, and a one-line photo suggestion. Write in "+v.lang+".";}},
+    {id:"email",label:"Write a business email (buyer or supplier)",
+     fields:[
+       {id:"to",label:"Who is it to?",type:"select",opts:["a potential buyer","an existing customer","a supplier","an institution / government office"]},
+       {id:"goal",label:"What do you want from this email?",type:"text",ph:"e.g. request a meeting to supply our racks"},
+       {id:"points",label:"Key points to include",type:"text",ph:"e.g. our range, delivery in 7 days, competitive rates"},
+       {id:"lang",label:"Language",type:"select",opts:["English","Hindi","Marathi"]}
+     ],
+     build:function(v){return "You are my business-development manager. Write a short, professional email to "+v.to+". The goal is to "+(v.goal||"[your goal]")+". Include these points: "+(v.points||"[key points]")+". Add a clear subject line and a polite close. Keep it confident but not pushy, in "+v.lang+".";}},
+    {id:"sop",label:"Turn notes into an SOP / checklist",
+     fields:[
+       {id:"task",label:"What process do you want written up?",type:"text",ph:"e.g. how we pack and dispatch an order"},
+       {id:"who",label:"Who will follow it?",type:"text",ph:"e.g. a new packing helper"},
+       {id:"lang",label:"Language",type:"select",opts:["Marathi","Hindi","English"]}
+     ],
+     build:function(v){return "You are my operations assistant. Turn my rough description of \u201c"+(v.task||"[the process]")+"\u201d into a clear, numbered step-by-step SOP that "+(v.who||"a new worker")+" can follow without asking questions. Add a short safety or quality note where it matters. Write in "+v.lang+". Ask me about any step that is unclear.";}},
+    {id:"costing",label:"Plan a costing / pricing sheet",
+     fields:[
+       {id:"product",label:"Product or service to price",type:"text",ph:"e.g. a 6ft mild-steel storage rack"},
+       {id:"costs",label:"Main cost items you know",type:"text",ph:"e.g. steel, labour, welding, transport"},
+       {id:"margin",label:"Target profit margin",type:"select",opts:["around 20%","around 30%","around 40%","not sure \u2014 suggest one"]}
+     ],
+     build:function(v){return "You are my costing assistant. Help me build a simple costing sheet for "+(v.product||"[product]")+". List these cost items as separate rows: "+(v.costs||"[your cost items]")+", plus any I may have missed. Show how to add a "+v.margin+" profit margin to reach a final price. Explain each step in plain words, and remind me to fill in the actual rupee figures and re-check the maths myself.";}}
+  ];
+  var bTask=document.getElementById("bTask"),bFields=document.getElementById("bFields"),promptBox=document.getElementById("promptBox"),copyBtn=document.getElementById("copyBtn");
+  var current;
+  tasks.forEach(function(t){var o=document.createElement("option");o.value=t.id;o.textContent=t.label;bTask.appendChild(o);});
+  function values(){
+    var v={};
+    current.fields.forEach(function(f){
+      var el=document.getElementById("bf_"+f.id);
+      v[f.id]=el?el.value:"";
+    });
+    return v;
+  }
+  function updatePrompt(){promptBox.textContent=current.build(values());copyBtn.classList.remove("done");copyBtn.textContent="Copy";}
+  function renderFields(id){
+    current=tasks.filter(function(x){return x.id===id;})[0];
+    var html="";
+    current.fields.forEach(function(f){
+      html+='<div class="fld"><label for="bf_'+f.id+'">'+f.label+'</label>';
+      if(f.type==="select"){
+        html+='<select id="bf_'+f.id+'">';
+        f.opts.forEach(function(o){html+='<option>'+o+'</option>';});
+        html+='</select>';
+      }else{
+        html+='<input id="bf_'+f.id+'" type="text" placeholder="'+f.ph+'">';
+      }
+      html+='</div>';
+    });
+    bFields.innerHTML=html;
+    current.fields.forEach(function(f){
+      var el=document.getElementById("bf_"+f.id);
+      el.addEventListener("input",updatePrompt);
+      el.addEventListener("change",updatePrompt);
+    });
+    updatePrompt();
+  }
+  bTask.addEventListener("change",function(){renderFields(bTask.value);});
+  copyBtn.addEventListener("click",function(){
+    var text=promptBox.textContent;
+    function done(){copyBtn.textContent="Copied ✓";copyBtn.classList.add("done");setTimeout(function(){copyBtn.textContent="Copy";copyBtn.classList.remove("done");},2000);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(fallback);
+    }else{fallback();}
+    function fallback(){
+      var ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand("copy");done();}catch(e){}
+      document.body.removeChild(ta);
+    }
+  });
+  renderFields(tasks[0].id);
+
+  /* ===== WORKFLOW LOOP ===== */
+  var flowData=[
+    {t:"Pick one small task",p:"Choose a single, low-risk, repetitive task — not your most important customer. A caption, an internal note, a routine reply. Small means mistakes cost nothing while you learn.",key:"<b>Why start small:</b> confidence is built on safe wins, not on betting your biggest order on a new tool."},
+    {t:"Try it with a good prompt",p:"Open a free tool and use the R-T-C-F recipe. Give it the role, the task, your context and the format. Don't expect perfection on attempt one.",key:"<b>Remember:</b> the tool is only as good as your instruction. A vague ask gets a vague answer."},
+    {t:"Check the output — always",p:"Read it as if a new junior wrote it. Are the facts right? The numbers? The tone? Would you be happy for a customer to receive this exactly as written?",key:"<b>Never skip this.</b> AI can be confidently wrong. You are the quality gate — this one habit separates safe users from embarrassed ones."},
+    {t:"Refine and save what works",p:"If it's not right, just tell the AI in plain words: \"shorter\", \"more formal\", \"in Marathi\", \"add the delivery date\". When you get a prompt that works well, save it.",key:"<b>Build a prompt library:</b> your saved prompts become reusable tools your whole team can use."},
+    {t:"Adopt it, then loop again",p:"Once a task reliably works, make it your normal way of doing it. Then return to Step 1 and pick the next task. This is how AI quietly becomes part of your business.",key:"<b>The loop never ends:</b> one solid task at a time compounds into a real capability over months."}
+  ];
+  var flow=document.getElementById("flow"),flowDetail=document.getElementById("flowDetail");
+  function renderFlow(i){
+    flow.querySelectorAll(".fstep").forEach(function(x,idx){x.classList.toggle("sel",idx===i);});
+    var d=flowData[i];
+    flowDetail.innerHTML='<h3>Step '+(i+1)+' · '+d.t+'</h3><p>'+d.p+'</p><div class="key">'+d.key+'</div>';
+    flowDetail.classList.add("show");
+  }
+  flow.querySelectorAll(".fstep").forEach(function(s){
+    s.addEventListener("click",function(){renderFlow(parseInt(s.dataset.s,10));});
+  });
+  renderFlow(0);
+
+  /* ===== LEVELS ACCORDION ===== */
+  document.querySelectorAll("#levels .lvl").forEach(function(l){
+    l.addEventListener("click",function(){l.classList.toggle("open");});
+  });
+
+  /* ===== PROMPT LIBRARY ===== */
+  var library=[
+    {id:"mfg",name:"Manufacturing & Engineering",prompts:[
+      {t:"Itemised quotation",p:"You are my office assistant. Prepare an itemised quotation for [items and quantity], with material, labour and 18% GST as separate lines, a [X]-day delivery note for [place], and a polite close. Lay it out as a table."},
+      {t:"IndiaMART listing",p:"You are a B2B copywriter. Write an IndiaMART product listing for [product]. Include a strong title, key specifications as bullets, and why buyers should choose us. Keep it professional."},
+      {t:"True-cost & margin",p:"You are my costing assistant. Break down the cost of making [product] into material, labour and overhead. Suggest a selling price at a [30%] margin and show the working. Remind me to verify the figures."},
+      {t:"Buyer follow-up",p:"You are my sales assistant. Write a short, polite follow-up message to a buyer who asked for a quote on [product] last week but hasn't replied. Nudge gently and offer to answer questions."}
+    ]},
+    {id:"food",name:"Food & Food Processing",prompts:[
+      {t:"Festival WhatsApp offer",p:"You are my sales assistant. Write a WhatsApp message for [X]% off [product] this [festival], for regular customers in [place]. Warm and friendly, under 4 lines, in Marathi, with a clear call to action."},
+      {t:"Product description",p:"You are a marketplace copywriter. Write a description for [product, size, price]. Highlight [taste/purity/no preservatives]. Give a catchy title and 3 bullet points for a [Flipkart] listing."},
+      {t:"Retailer pitch",p:"You are my business-development manager. Write a short pitch message to a kirana store or distributor to stock [product], covering pack sizes, margin for them, and delivery. Professional and confident."},
+      {t:"Label & compliance check",p:"You are my packaging assistant. Draft clear label text for [product] including net weight, MRP and best-before, and list the FSSAI labelling points I should not miss. Explain in simple words."}
+    ]},
+    {id:"agri",name:"Agriculture & Agri-enterprise",prompts:[
+      {t:"Buyer outreach",p:"You are my market-linkage assistant. Write a message to [institutional buyer/processor] offering [produce, quantity, grade] from our FPO, mentioning quality and reliable supply, and requesting their best rate."},
+      {t:"Member update (Marathi)",p:"You are my communications assistant. Write a short, clear Marathi WhatsApp update for FPO members about [scheme/price/collection date]. Friendly and easy to understand."},
+      {t:"Scheme explainer",p:"You are my documentation assistant. Explain the [scheme name] to me in simple Marathi: who is eligible, what the benefit is, and what documents are needed. Use short points."},
+      {t:"Value-addition ideas",p:"You are my business advisor. Suggest 3 ways we could process [raw produce] into higher-value products, with rough costs and who might buy each. Keep it practical for a small FPO."}
+    ]},
+    {id:"svc",name:"Services & Business Support",prompts:[
+      {t:"Service packages",p:"You are my marketing assistant. Turn my services — [list them] — into 3 clear, named packages with what's included and a suggested price band, so customers can easily choose."},
+      {t:"Instant enquiry reply",p:"You are my front-desk assistant. Write a warm, helpful reply to a customer asking about [service]. Answer the likely questions (price range, time, booking) and invite them to confirm."},
+      {t:"Google review reply",p:"You are my reputation manager. Write a professional, warm reply to this customer review: [paste review]. Thank them, address any concern, and keep it short."},
+      {t:"Payment reminder",p:"You are my accounts assistant. Write a firm but polite reminder for an overdue payment of [amount] from [customer], due on [date]. Keep the relationship intact."}
+    ]},
+    {id:"edu",name:"Education & Coaching",prompts:[
+      {t:"Worksheet generator",p:"You are my teaching assistant. Create a [subject] worksheet for [class/level] on [topic], with 10 questions of increasing difficulty and an answer key. Clear and exam-oriented."},
+      {t:"Parent enquiry reply",p:"You are my admissions assistant. Write a warm reply to a parent asking about our [course/batch]. Cover timings, fees range and results, and invite them for a visit."},
+      {t:"Admission-open post",p:"You are my social media assistant. Write an eye-catching admission-open post for [course], highlighting [results/faculty/batch size]. Include a caption and 5 hashtags, in [language]."},
+      {t:"Progress note",p:"You are my teaching assistant. Turn these marks and observations — [paste] — into an encouraging progress note for the parent, noting strengths and one area to improve."}
+    ]}
+  ];
+  var libPick=document.getElementById("libPick"),libGrid=document.getElementById("libGrid");
+  function libCopy(btn,text){
+    function done(){btn.textContent="Copied \u2713";btn.classList.add("done");setTimeout(function(){btn.textContent="Copy";btn.classList.remove("done");},1800);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done).catch(fb);}else{fb();}
+    function fb(){var ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done();}catch(e){}document.body.removeChild(ta);}
+  }
+  function renderLib(id){
+    var l=library.filter(function(x){return x.id===id;})[0];
+    libPick.querySelectorAll("button").forEach(function(b){b.classList.toggle("on",b.dataset.id===id);});
+    libGrid.innerHTML="";
+    l.prompts.forEach(function(pr){
+      var card=document.createElement("div");card.className="libcard";
+      var head=document.createElement("div");head.className="lh";
+      head.innerHTML='<span class="lt">'+pr.t+'</span>';
+      var btn=document.createElement("button");btn.className="libcopy";btn.textContent="Copy";
+      btn.addEventListener("click",function(){libCopy(btn,pr.p);});
+      head.appendChild(btn);
+      var body=document.createElement("div");body.className="lp";body.textContent=pr.p;
+      card.appendChild(head);card.appendChild(body);
+      libGrid.appendChild(card);
+    });
+  }
+  if(libPick){
+    library.forEach(function(l){
+      var b=document.createElement("button");b.dataset.id=l.id;b.textContent=l.name;
+      b.addEventListener("click",function(){renderLib(l.id);});
+      libPick.appendChild(b);
+    });
+    renderLib("mfg");
+  }
+
+  /* ===== TOOL CHECKLIST ===== */
+  var toolChecksData=[
+    {t:"Free (or nearly free) to start",d:"You should never pay to just try it."},
+    {t:"Works on a basic smartphone",d:"No expensive computer or setup needed."},
+    {t:"Understands your language",d:"Hindi and Marathi, not English only."},
+    {t:"Safe with your data",d:"You can use it without sharing anything sensitive."},
+    {t:"Solves a real weekly task",d:"Not a gimmick — something you actually do often."}
+  ];
+  var toolChecks=document.getElementById("toolChecks"),tcBig=document.getElementById("tcBig"),tcVerdict=document.getElementById("tcVerdict");
+  var tcState=[false,false,false,false,false];
+  function tcVerdictText(n){
+    if(n<=2)return "<b>Be cautious.</b> A tool that fails this many questions is probably not worth your time yet. Keep looking.";
+    if(n<=3)return "<b>Maybe.</b> It could work, but note what's missing before you rely on it \u2014 especially data safety and your language.";
+    if(n===4)return "<b>Good candidate.</b> Worth a proper trial on one real task. Watch the one box it didn't tick.";
+    return "<b>Adopt it.</b> A tool that passes all five is exactly what an MSME should be using. Put it to work this week.";
+  }
+  function renderTc(){
+    var n=tcState.filter(Boolean).length;
+    tcBig.textContent=n+"/5";
+    tcVerdict.innerHTML=tcVerdictText(n);
+  }
+  if(toolChecks){
+    toolChecksData.forEach(function(it,i){
+      var el=document.createElement("button");el.className="tc";
+      el.innerHTML='<span class="cb">\u2713</span><span><span class="tt">'+it.t+'</span><span class="td">'+it.d+'</span></span>';
+      el.addEventListener("click",function(){tcState[i]=!tcState[i];el.classList.toggle("on",tcState[i]);renderTc();});
+      toolChecks.appendChild(el);
+    });
+    renderTc();
+  }
+})();
+</script>
+</body>
+</html>
